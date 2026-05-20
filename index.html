@@ -38,21 +38,25 @@
     .yesterday-banner { background:rgba(102,102,170,.12); padding:9px 20px; font-size:12px; color:var(--text2); text-align:center; border-bottom:1px solid var(--border); }
 
     /* Hero */
-    .hero { padding:32px 20px 24px; border-bottom:1px solid var(--border); }
-    .hero-date  { font-size:12px; color:var(--text2); margin-bottom:10px; letter-spacing:.3px; }
-    .hero-bal   { font-size:62px; font-weight:800; letter-spacing:-3px; line-height:1; margin-bottom:4px; }
-    .hero-lbl   { font-size:11px; color:var(--text2); letter-spacing:.5px; text-transform:uppercase; margin-bottom:26px; }
-    .hero-row   { display:flex; }
-    .hero-half  { flex:1; }
-    .hero-half + .hero-half { border-left:1px solid var(--border); padding-left:20px; }
-    .hh-val { font-size:22px; font-weight:700; margin-bottom:3px; }
-    .hh-key { font-size:10px; color:var(--text2); letter-spacing:.5px; text-transform:uppercase; }
+    .hero { padding:28px 20px 20px; border-bottom:1px solid var(--border); }
+    .hero-date { font-size:12px; color:var(--text2); margin-bottom:12px; }
+    .hero-score { font-size:80px; font-weight:900; letter-spacing:-4px; line-height:1; margin-bottom:10px; }
+    .hero-grade-row { display:flex; align-items:center; gap:10px; margin-bottom:20px; }
+    .hero-grade-chip { padding:3px 12px; border-radius:20px; font-size:14px; font-weight:800; }
+    .hero-grade-label { font-size:13px; color:var(--text2); }
+    .hero-drivers { display:flex; flex-direction:column; gap:7px; margin-bottom:20px; padding:13px 14px; background:var(--bg3); border-radius:10px; }
+    .driver-row { display:flex; align-items:center; gap:8px; font-size:13px; line-height:1.3; }
+    .hero-meta { display:flex; padding-top:16px; border-top:1px solid var(--border); }
+    .hero-meta-item { flex:1; text-align:center; }
+    .hero-meta-item + .hero-meta-item { border-left:1px solid var(--border); }
+    .hm-val { font-size:15px; font-weight:700; margin-bottom:3px; }
+    .hm-key { font-size:10px; color:var(--text2); text-transform:uppercase; letter-spacing:.5px; }
 
     /* Stats row */
     .stats-row { display:flex; border-bottom:1px solid var(--border); }
-    .stat-blk { flex:1; padding:14px 20px; }
+    .stat-blk { flex:1; padding:13px 20px; }
     .stat-blk + .stat-blk { border-left:1px solid var(--border); }
-    .stat-v { font-size:20px; font-weight:700; margin-bottom:2px; }
+    .stat-v { font-size:19px; font-weight:700; margin-bottom:2px; }
     .stat-k { font-size:10px; color:var(--text2); letter-spacing:.3px; }
 
     /* Dim breakdown */
@@ -382,6 +386,63 @@ function getTrends(stor) {
   return arrows;
 }
 
+function calcScore(posSec, negSec, dimPos, goals) {
+  if (!posSec && !negSec) return null;
+  const total = posSec + negSec;
+  const efficiency = total > 0 ? posSec / total : 1;
+  const setGoals = DIMS.filter(d => (goals[d]||0) > 0);
+  const goalRate = setGoals.length > 0
+    ? setGoals.filter(d => (dimPos[d]||0) >= (goals[d]||0)*60).length / setGoals.length
+    : 0.5;
+  return Math.min(100, Math.max(0, Math.round(efficiency * 65 + goalRate * 35)));
+}
+
+function getGrade(score) {
+  if (score >= 90) return { letter:'S', label:'完美', color:'#ffd700' };
+  if (score >= 80) return { letter:'A', label:'優秀', color:'var(--c-pos)' };
+  if (score >= 70) return { letter:'B', label:'良好', color:'#4f9cf9' };
+  if (score >= 60) return { letter:'C', label:'普通', color:'#ff9800' };
+  if (score >= 50) return { letter:'D', label:'待改善', color:'#ff7043' };
+  return { letter:'F', label:'需要反省', color:'var(--c-neg)' };
+}
+
+function getStreak(stor) {
+  const goals = stor.goals||{}, dp = stor.dailyPositive||{}, dn = stor.dailyNegative||{};
+  const today = new Date().toISOString().slice(0,10);
+  const dates = Object.keys(dp).filter(d=>d<=today).sort().reverse();
+  let streak = 0, prev = null;
+  for (const date of dates) {
+    if (prev) {
+      const gap = (new Date(prev)-new Date(date))/86400e3;
+      if (gap > 1) break;
+    }
+    const dimPos = dp[date]||{}, dimNeg = dn[date]||{};
+    const pos = DIMS.reduce((s,d)=>s+(dimPos[d]||0),0);
+    const neg = DIMS.reduce((s,d)=>s+(dimNeg[d]||0),0);
+    const score = calcScore(pos, neg, dimPos, goals);
+    if (score===null||score<60) break;
+    streak++; prev=date;
+  }
+  return streak;
+}
+
+function getWeekAvgScore(stor) {
+  const today = new Date().toISOString().slice(0,10);
+  const weekStart = getWeekStart(today).toISOString().slice(0,10);
+  const goals = stor.goals||{}, dp = stor.dailyPositive||{}, dn = stor.dailyNegative||{};
+  const dates = Object.keys(dp).filter(d=>d>=weekStart&&d<=today);
+  if (!dates.length) return null;
+  let sum=0, cnt=0;
+  for (const date of dates) {
+    const dimPos=dp[date]||{}, dimNeg=dn[date]||{};
+    const pos=DIMS.reduce((s,d)=>s+(dimPos[d]||0),0);
+    const neg=DIMS.reduce((s,d)=>s+(dimNeg[d]||0),0);
+    const score=calcScore(pos,neg,dimPos,goals);
+    if (score!==null){sum+=score;cnt++;}
+  }
+  return cnt>0?Math.round(sum/cnt):null;
+}
+
 function fmtTime(sec) {
   if (!sec) return '0m';
   const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60);
@@ -415,50 +476,78 @@ function renderDayContent(data, stor, isYesterday) {
 
   const wk=getWeekSummary(stor);
   const wkBal=wk.pos-wk.neg;
-  const wkSign=wkBal>=0?'+':'−';
   const wkCol=wkBal>=0?'var(--c-pos)':'var(--c-neg)';
-  const wkRate=wk.pos+wk.neg>0?Math.round(wk.pos/(wk.pos+wk.neg)*100):100;
   const trends=getTrends(stor);
   const goals=(stor.goals||{});
 
+  // Dim totals (needed for score + breakdown)
+  const dimPos={},dimNeg={}; DIMS.forEach(d=>{dimPos[d]=0;dimNeg[d]=0;});
+  apps.forEach(a=>{if(a._m.dim){dimPos[a._m.dim]+=a._m.pos;dimNeg[a._m.dim]+=a._m.neg;}});
+  DIMS.forEach(d=>dimPos[d]+=(manualToday[d]||0));
+
   const dd=new Date(data.date);
   const dateLabel=isYesterday?`${dd.getMonth()+1}/${dd.getDate()} 昨日`:`${dd.getMonth()+1}/${dd.getDate()} 今日`;
+
+  // Score
+  const score=calcScore(posSec,negSec,dimPos,goals);
+  const grade=score!==null?getGrade(score):null;
+
+  // Drivers
+  const topPos=apps.filter(a=>a._m.pos>0).sort((a,b)=>b._m.pos-a._m.pos).slice(0,2);
+  const topNeg=apps.filter(a=>a._m.neg>0).sort((a,b)=>b._m.neg-a._m.neg).slice(0,2);
+  const manualDrivers=DIMS.filter(d=>manualToday[d]>0).slice(0,1).map(d=>({name:`手動·${d}`,_m:{pos:manualToday[d]}}));
+  const allPos=[...topPos,...manualDrivers].slice(0,2);
+  let driversHtml='';
+  if (allPos.length||topNeg.length) {
+    const posLines=allPos.map(a=>`<div class="driver-row"><span style="color:var(--c-pos)">▲</span><span style="color:var(--text)">${a.name}</span><span style="color:var(--text2);margin-left:4px">${fmtTime(a._m.pos)}</span></div>`).join('');
+    const negLines=topNeg.map(a=>`<div class="driver-row"><span style="color:var(--c-neg)">▼</span><span style="color:var(--text)">${a.name}</span><span style="color:var(--c-neg);margin-left:4px">超標 ${fmtTime(a._m.neg)}</span></div>`).join('');
+    driversHtml=`<div class="hero-drivers">${posLines}${negLines}</div>`;
+  }
 
   // Hero
   const heroHtml=`
     <div class="hero">
       <div class="hero-date">${dateLabel}</div>
-      <div class="hero-bal" style="color:${balCol}">${balSign}${fmtTime(Math.abs(balance))}</div>
-      <div class="hero-lbl">今日結餘</div>
-      <div class="hero-row">
-        <div class="hero-half">
-          <div class="hh-val" style="color:var(--c-pos)">${fmtTime(posSec)}</div>
-          <div class="hh-key">收入</div>
+      ${score!==null?`
+        <div class="hero-score" style="color:${grade.color}">${score}</div>
+        <div class="hero-grade-row">
+          <div class="hero-grade-chip" style="color:${grade.color};background:${grade.color}22">${grade.letter}</div>
+          <div class="hero-grade-label">${grade.label}</div>
         </div>
-        <div class="hero-half">
-          <div class="hh-val" style="color:${negSec?'var(--c-neg)':'var(--text2)'}">${negSec?fmtTime(negSec):'—'}</div>
-          <div class="hh-key">超支</div>
+      `:`<div class="hero-score" style="color:var(--text2)">—</div><div class="hero-grade-row"><div class="hero-grade-label" style="color:var(--text2)">尚無資料</div></div>`}
+      ${driversHtml}
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="hm-val" style="color:var(--c-pos)">${fmtTime(posSec)}</div>
+          <div class="hm-key">收入</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hm-val" style="color:${negSec?'var(--c-neg)':'var(--text2)'}">${negSec?fmtTime(negSec):'—'}</div>
+          <div class="hm-key">超支</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="hm-val" style="color:${balCol}">${balSign}${fmtTime(Math.abs(balance))}</div>
+          <div class="hm-key">結餘</div>
         </div>
       </div>
     </div>`;
 
-  // Stats
+  // Stats (週均分 + 連續達標)
+  const weekAvg=getWeekAvgScore(stor);
+  const streak=getStreak(stor);
   const statsHtml=`
     <div class="stats-row">
       <div class="stat-blk">
-        <div class="stat-v" style="color:${wkCol}">${wkSign}${fmtTime(Math.abs(wkBal))}</div>
-        <div class="stat-k">本週結餘</div>
+        <div class="stat-v">${weekAvg!==null?weekAvg:'—'}</div>
+        <div class="stat-k">本週均分</div>
       </div>
       <div class="stat-blk">
-        <div class="stat-v">${wkRate}%</div>
-        <div class="stat-k">本週儲蓄率</div>
+        <div class="stat-v">${streak>0?`${streak} 🔥`:'0'}</div>
+        <div class="stat-k">連續達標天</div>
       </div>
     </div>`;
 
   // Dim breakdown
-  const dimPos={},dimNeg={}; DIMS.forEach(d=>{dimPos[d]=0;dimNeg[d]=0;});
-  apps.forEach(a=>{if(a._m.dim){dimPos[a._m.dim]+=a._m.pos;dimNeg[a._m.dim]+=a._m.neg;}});
-  DIMS.forEach(d=>dimPos[d]+=(manualToday[d]||0));
   const activeDims=DIMS.filter(d=>dimPos[d]+dimNeg[d]>0);
   const maxDim=Math.max(...activeDims.map(d=>dimPos[d]+dimNeg[d]),1);
 
