@@ -3,146 +3,166 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0d0d18">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="時間帳本">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon.svg">
   <title>時間帳本 × Life RPG</title>
   <style>
     :root {
-      --bg:     #0d0d18;
-      --bg2:    #13131f;
-      --bg3:    #1a1a2e;
-      --border: #2a2a40;
-      --text:   #e8e8f0;
-      --text2:  #7777aa;
-      --c-pos:  #4cdc7a;
-      --c-neg:  #ff5252;
-      --c-psy:  #ab7ae0;
+      --bg:    #0d0d18; --bg2: #13131f; --bg3: #1a1a2e;
+      --border:#2a2a40; --text:#e8e8f0; --text2:#7777aa;
+      --c-pos: #4cdc7a; --c-neg:#ff5252; --c-psy:#ab7ae0;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg); color: var(--text);
-      font-family: -apple-system, 'PingFang TC', 'Noto Sans TC', sans-serif;
-      max-width: 480px; margin: 0 auto;
-      min-height: 100vh; padding-bottom: 32px;
-    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { background:var(--bg); color:var(--text); font-family:-apple-system,'PingFang TC','Noto Sans TC',sans-serif; max-width:480px; margin:0 auto; min-height:100vh; padding-bottom:40px; }
 
-    /* ── Header ── */
-    .header { padding: 20px 16px 12px; border-bottom: 1px solid var(--border); }
-    .header h1 { font-size: 18px; font-weight: 700; letter-spacing: .5px; }
-    .header h1 span { color: var(--c-psy); }
-    .sync-info { font-size: 11px; color: var(--text2); margin-top: 4px; }
+    /* Header */
+    .header { padding:20px 16px 12px; border-bottom:1px solid var(--border); }
+    .header h1 { font-size:18px; font-weight:700; letter-spacing:.5px; }
+    .header h1 span { color:var(--c-psy); }
+    .sync-info { font-size:11px; color:var(--text2); margin-top:4px; }
 
-    /* ── Tabs ── */
-    .tabs { display: flex; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 10; }
-    .tab-btn { flex: 1; padding: 11px 0; background: none; border: none; color: var(--text2); font-size: 13px; cursor: pointer; position: relative; transition: color .2s; }
-    .tab-btn.active { color: var(--text); font-weight: 600; }
-    .tab-btn.active::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 2px; background: var(--c-psy); border-radius: 1px; }
-    .tab-panel { display: none; padding: 14px; }
-    .tab-panel.active { display: block; }
+    /* Tabs */
+    .tabs { display:flex; border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--bg); z-index:10; }
+    .tab-btn { flex:1; padding:11px 0; background:none; border:none; color:var(--text2); font-size:13px; cursor:pointer; position:relative; transition:color .2s; }
+    .tab-btn.active { color:var(--text); font-weight:600; }
+    .tab-btn.active::after { content:''; position:absolute; bottom:0; left:15%; width:70%; height:2px; background:var(--c-psy); border-radius:1px; }
+    .tab-panel { display:none; padding:14px; }
+    .tab-panel.active { display:block; }
 
-    /* ── Card ── */
-    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
-    .card-title { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    /* Card */
+    .card { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:14px; margin-bottom:12px; }
+    .card-title { font-size:11px; color:var(--text2); text-transform:uppercase; letter-spacing:1px; margin-bottom:12px; }
 
-    /* ── Ledger Hero Card ── */
-    .ledger-hero {
-      background: linear-gradient(150deg, #13131f 0%, #1a1a30 100%);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 22px 20px 18px;
-      margin-bottom: 12px;
-      text-align: center;
-    }
-    .l-date  { font-size: 12px; color: var(--text2); margin-bottom: 8px; }
-    .l-label { font-size: 12px; color: var(--text2); letter-spacing: .5px; }
-    .l-balance { font-size: 46px; font-weight: 800; letter-spacing: -1px; margin: 4px 0 18px; }
-    .l-split { display: flex; border-top: 1px solid var(--border); padding-top: 16px; }
-    .l-half  { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-    .l-half + .l-half { border-left: 1px solid var(--border); }
-    .l-half-icon { font-size: 16px; }
-    .l-half-val  { font-size: 20px; font-weight: 700; }
-    .l-half-lbl  { font-size: 11px; color: var(--text2); }
+    /* Ledger Hero */
+    .ledger-hero { background:linear-gradient(150deg,#13131f 0%,#1a1a30 100%); border:1px solid var(--border); border-radius:16px; padding:22px 20px 18px; margin-bottom:10px; text-align:center; }
+    .l-date  { font-size:12px; color:var(--text2); margin-bottom:8px; }
+    .l-label { font-size:12px; color:var(--text2); letter-spacing:.5px; }
+    .l-balance { font-size:46px; font-weight:800; letter-spacing:-1px; margin:4px 0 18px; }
+    .l-split { display:flex; border-top:1px solid var(--border); padding-top:16px; }
+    .l-half  { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .l-half + .l-half { border-left:1px solid var(--border); }
+    .l-half-icon { font-size:16px; }
+    .l-half-val  { font-size:20px; font-weight:700; }
+    .l-half-lbl  { font-size:11px; color:var(--text2); }
 
-    /* ── Category rows ── */
-    .cat-row { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); }
-    .cat-row:last-child { border-bottom: none; }
-    .cat-dim-icon { font-size: 22px; width: 28px; text-align: center; flex-shrink: 0; }
-    .cat-detail { flex: 1; min-width: 0; }
-    .cat-name { font-size: 13px; font-weight: 600; }
-    .cat-bar-wrap { height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; margin-top: 6px; }
-    .cat-bar-fill { height: 100%; border-radius: 2px; transition: width .6s; }
-    .cat-net { font-size: 16px; font-weight: 700; flex-shrink: 0; min-width: 68px; text-align: right; }
+    /* Week mini summary */
+    .week-mini { display:flex; gap:8px; margin-bottom:10px; }
+    .wm-card { flex:1; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:10px 12px; }
+    .wm-label { font-size:10px; color:var(--text2); margin-bottom:4px; }
+    .wm-val   { font-size:17px; font-weight:700; }
+    .wm-sub   { font-size:10px; color:var(--text2); margin-top:2px; }
 
-    /* ── Transaction rows ── */
-    .tx-section-hdr { display: flex; justify-content: space-between; align-items: center; padding: 12px 0 8px; }
-    .tx-section-hdr.border-top { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 16px; }
-    .tx-section-name  { font-size: 12px; font-weight: 700; letter-spacing: 1px; }
-    .tx-section-total { font-size: 14px; font-weight: 700; }
-    .tx-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-    .tx-row:last-child { border-bottom: none; }
-    .tx-icon-wrap { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 19px; flex-shrink: 0; }
-    .tx-body  { flex: 1; min-width: 0; }
-    .tx-name  { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .tx-meta  { font-size: 11px; color: var(--text2); margin-top: 2px; }
-    .tx-amount { font-size: 16px; font-weight: 700; flex-shrink: 0; }
+    /* Category rows */
+    .cat-row { display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--border); }
+    .cat-row:last-child { border-bottom:none; }
+    .cat-dim-icon { font-size:22px; width:28px; text-align:center; flex-shrink:0; }
+    .cat-detail { flex:1; min-width:0; }
+    .cat-name-row { display:flex; align-items:center; gap:6px; }
+    .cat-name  { font-size:13px; font-weight:600; }
+    .cat-trend { font-size:12px; }
+    .cat-goal  { font-size:10px; padding:1px 6px; border-radius:6px; margin-left:2px; }
+    .goal-hit  { background:color-mix(in srgb,var(--c-pos) 15%,transparent); color:var(--c-pos); }
+    .goal-near { background:var(--bg3); color:var(--text2); }
+    .cat-bar-wrap { height:3px; background:var(--bg3); border-radius:2px; overflow:hidden; margin-top:6px; }
+    .cat-bar-fill { height:100%; border-radius:2px; transition:width .6s; }
+    .cat-net { font-size:16px; font-weight:700; flex-shrink:0; min-width:68px; text-align:right; }
 
-    /* ── Skill tree ── */
-    .skill-section { margin-bottom: 22px; }
-    .skill-section-title { font-size: 13px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: baseline; gap: 8px; }
-    .skill-chain { display: flex; align-items: center; overflow-x: auto; padding-bottom: 4px; }
-    .skill-node { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 72px; }
-    .node-circle { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; border: 2px solid var(--border); background: var(--bg3); transition: all .4s; }
-    .node-circle.unlocked { border-color: currentColor; background: color-mix(in srgb,currentColor 15%,transparent); box-shadow: 0 0 14px color-mix(in srgb,currentColor 40%,transparent); }
-    .node-circle.active   { border-color: currentColor; animation: pulse 2s ease-in-out infinite; }
-    .node-circle.locked   { opacity: .3; }
+    /* Transaction rows */
+    .tx-section-hdr { display:flex; justify-content:space-between; align-items:center; padding:12px 0 8px; }
+    .tx-section-hdr.border-top { border-top:1px solid var(--border); margin-top:4px; padding-top:16px; }
+    .tx-section-name  { font-size:12px; font-weight:700; letter-spacing:1px; }
+    .tx-section-total { font-size:14px; font-weight:700; }
+    .tx-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid var(--border); }
+    .tx-row:last-child { border-bottom:none; }
+    .tx-icon-wrap { width:40px; height:40px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:19px; flex-shrink:0; }
+    .tx-body  { flex:1; min-width:0; }
+    .tx-name  { font-size:14px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .tx-meta  { font-size:11px; color:var(--text2); margin-top:2px; }
+    .tx-amount { font-size:16px; font-weight:700; flex-shrink:0; }
+
+    /* Manual entry */
+    .manual-btn { width:100%; padding:13px; background:var(--bg2); border:1px dashed var(--border); border-radius:12px; color:var(--text2); font-size:13px; cursor:pointer; margin-top:4px; transition:all .15s; text-align:center; }
+    .manual-btn:active { border-color:var(--c-psy); color:var(--text); }
+    .manual-form { background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:16px; margin-top:8px; }
+    .mf-title { font-size:12px; color:var(--text2); letter-spacing:1px; margin-bottom:12px; }
+    .mf-dim-row { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:14px; }
+    .mf-dim-btn { padding:6px 10px; border-radius:10px; font-size:12px; background:var(--bg3); border:1px solid var(--border); color:var(--text2); cursor:pointer; transition:all .15s; }
+    .mf-dim-btn.active { color:var(--text); font-weight:600; }
+    .mf-min-row { display:flex; align-items:center; gap:10px; justify-content:center; margin-bottom:14px; }
+    .mf-step { width:36px; height:36px; border-radius:50%; background:var(--bg3); border:1px solid var(--border); color:var(--text); font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+    .mf-step:active { background:var(--border); }
+    .mf-val { font-size:22px; font-weight:700; min-width:70px; text-align:center; }
+    .mf-submit { width:100%; padding:12px; background:var(--c-psy); border:none; border-radius:10px; color:#fff; font-size:14px; font-weight:600; cursor:pointer; }
+    .mf-submit:disabled { opacity:.4; cursor:default; }
+
+    /* Skill tree */
+    .skill-section { margin-bottom:22px; }
+    .skill-section-title { font-size:13px; font-weight:700; margin-bottom:12px; display:flex; align-items:baseline; gap:8px; }
+    .skill-chain { display:flex; align-items:center; overflow-x:auto; padding-bottom:4px; }
+    .skill-node { display:flex; flex-direction:column; align-items:center; gap:4px; min-width:72px; }
+    .node-circle { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:22px; border:2px solid var(--border); background:var(--bg3); transition:all .4s; }
+    .node-circle.unlocked { border-color:currentColor; background:color-mix(in srgb,currentColor 15%,transparent); box-shadow:0 0 14px color-mix(in srgb,currentColor 40%,transparent); }
+    .node-circle.active { border-color:currentColor; animation:pulse 2s ease-in-out infinite; }
+    .node-circle.locked { opacity:.3; }
     @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,currentColor 40%,transparent)}50%{box-shadow:0 0 0 8px transparent} }
-    .node-name { font-size: 11px; text-align: center; line-height: 1.2; }
-    .node-req  { font-size: 10px; color: var(--text2); text-align: center; }
-    .node-prog { width: 44px; height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
-    .node-prog-fill { height: 100%; border-radius: 2px; }
-    .skill-conn { width: 24px; height: 2px; background: var(--border); flex-shrink: 0; }
-    .skill-conn.done { opacity: .7; }
+    .node-name { font-size:11px; text-align:center; line-height:1.2; }
+    .node-req  { font-size:10px; color:var(--text2); text-align:center; }
+    .node-prog { width:44px; height:3px; background:var(--bg3); border-radius:2px; overflow:hidden; }
+    .node-prog-fill { height:100%; border-radius:2px; }
+    .skill-conn { width:24px; height:2px; background:var(--border); flex-shrink:0; }
 
-    /* ── Report ── */
-    .period-row { display: flex; gap: 6px; margin-bottom: 12px; }
-    .period-pill { flex: 1; padding: 9px 0; border-radius: 10px; font-size: 13px; font-weight: 500; background: var(--bg2); border: 1px solid var(--border); color: var(--text2); cursor: pointer; text-align: center; transition: all .15s; }
-    .period-pill.active { background: var(--bg3); border-color: var(--c-psy); color: var(--text); font-weight: 600; }
-    .donut-wrap { display: flex; justify-content: center; margin: 4px 0 18px; }
-    .legend-list { display: flex; flex-direction: column; }
-    .legend-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-    .legend-row:last-child { border-bottom: none; }
-    .l-dot  { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
-    .l-dim  { flex: 1; font-size: 13px; }
-    .l-pct  { font-size: 14px; font-weight: 700; min-width: 38px; text-align: right; }
-    .l-time { font-size: 13px; color: var(--text2); min-width: 58px; text-align: right; }
-    .week-bars { display: flex; gap: 6px; align-items: flex-end; height: 110px; margin-bottom: 6px; }
-    .week-col  { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; height: 100%; justify-content: flex-end; }
-    .week-segs { width: 100%; display: flex; flex-direction: column; gap: 1px; max-height: 90px; }
-    .week-seg  { width: 100%; min-height: 2px; border-radius: 2px; }
-    .week-dlabel { font-size: 10px; color: var(--text2); }
-    .week-dtotal { font-size: 9px; color: var(--text2); }
+    /* Report */
+    .period-row { display:flex; gap:6px; margin-bottom:12px; }
+    .period-pill { flex:1; padding:9px 0; border-radius:10px; font-size:13px; font-weight:500; background:var(--bg2); border:1px solid var(--border); color:var(--text2); cursor:pointer; text-align:center; transition:all .15s; }
+    .period-pill.active { background:var(--bg3); border-color:var(--c-psy); color:var(--text); font-weight:600; }
+    .donut-wrap { display:flex; justify-content:center; margin:4px 0 18px; }
+    .legend-list { display:flex; flex-direction:column; }
+    .legend-row { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--border); }
+    .legend-row:last-child { border-bottom:none; }
+    .l-dot  { width:10px; height:10px; border-radius:3px; flex-shrink:0; }
+    .l-dim  { flex:1; font-size:13px; }
+    .l-pct  { font-size:14px; font-weight:700; min-width:38px; text-align:right; }
+    .l-time { font-size:13px; color:var(--text2); min-width:58px; text-align:right; }
+    .week-bars { display:flex; gap:6px; align-items:flex-end; height:110px; margin-bottom:6px; }
+    .week-col  { flex:1; display:flex; flex-direction:column; align-items:center; gap:2px; height:100%; justify-content:flex-end; }
+    .week-segs { width:100%; display:flex; flex-direction:column; gap:1px; max-height:90px; }
+    .week-seg  { width:100%; min-height:2px; border-radius:2px; }
+    .week-dlabel { font-size:10px; color:var(--text2); }
+    .week-dtotal { font-size:9px; color:var(--text2); }
 
-    /* ── Settings ── */
-    .s-app { padding: 14px 0; border-bottom: 1px solid var(--border); }
-    .s-app:last-child { border-bottom: none; }
-    .s-row1 { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .s-name-block { flex: 1; min-width: 0; }
-    .s-name { font-size: 14px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .s-usage { font-size: 11px; color: var(--text2); margin-top: 1px; }
-    .dim-pills { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
-    .dim-pill { padding: 4px 9px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bg3); border: 1px solid var(--border); color: var(--text2); cursor: pointer; transition: all .15s; white-space: nowrap; }
-    .dim-pill.active { color: var(--text); border-color: currentColor; background: color-mix(in srgb,currentColor 18%,transparent); }
-    .dim-pill.skip-pill.active { color: var(--text2); border-color: var(--text2); background: var(--bg3); }
-    .type-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-    .type-pill { padding: 4px 11px; border-radius: 12px; font-size: 12px; background: var(--bg3); border: 1px solid var(--border); color: var(--text2); cursor: pointer; transition: all .15s; }
-    .type-pill.active { color: var(--text); border-color: var(--text); background: var(--border); font-weight: 600; }
-    .lim-stepper { display: flex; align-items: center; gap: 5px; margin-left: 4px; }
-    .step-btn { width: 26px; height: 26px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); font-size: 16px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .step-btn:active { background: var(--border); }
-    .lim-val { font-size: 13px; font-weight: 600; min-width: 42px; text-align: center; }
+    /* Settings */
+    .s-app { padding:14px 0; border-bottom:1px solid var(--border); }
+    .s-app:last-child { border-bottom:none; }
+    .s-row1 { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+    .s-name-block { flex:1; min-width:0; }
+    .s-name  { font-size:14px; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .s-usage { font-size:11px; color:var(--text2); margin-top:1px; }
+    .dim-pills { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:8px; }
+    .dim-pill { padding:4px 9px; border-radius:12px; font-size:12px; font-weight:500; background:var(--bg3); border:1px solid var(--border); color:var(--text2); cursor:pointer; transition:all .15s; white-space:nowrap; }
+    .dim-pill.active { color:var(--text); border-color:currentColor; background:color-mix(in srgb,currentColor 18%,transparent); }
+    .dim-pill.skip-pill.active { color:var(--text2); border-color:var(--text2); background:var(--bg3); }
+    .type-row { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+    .type-pill { padding:4px 11px; border-radius:12px; font-size:12px; background:var(--bg3); border:1px solid var(--border); color:var(--text2); cursor:pointer; transition:all .15s; }
+    .type-pill.active { color:var(--text); border-color:var(--text); background:var(--border); font-weight:600; }
+    .step-btn { width:26px; height:26px; border-radius:50%; background:var(--bg3); border:1px solid var(--border); color:var(--text); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .step-btn:active { background:var(--border); }
+    .lim-val { font-size:13px; font-weight:600; min-width:42px; text-align:center; }
+    /* Goal settings rows */
+    .goal-set-row { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--border); }
+    .goal-set-row:last-child { border-bottom:none; }
+    .goal-set-dim { flex:1; font-size:13px; font-weight:500; }
+    .goal-set-val { font-size:13px; font-weight:600; min-width:52px; text-align:center; color:var(--text2); }
+    .goal-set-val.active { color:var(--c-pos); }
 
     /* No data */
-    .no-data { text-align: center; padding: 40px 16px; color: var(--text2); }
-    .no-data h2 { font-size: 16px; margin-bottom: 8px; color: var(--text); }
-    .no-data code { display: inline-block; margin-top: 12px; background: var(--bg3); padding: 8px 16px; border-radius: 6px; font-size: 13px; color: var(--c-psy); }
+    .no-data { text-align:center; padding:40px 16px; color:var(--text2); }
+    .no-data h2 { font-size:16px; margin-bottom:8px; color:var(--text); }
+    .no-data code { display:inline-block; margin-top:12px; background:var(--bg3); padding:8px 16px; border-radius:6px; font-size:13px; color:var(--c-psy); }
+    .yesterday-banner { background:color-mix(in srgb,var(--text2) 10%,transparent); border-radius:8px; padding:7px 12px; font-size:12px; color:var(--text2); margin-bottom:12px; text-align:center; }
   </style>
 </head>
 <body>
@@ -166,593 +186,596 @@
 <script src="data/today.js"   onerror="window.SCREEN_TIME_DATA=null"></script>
 <script src="data/history.js" onerror="window.SCREEN_TIME_HISTORY=null"></script>
 <script>
-// ── 維度設定 ────────────────────────────────────────────────────────
-const DIMS     = ['工作','健康','財務','社交','休閒','心理'];
-const DIM_COL  = { 工作:'#4f9cf9', 健康:'#4caf50', 財務:'#ffd700', 社交:'#f06292', 休閒:'#ff7043', 心理:'#ec407a' };
-const DIM_ICON = { 工作:'💼', 健康:'💪', 財務:'💰', 社交:'👥', 休閒:'🎮', 心理:'❤️' };
+// ── 常數 ───────────────────────────────────────────────────────────
+const DIMS    = ['工作','健康','財務','社交','休閒','心理'];
+const DIM_COL = { 工作:'#4f9cf9',健康:'#4caf50',財務:'#ffd700',社交:'#f06292',休閒:'#ff7043',心理:'#ec407a' };
+const DIM_ICON= { 工作:'💼',健康:'💪',財務:'💰',社交:'👥',休閒:'🎮',心理:'❤️' };
 
 const DEFAULT_LIMITS = {
-  'com.burbn.instagram':    { limitMin: 300, limitType: 'weekly' },
-  'com.facebook.Facebook':  { limitMin: 180, limitType: 'weekly' },
-  'com.burbn.barcelona':    { limitMin: 180, limitType: 'weekly' },
-  'com.google.ios.youtube': { limitMin:  60, limitType: 'daily'  },
-  'com.netmarble.tskgb':    { limitMin:  45, limitType: 'daily'  },
-  'com.garena.game.kgtw':   { limitMin:  45, limitType: 'daily'  },
-  'com.netflix.Netflix':    { limitMin:  90, limitType: 'daily'  },
-  'com.apple.Safari':       { limitMin:  60, limitType: 'daily'  },
+  'com.burbn.instagram':   { limitMin:300, limitType:'weekly' },
+  'com.facebook.Facebook': { limitMin:180, limitType:'weekly' },
+  'com.burbn.barcelona':   { limitMin:180, limitType:'weekly' },
+  'com.google.ios.youtube':{ limitMin:60,  limitType:'daily'  },
+  'com.netmarble.tskgb':   { limitMin:45,  limitType:'daily'  },
+  'com.garena.game.kgtw':  { limitMin:45,  limitType:'daily'  },
+  'com.netflix.Netflix':   { limitMin:90,  limitType:'daily'  },
+  'com.apple.Safari':      { limitMin:60,  limitType:'daily'  },
 };
 
 const SK = 'timeTracker_yu3';
 
 const SKILL_DEF = {
-  工作: [{name:'學習者',hours:5,icon:'🌱',bonus:'工作+0.2'},{name:'知識者',hours:25,icon:'📖',bonus:'工作+0.5'},{name:'深工達人',hours:75,icon:'🎯',bonus:'工作+1.0'},{name:'心流大師',hours:200,icon:'🔥',bonus:'工作+2.0'}],
-  健康: [{name:'起步者',hours:5,icon:'🚶',bonus:'健康+0.2'},{name:'運動習慣',hours:25,icon:'🏃',bonus:'健康+0.5'},{name:'健身達人',hours:75,icon:'💪',bonus:'健康+1.0'},{name:'鐵人',hours:200,icon:'🏆',bonus:'健康+2.0'}],
-  財務: [{name:'記帳新手',hours:5,icon:'💳',bonus:'財務+0.2'},{name:'理財者',hours:25,icon:'📊',bonus:'財務+0.5'},{name:'精算師',hours:75,icon:'💰',bonus:'財務+1.0'},{name:'財務主控',hours:200,icon:'🏦',bonus:'財務+2.0'}],
-  社交: [{name:'交流者',hours:5,icon:'👥',bonus:'社交+0.2'},{name:'人際達人',hours:25,icon:'🤝',bonus:'社交+0.5'},{name:'社群樞紐',hours:75,icon:'🌟',bonus:'社交+1.0'},{name:'人脈王',hours:200,icon:'👑',bonus:'社交+2.0'}],
-  休閒: [{name:'玩家',hours:5,icon:'🎮',bonus:'休閒+0.2'},{name:'娛樂者',hours:25,icon:'🎬',bonus:'休閒+0.5'},{name:'休閒達人',hours:75,icon:'🎯',bonus:'休閒+1.0'},{name:'生活玩家',hours:200,icon:'🏆',bonus:'休閒+2.0'}],
-  心理: [{name:'情緒覺察',hours:5,icon:'❤️',bonus:'心理+0.2'},{name:'心情主人',hours:25,icon:'🎵',bonus:'心理+0.5'},{name:'內心平靜',hours:75,icon:'✨',bonus:'心理+1.0'},{name:'心理大師',hours:200,icon:'🌙',bonus:'心理+2.0'}],
+  工作:[{name:'學習者',hours:5,icon:'🌱',bonus:'工作+0.2'},{name:'知識者',hours:25,icon:'📖',bonus:'工作+0.5'},{name:'深工達人',hours:75,icon:'🎯',bonus:'工作+1.0'},{name:'心流大師',hours:200,icon:'🔥',bonus:'工作+2.0'}],
+  健康:[{name:'起步者',hours:5,icon:'🚶',bonus:'健康+0.2'},{name:'運動習慣',hours:25,icon:'🏃',bonus:'健康+0.5'},{name:'健身達人',hours:75,icon:'💪',bonus:'健康+1.0'},{name:'鐵人',hours:200,icon:'🏆',bonus:'健康+2.0'}],
+  財務:[{name:'記帳新手',hours:5,icon:'💳',bonus:'財務+0.2'},{name:'理財者',hours:25,icon:'📊',bonus:'財務+0.5'},{name:'精算師',hours:75,icon:'💰',bonus:'財務+1.0'},{name:'財務主控',hours:200,icon:'🏦',bonus:'財務+2.0'}],
+  社交:[{name:'交流者',hours:5,icon:'👥',bonus:'社交+0.2'},{name:'人際達人',hours:25,icon:'🤝',bonus:'社交+0.5'},{name:'社群樞紐',hours:75,icon:'🌟',bonus:'社交+1.0'},{name:'人脈王',hours:200,icon:'👑',bonus:'社交+2.0'}],
+  休閒:[{name:'玩家',hours:5,icon:'🎮',bonus:'休閒+0.2'},{name:'娛樂者',hours:25,icon:'🎬',bonus:'休閒+0.5'},{name:'休閒達人',hours:75,icon:'🎯',bonus:'休閒+1.0'},{name:'生活玩家',hours:200,icon:'🏆',bonus:'休閒+2.0'}],
+  心理:[{name:'情緒覺察',hours:5,icon:'❤️',bonus:'心理+0.2'},{name:'心情主人',hours:25,icon:'🎵',bonus:'心理+0.5'},{name:'內心平靜',hours:75,icon:'✨',bonus:'心理+1.0'},{name:'心理大師',hours:200,icon:'🌙',bonus:'心理+2.0'}],
 };
 
-let _reportPeriod = 'week';
+// ── Global state ───────────────────────────────────────────────────
+let _reportPeriod  = 'week';
+let _manualDim     = null;
+let _manualMin     = 30;
+let _showManual    = false;
 
 // ── Tab ────────────────────────────────────────────────────────────
 function switchTab(id) {
-  const ids = ['today','skill','week','settings'];
-  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', ids[i]===id));
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  ['today','skill','week','settings'].forEach((t,i) => {
+    document.querySelectorAll('.tab-btn')[i].classList.toggle('active',t===id);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
 }
 
 // ── Storage ────────────────────────────────────────────────────────
 function loadStor() { try { return JSON.parse(localStorage.getItem(SK)||'{}'); } catch { return {}; } }
-function saveStor(d) { localStorage.setItem(SK, JSON.stringify(d)); }
+function saveStor(d) { localStorage.setItem(SK,JSON.stringify(d)); }
 
-// ── App 設定 ───────────────────────────────────────────────────────
+// ── App config ─────────────────────────────────────────────────────
 function getAppConfig(bundle, syncDim, syncPos, stor) {
   const uc = (stor.appConfig||{})[bundle];
   if (uc) return uc;
-
   const def = DEFAULT_LIMITS[bundle];
-  if (syncPos === true)  return { dimension: syncDim, type: 'positive', limitMin: 30, limitType: 'daily' };
-  if (syncPos === false) return { dimension: syncDim, type: 'negative', limitMin: 30, limitType: 'daily' };
+  if (syncPos===true)  return { dimension:syncDim, type:'positive', limitMin:30, limitType:'daily' };
+  if (syncPos===false) return { dimension:syncDim, type:'negative', limitMin:30, limitType:'daily' };
   if (syncDim) {
-    const lt = def?.limitType || (syncDim === '社交' ? 'weekly' : 'daily');
-    return { dimension: syncDim, type: 'limit', limitMin: def?.limitMin ?? 30, limitType: lt };
+    const lt = def?.limitType||(syncDim==='社交'?'weekly':'daily');
+    return { dimension:syncDim, type:'limit', limitMin:def?.limitMin??30, limitType:lt };
   }
-  return { dimension: null, type: 'skip', limitMin: 30, limitType: 'daily' };
+  return { dimension:null, type:'skip', limitMin:30, limitType:'daily' };
 }
 
-// ── 週期輔助 ───────────────────────────────────────────────────────
+// ── Week helpers ───────────────────────────────────────────────────
 function getWeekStart(dateStr) {
-  const d = new Date(dateStr);
-  const day = d.getDay();
-  const diff = day === 0 ? -6 : 1 - day;
-  const mon = new Date(d);
-  mon.setDate(d.getDate() + diff);
-  mon.setHours(0,0,0,0);
-  return mon;
+  const d=new Date(dateStr), day=d.getDay(), diff=day===0?-6:1-day, mon=new Date(d);
+  mon.setDate(d.getDate()+diff); mon.setHours(0,0,0,0); return mon;
 }
 
-function getWeeklyTotal(bundle, targetDate) {
-  const weekStart = getWeekStart(targetDate);
-  const target = new Date(targetDate);
-  let total = 0;
-  for (const day of (window.SCREEN_TIME_HISTORY||[])) {
-    const d = new Date(day.date);
-    if (d >= weekStart && d <= target) {
-      for (const app of (day.apps||[])) {
-        if (app.bundle === bundle) total += app.seconds;
-      }
-    }
-  }
-  return total;
+function getPrevWeekRange(dateStr) {
+  const ws = getWeekStart(dateStr);
+  const prevEnd = new Date(ws); prevEnd.setDate(ws.getDate()-1);
+  const prevStart = getWeekStart(prevEnd.toISOString().slice(0,10));
+  return { start: prevStart.toISOString().slice(0,10), end: prevEnd.toISOString().slice(0,10) };
 }
 
-// ── 計算正/負面秒數 ────────────────────────────────────────────────
+// ── Metrics ────────────────────────────────────────────────────────
 function getMetrics(app, stor, weeklyBudget) {
   const cfg = getAppConfig(app.bundle, app.dimension, app.positive, stor);
   const dim = cfg.dimension;
-  if (cfg.type === 'skip' || !dim) return { pos: 0, neg: 0, limit: null, dim: null, limitType: null };
-  if (cfg.type === 'positive') return { pos: app.seconds, neg: 0, limit: null, dim, limitType: null };
-  if (cfg.type === 'negative') return { pos: 0, neg: app.seconds, limit: null, dim, limitType: null };
-
-  if (cfg.type === 'limit') {
-    if (cfg.limitType === 'weekly' && weeklyBudget) {
-      const remaining = weeklyBudget[app.bundle] ?? cfg.limitMin * 60;
-      const pos = Math.min(app.seconds, Math.max(0, remaining));
-      const neg = Math.max(0, app.seconds - pos);
-      weeklyBudget[app.bundle] = remaining - pos;
-      return { pos, neg, limit: cfg.limitMin * 60, dim, limitType: 'weekly' };
+  if (cfg.type==='skip'||!dim) return { pos:0,neg:0,limit:null,dim:null,limitType:null };
+  if (cfg.type==='positive') return { pos:app.seconds,neg:0,limit:null,dim,limitType:null };
+  if (cfg.type==='negative') return { pos:0,neg:app.seconds,limit:null,dim,limitType:null };
+  if (cfg.type==='limit') {
+    if (cfg.limitType==='weekly'&&weeklyBudget) {
+      const remaining = weeklyBudget[app.bundle]??cfg.limitMin*60;
+      const pos=Math.min(app.seconds,Math.max(0,remaining));
+      const neg=Math.max(0,app.seconds-pos);
+      weeklyBudget[app.bundle]=remaining-pos;
+      return { pos,neg,limit:cfg.limitMin*60,dim,limitType:'weekly' };
     } else {
-      const limit = cfg.limitMin * 60;
-      return { pos: Math.min(app.seconds, limit), neg: Math.max(0, app.seconds - limit), limit, dim, limitType: 'daily' };
+      const limit=cfg.limitMin*60;
+      return { pos:Math.min(app.seconds,limit),neg:Math.max(0,app.seconds-limit),limit,dim,limitType:'daily' };
     }
   }
-  return { pos: 0, neg: 0, limit: null, dim: null, limitType: null };
+  return { pos:0,neg:0,limit:null,dim:null,limitType:null };
 }
 
-// ── Skill hours & 歷史合併 ─────────────────────────────────────────
-function getSkillHours(stor) {
-  const h = {}; DIMS.forEach(d => h[d] = 0);
-  for (const secs of Object.values(stor.dailyPositive||{}))
-    DIMS.forEach(d => h[d] += (secs[d]||0)/3600);
-  return h;
-}
-
+// ── mergeHistory ───────────────────────────────────────────────────
 function mergeHistory(history, stor) {
   if (!Array.isArray(history)) return;
-  if (!stor.dailyPositive) stor.dailyPositive = {};
+  stor.dailyPositive = stor.dailyPositive||{};
+  stor.dailyNegative = stor.dailyNegative||{};
   const now = new Date();
-
   const byWeek = {};
   for (const day of history) {
-    if (Math.abs(now - new Date(day.date)) > 90*86400e3) continue;
+    if (Math.abs(now-new Date(day.date))>90*86400e3) continue;
     const ws = getWeekStart(day.date).toISOString().slice(0,10);
-    if (!byWeek[ws]) byWeek[ws] = [];
-    byWeek[ws].push(day);
+    (byWeek[ws]=byWeek[ws]||[]).push(day);
   }
-
   for (const weekDays of Object.values(byWeek)) {
-    weekDays.sort((a,b) => a.date.localeCompare(b.date));
-    const weeklyBudget = {};
-
+    weekDays.sort((a,b)=>a.date.localeCompare(b.date));
+    const weeklyBudget={};
     for (const day of weekDays) {
-      const dimSecs = {}; DIMS.forEach(d => dimSecs[d] = 0);
+      const dimPos={},dimNeg={}; DIMS.forEach(d=>{dimPos[d]=0;dimNeg[d]=0;});
       for (const app of (day.apps||[])) {
-        const m = getMetrics(app, stor, weeklyBudget);
-        if (m.pos > 0 && m.dim) dimSecs[m.dim] += m.pos;
+        const m=getMetrics(app,stor,weeklyBudget);
+        if (m.dim) { if(m.pos>0) dimPos[m.dim]+=m.pos; if(m.neg>0) dimNeg[m.dim]+=m.neg; }
       }
-      stor.dailyPositive[day.date] = dimSecs;
+      stor.dailyPositive[day.date]=dimPos;
+      stor.dailyNegative[day.date]=dimNeg;
     }
   }
+}
+
+// ── Skill hours ────────────────────────────────────────────────────
+function getSkillHours(stor) {
+  const h={}; DIMS.forEach(d=>h[d]=0);
+  for (const secs of Object.values(stor.dailyPositive||{}))
+    DIMS.forEach(d=>h[d]+=(secs[d]||0)/3600);
+  for (const entries of Object.values(stor.manualEntries||{}))
+    DIMS.forEach(d=>h[d]+=(entries[d]||0)/3600);
+  return h;
 }
 
 // ── Today weekly context ───────────────────────────────────────────
 function getTodayWeeklyContext(todayApps, stor) {
-  const today = (window.SCREEN_TIME_DATA||{}).date || new Date().toISOString().slice(0,10);
-  const weekStart = getWeekStart(today);
-  const todayDate = new Date(today);
-
-  const weekBefore = {};
+  const today=(window.SCREEN_TIME_DATA||{}).date||new Date().toISOString().slice(0,10);
+  const weekStart=getWeekStart(today), todayDate=new Date(today);
+  const weekBefore={};
   for (const day of (window.SCREEN_TIME_HISTORY||[])) {
-    const d = new Date(day.date);
-    if (d >= weekStart && d < todayDate) {
-      for (const app of (day.apps||[])) {
-        weekBefore[app.bundle] = (weekBefore[app.bundle]||0) + app.seconds;
-      }
-    }
+    const d=new Date(day.date);
+    if (d>=weekStart&&d<todayDate)
+      for (const app of (day.apps||[]))
+        weekBefore[app.bundle]=(weekBefore[app.bundle]||0)+app.seconds;
   }
-
-  const ctx = {};
+  const ctx={};
   for (const app of (todayApps||[])) {
-    const cfg = getAppConfig(app.bundle, app.dimension, app.positive, stor);
-    if (cfg.type === 'limit' && cfg.limitType === 'weekly') {
-      const weekUsed = (weekBefore[app.bundle]||0) + app.seconds;
-      ctx[app.bundle] = { weekUsed, weekLimit: cfg.limitMin * 60 };
-    }
+    const cfg=getAppConfig(app.bundle,app.dimension,app.positive,stor);
+    if (cfg.type==='limit'&&cfg.limitType==='weekly')
+      ctx[app.bundle]={ weekUsed:(weekBefore[app.bundle]||0)+app.seconds, weekLimit:cfg.limitMin*60 };
   }
   return ctx;
+}
+
+// ── Aggregate for period ───────────────────────────────────────────
+function aggregateForPeriod(stor, period) {
+  const now=new Date(), today=now.toISOString().slice(0,10);
+  let start;
+  if      (period==='day')   start=today;
+  else if (period==='week')  start=getWeekStart(today).toISOString().slice(0,10);
+  else if (period==='month') start=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-01`;
+  else                       start=`${now.getFullYear()}-01-01`;
+  const totals={}; DIMS.forEach(d=>totals[d]=0);
+  for (const [date,v] of Object.entries(stor.dailyPositive||{}))
+    if (date>=start&&date<=today) DIMS.forEach(d=>totals[d]+=(v[d]||0));
+  for (const [date,v] of Object.entries(stor.manualEntries||{}))
+    if (date>=start&&date<=today) DIMS.forEach(d=>totals[d]+=(v[d]||0));
+  return totals;
+}
+
+// ── Week summary (for 帳本 mini cards) ────────────────────────────
+function getWeekSummary(stor) {
+  const today=new Date().toISOString().slice(0,10);
+  const weekStart=getWeekStart(today).toISOString().slice(0,10);
+  let pos=0, neg=0;
+  for (const [date,v] of Object.entries(stor.dailyPositive||{}))
+    if (date>=weekStart&&date<=today) DIMS.forEach(d=>pos+=(v[d]||0));
+  for (const [date,v] of Object.entries(stor.dailyNegative||{}))
+    if (date>=weekStart&&date<=today) DIMS.forEach(d=>neg+=(v[d]||0));
+  for (const [date,v] of Object.entries(stor.manualEntries||{}))
+    if (date>=weekStart&&date<=today) DIMS.forEach(d=>pos+=(v[d]||0));
+  return { pos, neg };
+}
+
+// ── Trend (this week vs last week per dim) ─────────────────────────
+function getTrends(stor) {
+  const today=new Date().toISOString().slice(0,10);
+  const thisWeekStart=getWeekStart(today).toISOString().slice(0,10);
+  const { start:prevStart, end:prevEnd }=getPrevWeekRange(today);
+  const thisW={}, prevW={}; DIMS.forEach(d=>{thisW[d]=0;prevW[d]=0;});
+  for (const [date,v] of Object.entries(stor.dailyPositive||{})) {
+    if (date>=thisWeekStart&&date<=today) DIMS.forEach(d=>thisW[d]+=(v[d]||0));
+    if (date>=prevStart&&date<=prevEnd)   DIMS.forEach(d=>prevW[d]+=(v[d]||0));
+  }
+  const arrows={}; DIMS.forEach(d=>{
+    if (!prevW[d]) arrows[d]='';
+    else if (thisW[d]>prevW[d]*1.1) arrows[d]='↑';
+    else if (thisW[d]<prevW[d]*0.9) arrows[d]='↓';
+    else arrows[d]='→';
+  });
+  return arrows;
 }
 
 // ── Helpers ────────────────────────────────────────────────────────
 function fmtTime(sec) {
   if (!sec) return '0m';
-  const h = Math.floor(sec/3600), m = Math.floor((sec%3600)/60);
-  return h > 0 ? `${h}h ${m}m` : `${m}m`;
+  const h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60);
+  return h>0?`${h}h ${m}m`:`${m}m`;
 }
-function fmtDate(str) { const d = new Date(str); return `${d.getMonth()+1}/${d.getDate()}`; }
+function fmtDate(str) { const d=new Date(str); return `${d.getMonth()+1}/${d.getDate()}`; }
 
-// ── Render Ledger（帳本）────────────────────────────────────────────
-function renderToday(data, stor) {
-  const panel = document.getElementById('panel-today');
-  if (!data) {
-    panel.innerHTML = `<div class="no-data"><h2>尚無今日資料</h2><p>請先在 Terminal 執行</p><code>python3 sync.py</code><p style="margin-top:12px;font-size:12px">然後重新整理此頁面</p></div>`;
-    return;
-  }
-  if (!data.apps?.length) {
-    panel.innerHTML = `<div class="no-data"><h2>等待 iPhone 同步中</h2><p style="margin-top:8px">Biome 尚未傳入今日資料</p><p style="margin-top:12px;font-size:12px;line-height:1.6">確認 iPhone 與 Mac 在同一 Wi-Fi<br>並開啟 iCloud，稍後會自動更新</p></div>`;
-    return;
-  }
-
-  // 建立今日週預算
-  const weeklyBudgetToday = {};
-  const todayDate = new Date(data.date);
-  const weekStart = getWeekStart(data.date);
+// ── Render a day's ledger content ──────────────────────────────────
+function renderDayContent(data, stor, isYesterday) {
+  // Weekly budget
+  const weeklyBudgetToday={};
+  const todayDate=new Date(data.date), weekStart=getWeekStart(data.date);
   for (const day of (window.SCREEN_TIME_HISTORY||[])) {
-    const d = new Date(day.date);
-    if (d >= weekStart && d < todayDate) {
+    const d=new Date(day.date);
+    if (d>=weekStart&&d<todayDate)
       for (const app of (day.apps||[])) {
-        const cfg = getAppConfig(app.bundle, app.dimension, app.positive, stor);
-        if (cfg.limitType === 'weekly') {
-          weeklyBudgetToday[app.bundle] = (weeklyBudgetToday[app.bundle] ?? cfg.limitMin*60) - app.seconds;
-        }
+        const cfg=getAppConfig(app.bundle,app.dimension,app.positive,stor);
+        if (cfg.limitType==='weekly')
+          weeklyBudgetToday[app.bundle]=(weeklyBudgetToday[app.bundle]??cfg.limitMin*60)-app.seconds;
       }
-    }
   }
+  const weekCtx=getTodayWeeklyContext(data.apps,stor);
+  const apps=data.apps.map(a=>({...a,_m:getMetrics(a,stor,{...weeklyBudgetToday})})).filter(a=>a._m.dim);
 
-  const weekCtx = getTodayWeeklyContext(data.apps, stor);
-  const apps = data.apps.map(a => ({ ...a, _m: getMetrics(a, stor, {...weeklyBudgetToday}) })).filter(a => a._m.dim);
+  // Manual entries for today
+  const manualToday=(stor.manualEntries||{})[data.date]||{};
+  const manualSec=DIMS.reduce((s,d)=>s+(manualToday[d]||0),0);
 
-  const posSec = apps.reduce((s,a) => s + a._m.pos, 0);
-  const negSec = apps.reduce((s,a) => s + a._m.neg, 0);
-  const balance = posSec - negSec;
-  const balSign = balance >= 0 ? '+' : '−';
-  const balCol  = balance >= 0 ? 'var(--c-pos)' : 'var(--c-neg)';
+  const posSec=apps.reduce((s,a)=>s+a._m.pos,0)+manualSec;
+  const negSec=apps.reduce((s,a)=>s+a._m.neg,0);
+  const balance=posSec-negSec;
+  const balSign=balance>=0?'+':'−';
+  const balCol=balance>=0?'var(--c-pos)':'var(--c-neg)';
 
-  // 日期
-  const dd = new Date(data.date);
-  const dateLabel = `${dd.getMonth()+1}/${dd.getDate()} 今日`;
+  // Week summary
+  const wk=getWeekSummary(stor);
+  const wkBal=wk.pos-wk.neg;
+  const trends=getTrends(stor);
+  const goals=(stor.goals||{});
 
-  // ── Hero Card ──
-  const heroHtml = `
+  // Date display
+  const dd=new Date(data.date);
+  const dateLabel=isYesterday?`${dd.getMonth()+1}/${dd.getDate()} 昨日`:`${dd.getMonth()+1}/${dd.getDate()} 今日`;
+
+  // Hero
+  const heroHtml=`
     <div class="ledger-hero">
       <div class="l-date">${dateLabel}</div>
-      <div class="l-label">今日結餘</div>
+      <div class="l-label">${isYesterday?'昨日':'今日'}結餘</div>
       <div class="l-balance" style="color:${balCol}">${balSign}${fmtTime(Math.abs(balance))}</div>
       <div class="l-split">
-        <div class="l-half">
-          <div class="l-half-icon">📈</div>
-          <div class="l-half-val" style="color:var(--c-pos)">${fmtTime(posSec)}</div>
-          <div class="l-half-lbl">收入</div>
-        </div>
-        <div class="l-half">
-          <div class="l-half-icon">📉</div>
-          <div class="l-half-val" style="color:var(--c-neg)">${negSec ? fmtTime(negSec) : '0m'}</div>
-          <div class="l-half-lbl">超支</div>
-        </div>
+        <div class="l-half"><div class="l-half-icon">📈</div><div class="l-half-val" style="color:var(--c-pos)">${fmtTime(posSec)}</div><div class="l-half-lbl">收入</div></div>
+        <div class="l-half"><div class="l-half-icon">📉</div><div class="l-half-val" style="color:var(--c-neg)">${negSec?fmtTime(negSec):'0m'}</div><div class="l-half-lbl">超支</div></div>
       </div>
     </div>`;
 
-  // ── 分類收支 ──
-  const dimPos = {}, dimNeg = {};
-  DIMS.forEach(d => { dimPos[d]=0; dimNeg[d]=0; });
-  apps.forEach(a => {
-    dimPos[a._m.dim] = (dimPos[a._m.dim]||0) + a._m.pos;
-    dimNeg[a._m.dim] = (dimNeg[a._m.dim]||0) + a._m.neg;
-  });
-  const activeDims = DIMS.filter(d => dimPos[d]+dimNeg[d] > 0);
-  const maxDimTotal = Math.max(...activeDims.map(d => dimPos[d]+dimNeg[d]), 1);
+  // Week mini
+  const wkSign=wkBal>=0?'+':'−';
+  const wkCol=wkBal>=0?'var(--c-pos)':'var(--c-neg)';
+  const weekMiniHtml=`
+    <div class="week-mini">
+      <div class="wm-card">
+        <div class="wm-label">本週結餘</div>
+        <div class="wm-val" style="color:${wkCol}">${wkSign}${fmtTime(Math.abs(wkBal))}</div>
+        <div class="wm-sub">收入 ${fmtTime(wk.pos)} · 超支 ${fmtTime(wk.neg)}</div>
+      </div>
+    </div>`;
 
-  const catRows = activeDims.map(d => {
-    const net    = dimPos[d] - dimNeg[d];
-    const col    = DIM_COL[d];
-    const netStr = (net >= 0 ? '+' : '−') + fmtTime(Math.abs(net));
-    const netCol = net >= 0 ? 'var(--c-pos)' : 'var(--c-neg)';
-    const barW   = Math.round((dimPos[d]+dimNeg[d]) / maxDimTotal * 100);
-    const barCol = dimNeg[d] > 0 ? (dimNeg[d] > dimPos[d] ? 'var(--c-neg)' : col) : col;
+  // Category breakdown
+  const dimPos={},dimNeg={}; DIMS.forEach(d=>{dimPos[d]=0;dimNeg[d]=0;});
+  apps.forEach(a=>{if(a._m.dim){dimPos[a._m.dim]+=a._m.pos;dimNeg[a._m.dim]+=a._m.neg;}});
+  DIMS.forEach(d=>dimPos[d]+=(manualToday[d]||0));
+  const activeDims=DIMS.filter(d=>dimPos[d]+dimNeg[d]>0);
+  const maxDim=Math.max(...activeDims.map(d=>dimPos[d]+dimNeg[d]),1);
+
+  const catRows=activeDims.map(d=>{
+    const net=dimPos[d]-dimNeg[d], col=DIM_COL[d];
+    const netStr=(net>=0?'+':'−')+fmtTime(Math.abs(net));
+    const netCol=net>=0?'var(--c-pos)':'var(--c-neg)';
+    const barW=Math.round((dimPos[d]+dimNeg[d])/maxDim*100);
+    const barCol=dimNeg[d]>dimPos[d]?'var(--c-neg)':col;
+    const tr=trends[d], trColor=tr==='↑'?'var(--c-pos)':tr==='↓'?'var(--c-neg)':'var(--text2)';
+    const goalMin=(goals[d]||0)*60;
+    let goalBadge='';
+    if (goalMin>0) {
+      if (dimPos[d]>=goalMin) goalBadge=`<span class="cat-goal goal-hit">✓ 達標</span>`;
+      else { const rem=goalMin-dimPos[d]; goalBadge=`<span class="cat-goal goal-near">還差 ${fmtTime(rem)}</span>`; }
+    }
     return `<div class="cat-row">
       <div class="cat-dim-icon">${DIM_ICON[d]}</div>
       <div class="cat-detail">
-        <div class="cat-name" style="color:${col}">${d}</div>
+        <div class="cat-name-row">
+          <div class="cat-name" style="color:${col}">${d}</div>
+          ${tr?`<span class="cat-trend" style="color:${trColor}">${tr}</span>`:''}
+          ${goalBadge}
+        </div>
         <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${barW}%;background:${barCol}"></div></div>
       </div>
       <div class="cat-net" style="color:${netCol}">${netStr}</div>
     </div>`;
   }).join('');
 
-  const catCard = `<div class="card"><div class="card-title">分類收支</div>${catRows||'<div style="color:var(--text2);font-size:13px">今日尚無記錄</div>'}</div>`;
-
-  // ── 交易明細 ──
+  // Transactions
   function txRow(a, type) {
-    const m   = a._m;
-    const col = DIM_COL[m.dim];
-    const cfg = getAppConfig(a.bundle, a.dimension, a.positive, stor);
-    const isWeekly = m.limitType === 'weekly';
-    const wc  = weekCtx[a.bundle];
-    let meta  = m.dim;
-    if (m.limit !== null) {
-      meta = isWeekly && wc
-        ? `${m.dim} · 本週 ${fmtTime(wc.weekUsed)} / ${fmtTime(wc.weekLimit)}`
-        : `${m.dim} · 限 ${cfg.limitMin}m`;
-    }
-    if (type === 'income') {
-      return `<div class="tx-row">
-        <div class="tx-icon-wrap" style="background:${col}22;color:${col}">${DIM_ICON[m.dim]}</div>
-        <div class="tx-body"><div class="tx-name">${a.name}</div><div class="tx-meta">${meta}</div></div>
-        <div class="tx-amount" style="color:var(--c-pos)">+${fmtTime(m.pos)}</div>
-      </div>`;
-    } else {
-      return `<div class="tx-row">
-        <div class="tx-icon-wrap" style="background:var(--c-neg)22;color:var(--c-neg)">${DIM_ICON[m.dim]}</div>
-        <div class="tx-body"><div class="tx-name">${a.name}</div><div class="tx-meta">${meta}</div></div>
-        <div class="tx-amount" style="color:var(--c-neg)">−${fmtTime(m.neg)}</div>
-      </div>`;
-    }
+    const m=a._m, col=DIM_COL[m.dim];
+    const cfg=getAppConfig(a.bundle,a.dimension,a.positive,stor);
+    const isWeekly=m.limitType==='weekly', wc=weekCtx[a.bundle];
+    let meta=m.dim;
+    if (m.limit!==null) meta=isWeekly&&wc?`${m.dim} · 本週 ${fmtTime(wc.weekUsed)}/${fmtTime(wc.weekLimit)}`:`${m.dim} · 限 ${cfg.limitMin}m`;
+    if (type==='income') return `<div class="tx-row"><div class="tx-icon-wrap" style="background:${col}22;color:${col}">${DIM_ICON[m.dim]}</div><div class="tx-body"><div class="tx-name">${a.name}</div><div class="tx-meta">${meta}</div></div><div class="tx-amount" style="color:var(--c-pos)">+${fmtTime(m.pos)}</div></div>`;
+    return `<div class="tx-row"><div class="tx-icon-wrap" style="background:var(--c-neg)22;color:var(--c-neg)">${DIM_ICON[m.dim]}</div><div class="tx-body"><div class="tx-name">${a.name}</div><div class="tx-meta">${meta}</div></div><div class="tx-amount" style="color:var(--c-neg)">−${fmtTime(m.neg)}</div></div>`;
   }
 
-  const incomeApps  = apps.filter(a => a._m.pos > 0).sort((a,b) => b._m.pos - a._m.pos);
-  const expenseApps = apps.filter(a => a._m.neg > 0).sort((a,b) => b._m.neg - a._m.neg);
+  const incomeApps=apps.filter(a=>a._m.pos>0).sort((a,b)=>b._m.pos-a._m.pos);
+  const expenseApps=apps.filter(a=>a._m.neg>0).sort((a,b)=>b._m.neg-a._m.neg);
 
-  const txCard = `<div class="card">
-    ${incomeApps.length ? `
-      <div class="tx-section-hdr">
-        <div class="tx-section-name" style="color:var(--c-pos)">📈 收入</div>
-        <div class="tx-section-total" style="color:var(--c-pos)">+${fmtTime(posSec)}</div>
-      </div>
-      ${incomeApps.map(a => txRow(a,'income')).join('')}
-    ` : ''}
-    ${expenseApps.length ? `
-      <div class="tx-section-hdr${incomeApps.length?' border-top':''}">
-        <div class="tx-section-name" style="color:var(--c-neg)">📉 超支</div>
-        <div class="tx-section-total" style="color:var(--c-neg)">−${fmtTime(negSec)}</div>
-      </div>
-      ${expenseApps.map(a => txRow(a,'expense')).join('')}
-    ` : ''}
-    ${!incomeApps.length && !expenseApps.length ? '<div style="color:var(--text2);font-size:13px">今日尚無記錄</div>' : ''}
+  // Manual rows
+  const manualRows=DIMS.filter(d=>manualToday[d]>0).map(d=>{
+    const col=DIM_COL[d];
+    return `<div class="tx-row"><div class="tx-icon-wrap" style="background:${col}22;color:${col}">✏️</div><div class="tx-body"><div class="tx-name">手動記錄</div><div class="tx-meta">${d}</div></div><div class="tx-amount" style="color:var(--c-pos)">+${fmtTime(manualToday[d])}</div></div>`;
+  }).join('');
+
+  const txCard=`<div class="card">
+    ${incomeApps.length?`<div class="tx-section-hdr"><div class="tx-section-name" style="color:var(--c-pos)">📈 收入</div><div class="tx-section-total" style="color:var(--c-pos)">+${fmtTime(posSec)}</div></div>${incomeApps.map(a=>txRow(a,'income')).join('')}${manualRows}`:''}
+    ${expenseApps.length?`<div class="tx-section-hdr${incomeApps.length?' border-top':''}"><div class="tx-section-name" style="color:var(--c-neg)">📉 超支</div><div class="tx-section-total" style="color:var(--c-neg)">−${fmtTime(negSec)}</div></div>${expenseApps.map(a=>txRow(a,'expense')).join('')}`:''}
+    ${!incomeApps.length&&!expenseApps.length&&!manualRows?'<div style="color:var(--text2);font-size:13px">今日尚無記錄</div>':''}
   </div>`;
 
-  panel.innerHTML = heroHtml + catCard + txCard;
+  // Manual form
+  const dateKey=data.date;
+  const mfHtml=`
+    <button class="manual-btn" onclick="toggleManualForm()">${_showManual?'✕ 取消':'✏️ 手動記錄時間'}</button>
+    ${_showManual?`<div class="manual-form">
+      <div class="mf-title">新增時間記錄 · ${dateLabel}</div>
+      <div class="mf-dim-row">${DIMS.map(d=>`<button class="mf-dim-btn${_manualDim===d?' active':''}" style="${_manualDim===d?`color:${DIM_COL[d]};border-color:${DIM_COL[d]};background:${DIM_COL[d]}22`:''}\" onclick="setManualDim('${d}')">${DIM_ICON[d]} ${d}</button>`).join('')}</div>
+      <div class="mf-min-row">
+        <button class="mf-step" onclick="adjManualMin(-15)">−</button>
+        <div class="mf-val">${_manualMin}m</div>
+        <button class="mf-step" onclick="adjManualMin(15)">＋</button>
+      </div>
+      <button class="mf-submit" ${_manualDim?'':'disabled'} onclick="addManualEntry('${dateKey}')">
+        ${_manualDim?`記錄 ${DIM_ICON[_manualDim||'']} ${_manualDim} ${_manualMin}m`:'請先選擇維度'}
+      </button>
+    </div>`:''}`;
+
+  return (isYesterday?'<div class="yesterday-banner">⚠️ 今日資料同步中，目前顯示昨日</div>':'')+heroHtml+weekMiniHtml+`<div class="card"><div class="card-title">分類收支</div>${catRows||'<div style="color:var(--text2);font-size:13px">今日尚無記錄</div>'}</div>`+txCard+mfHtml;
 }
 
-// ── Render Skill Tree ──────────────────────────────────────────────
+// ── Render Ledger ──────────────────────────────────────────────────
+function renderToday(data, stor) {
+  const panel=document.getElementById('panel-today');
+  if (!data) {
+    panel.innerHTML=`<div class="no-data"><h2>尚無今日資料</h2><p>請先在 Terminal 執行</p><code>python3 sync.py</code></div>`;
+    return;
+  }
+  if (!data.apps?.length) {
+    // fallback to yesterday
+    const yStr=new Date(Date.now()-86400e3).toISOString().slice(0,10);
+    const yData=(window.SCREEN_TIME_HISTORY||[]).find(d=>d.date===yStr);
+    if (yData?.apps?.length) { panel.innerHTML=renderDayContent(yData,stor,true); return; }
+    panel.innerHTML=`<div class="no-data"><h2>等待 iPhone 同步中</h2><p style="margin-top:8px">Biome 尚未傳入今日資料</p><p style="margin-top:12px;font-size:12px;line-height:1.6">確認 iPhone 與 Mac 在同一 Wi-Fi<br>並開啟 iCloud，稍後會自動更新</p></div>`;
+    return;
+  }
+  panel.innerHTML=renderDayContent(data,stor,false);
+}
+
+// ── Manual entry handlers ──────────────────────────────────────────
+function toggleManualForm() {
+  _showManual=!_showManual;
+  renderToday(window.SCREEN_TIME_DATA,loadStor());
+}
+function setManualDim(d) { _manualDim=d; renderToday(window.SCREEN_TIME_DATA,loadStor()); }
+function adjManualMin(delta) { _manualMin=Math.max(5,Math.min(480,_manualMin+delta)); renderToday(window.SCREEN_TIME_DATA,loadStor()); }
+function addManualEntry(dateKey) {
+  if (!_manualDim) return;
+  const stor=loadStor();
+  if (!stor.manualEntries) stor.manualEntries={};
+  if (!stor.manualEntries[dateKey]) stor.manualEntries[dateKey]={};
+  stor.manualEntries[dateKey][_manualDim]=(stor.manualEntries[dateKey][_manualDim]||0)+_manualMin*60;
+  _showManual=false; _manualDim=null; _manualMin=30;
+  mergeHistory(window.SCREEN_TIME_HISTORY,stor); saveStor(stor);
+  renderToday(window.SCREEN_TIME_DATA,stor); renderSkillTree(stor); renderWeek(stor);
+}
+
+// ── Skill Tree ─────────────────────────────────────────────────────
 function renderSkillTree(stor) {
-  const sh = getSkillHours(stor);
-  const sections = DIMS.map(dim => {
-    const col=DIM_COL[dim], nodes=SKILL_DEF[dim], totalH=sh[dim]||0;
-    const chain = nodes.map((node,i) => {
-      const unlocked=totalH>=node.hours, isNext=!unlocked&&(i===0||totalH>=nodes[i-1].hours);
+  const sh=getSkillHours(stor);
+  const sections=DIMS.map(dim=>{
+    const col=DIM_COL[dim],nodes=SKILL_DEF[dim],totalH=sh[dim]||0;
+    const chain=nodes.map((node,i)=>{
+      const unlocked=totalH>=node.hours,isNext=!unlocked&&(i===0||totalH>=nodes[i-1].hours);
       const state=unlocked?'unlocked':isNext?'active':'locked';
-      const conn=i>0?`<div class="skill-conn ${totalH>=nodes[i-1].hours?'done':''}" style="color:${col}"></div>`:'';
+      const conn=i>0?`<div class="skill-conn${totalH>=nodes[i-1].hours?' done':''}" style="color:${col}"></div>`:'';
       const prog=isNext?`<div class="node-prog"><div class="node-prog-fill" style="width:${Math.round(Math.min(totalH/node.hours,1)*100)}%;background:${col}"></div></div>`:'';
       const req=unlocked?`<span style="color:${col}">✓ 解鎖</span>`:`${totalH.toFixed(1)}/${node.hours}h`;
       return `${conn}<div class="skill-node"><div class="node-circle ${state}" style="color:${col}" title="${node.bonus}">${node.icon}</div>${prog}<div class="node-name">${node.name}</div><div class="node-req">${req}</div></div>`;
     }).join('');
-    return `<div class="skill-section">
-      <div class="skill-section-title" style="color:${col}">${DIM_ICON[dim]} ${dim}技能樹 <span style="font-size:11px;font-weight:400;color:var(--text2)">正面累積 ${totalH.toFixed(1)}h</span></div>
-      <div class="skill-chain">${chain}</div>
-    </div>`;
+    return `<div class="skill-section"><div class="skill-section-title" style="color:${col}">${DIM_ICON[dim]} ${dim}技能樹 <span style="font-size:11px;font-weight:400;color:var(--text2)">正面累積 ${totalH.toFixed(1)}h</span></div><div class="skill-chain">${chain}</div></div>`;
   }).join('');
-  document.getElementById('panel-skill').innerHTML = `
-    <div class="card" style="font-size:12px;color:var(--text2);margin-bottom:14px">💡 在限制內使用 App 累積正面時數 · 解鎖節點給對應維度永久加成</div>
-    ${sections}`;
+  document.getElementById('panel-skill').innerHTML=`<div class="card" style="font-size:12px;color:var(--text2);margin-bottom:14px">💡 在限制內使用 App 累積正面時數 · 解鎖節點給對應維度永久加成</div>${sections}`;
 }
 
-// ── Report helpers ─────────────────────────────────────────────────
-function aggregateForPeriod(stor, period) {
-  const dp = stor.dailyPositive || {};
-  const now = new Date();
-  const today = now.toISOString().slice(0,10);
-  let start;
-  if      (period === 'day')   start = today;
-  else if (period === 'week')  start = getWeekStart(today).toISOString().slice(0,10);
-  else if (period === 'month') start = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-01`;
-  else                         start = `${now.getFullYear()}-01-01`;
-
-  const totals = {}; DIMS.forEach(d => totals[d] = 0);
-  for (const [date, dimSecs] of Object.entries(dp)) {
-    if (date >= start && date <= today)
-      DIMS.forEach(d => totals[d] += (dimSecs[d]||0));
-  }
-  return totals;
-}
-
+// ── Report ─────────────────────────────────────────────────────────
 function renderDonut(dimTotals, total, labelTop, labelBot, chartId) {
   if (!total) return `<div style="width:200px;height:200px;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:13px">無資料</div>`;
-  const cx=100, cy=100, R=82, ri=50;
-  let paths='', angle=-Math.PI/2;
+  const cx=100,cy=100,R=82,ri=50;
+  let paths='',angle=-Math.PI/2;
   for (const d of DIMS) {
-    const v = dimTotals[d]||0;
-    if (!v) continue;
-    const sweep = v/total * 2*Math.PI;
-    const x1=cx+R*Math.cos(angle), y1=cy+R*Math.sin(angle);
-    const x2=cx+R*Math.cos(angle+sweep), y2=cy+R*Math.sin(angle+sweep);
-    const la = sweep>Math.PI?1:0;
-    const pct = Math.round(v/total*100);
-    paths += `<path id="${chartId}-s-${d}" d="M${cx},${cy} L${x1.toFixed(2)},${y1.toFixed(2)} A${R},${R} 0 ${la},1 ${x2.toFixed(2)},${y2.toFixed(2)} Z" fill="${DIM_COL[d]}" style="cursor:pointer;transition:opacity .15s" onclick="donutTap('${chartId}','${d}',${v},${pct})"/>`;
-    angle += sweep;
+    const v=dimTotals[d]||0; if(!v) continue;
+    const sweep=v/total*2*Math.PI;
+    const x1=cx+R*Math.cos(angle),y1=cy+R*Math.sin(angle);
+    const x2=cx+R*Math.cos(angle+sweep),y2=cy+R*Math.sin(angle+sweep);
+    const la=sweep>Math.PI?1:0, pct=Math.round(v/total*100);
+    paths+=`<path id="${chartId}-s-${d}" d="M${cx},${cy} L${x1.toFixed(2)},${y1.toFixed(2)} A${R},${R} 0 ${la},1 ${x2.toFixed(2)},${y2.toFixed(2)} Z" fill="${DIM_COL[d]}" style="cursor:pointer;transition:opacity .15s" onclick="donutTap('${chartId}','${d}',${v},${pct})"/>`;
+    angle+=sweep;
   }
-  paths += `<circle cx="${cx}" cy="${cy}" r="${ri}" fill="var(--bg2)" style="cursor:pointer" onclick="donutReset('${chartId}','${labelTop}','${labelBot}')"/>`;
-  paths += `<text id="${chartId}-t1" x="${cx}" y="${cy-6}" text-anchor="middle" fill="var(--text)" font-size="17" font-weight="700">${labelTop}</text>`;
-  paths += `<text id="${chartId}-t2" x="${cx}" y="${cy+12}" text-anchor="middle" fill="var(--text2)" font-size="10">${labelBot}</text>`;
+  paths+=`<circle cx="${cx}" cy="${cy}" r="${ri}" fill="var(--bg2)" style="cursor:pointer" onclick="donutReset('${chartId}','${labelTop}','${labelBot}')"/>`;
+  paths+=`<text id="${chartId}-t1" x="${cx}" y="${cy-6}" text-anchor="middle" fill="var(--text)" font-size="17" font-weight="700">${labelTop}</text>`;
+  paths+=`<text id="${chartId}-t2" x="${cx}" y="${cy+12}" text-anchor="middle" fill="var(--text2)" font-size="10">${labelBot}</text>`;
   return `<svg width="200" height="200" viewBox="0 0 200 200">${paths}</svg>`;
 }
-
-function donutTap(chartId, dim, secs, pct) {
-  document.querySelectorAll(`[id^="${chartId}-s-"]`).forEach(el => el.style.opacity='0.3');
-  const el = document.getElementById(`${chartId}-s-${dim}`);
-  if (el) el.style.opacity = '1';
-  const t1 = document.getElementById(`${chartId}-t1`);
-  const t2 = document.getElementById(`${chartId}-t2`);
-  if (t1) t1.textContent = fmtTime(secs);
-  if (t2) t2.textContent = `${DIM_ICON[dim]} ${dim} ${pct}%`;
+function donutTap(chartId,dim,secs,pct) {
+  document.querySelectorAll(`[id^="${chartId}-s-"]`).forEach(el=>el.style.opacity='0.3');
+  const el=document.getElementById(`${chartId}-s-${dim}`); if(el) el.style.opacity='1';
+  const t1=document.getElementById(`${chartId}-t1`),t2=document.getElementById(`${chartId}-t2`);
+  if(t1) t1.textContent=fmtTime(secs);
+  if(t2) t2.textContent=`${DIM_ICON[dim]} ${dim} ${pct}%`;
 }
-
-function donutReset(chartId, defT1, defT2) {
-  document.querySelectorAll(`[id^="${chartId}-s-"]`).forEach(el => el.style.opacity='1');
-  const t1 = document.getElementById(`${chartId}-t1`);
-  const t2 = document.getElementById(`${chartId}-t2`);
-  if (t1) t1.textContent = defT1;
-  if (t2) t2.textContent = defT2;
+function donutReset(chartId,defT1,defT2) {
+  document.querySelectorAll(`[id^="${chartId}-s-"]`).forEach(el=>el.style.opacity='1');
+  const t1=document.getElementById(`${chartId}-t1`),t2=document.getElementById(`${chartId}-t2`);
+  if(t1) t1.textContent=defT1; if(t2) t2.textContent=defT2;
 }
+function setPeriod(p) { _reportPeriod=p; renderWeek(loadStor()); }
 
-function setPeriod(p) {
-  _reportPeriod = p;
-  renderWeek(loadStor());
-}
-
-// ── Render Report（報表）───────────────────────────────────────────
 function renderWeek(stor) {
-  const panel = document.getElementById('panel-week');
-  const dp = stor.dailyPositive||{};
-  if (!Object.keys(dp).length) {
-    panel.innerHTML=`<div class="no-data"><h2>尚無歷史資料</h2><p>執行 sync.py 後重新整理</p></div>`;
-    return;
-  }
-
-  // Period selector
-  const PERIODS = [['day','今日'],['week','本週'],['month','本月'],['year','今年']];
-  const periodHtml = `<div class="period-row">${PERIODS.map(([k,l])=>`<button class="period-pill${_reportPeriod===k?' active':''}" onclick="setPeriod('${k}')">${l}</button>`).join('')}</div>`;
-
-  // Aggregate
-  const dimTotals = aggregateForPeriod(stor, _reportPeriod);
-  const total = DIMS.reduce((s,d)=>s+(dimTotals[d]||0), 0);
-
-  // Donut
-  const periodLabel = {day:'今日',week:'本週',month:'本月',year:'今年'}[_reportPeriod];
-  const donutHtml = `<div class="donut-wrap">${renderDonut(dimTotals, total, fmtTime(total), periodLabel+'收入', 'rpt')}</div>`;
-
-  // Legend
-  const legendHtml = DIMS
-    .filter(d=>dimTotals[d]>0)
-    .sort((a,b)=>dimTotals[b]-dimTotals[a])
-    .map(d=>{
-      const pct=Math.round(dimTotals[d]/total*100);
-      return `<div class="legend-row">
-        <div class="l-dot" style="background:${DIM_COL[d]}"></div>
-        <span class="l-dim">${DIM_ICON[d]} ${d}</span>
-        <span class="l-pct" style="color:${DIM_COL[d]}">${pct}%</span>
-        <span class="l-time">${fmtTime(dimTotals[d])}</span>
-      </div>`;
-    }).join('');
-
-  // Day bar chart (for week/month)
+  const panel=document.getElementById('panel-week');
+  const dp=stor.dailyPositive||{};
+  if (!Object.keys(dp).length) { panel.innerHTML=`<div class="no-data"><h2>尚無歷史資料</h2><p>執行 sync.py 後重新整理</p></div>`; return; }
+  const PERIODS=[['day','今日'],['week','本週'],['month','本月'],['year','今年']];
+  const periodHtml=`<div class="period-row">${PERIODS.map(([k,l])=>`<button class="period-pill${_reportPeriod===k?' active':''}" onclick="setPeriod('${k}')">${l}</button>`).join('')}</div>`;
+  const dimTotals=aggregateForPeriod(stor,_reportPeriod);
+  const total=DIMS.reduce((s,d)=>s+(dimTotals[d]||0),0);
+  const periodLabel={day:'今日',week:'本週',month:'本月',year:'今年'}[_reportPeriod];
+  const donutHtml=`<div class="donut-wrap">${renderDonut(dimTotals,total,fmtTime(total),periodLabel+'收入','rpt')}</div>`;
+  const legendHtml=DIMS.filter(d=>dimTotals[d]>0).sort((a,b)=>dimTotals[b]-dimTotals[a]).map(d=>{
+    const pct=Math.round(dimTotals[d]/total*100);
+    return `<div class="legend-row"><div class="l-dot" style="background:${DIM_COL[d]}"></div><span class="l-dim">${DIM_ICON[d]} ${d}</span><span class="l-pct" style="color:${DIM_COL[d]}">${pct}%</span><span class="l-time">${fmtTime(dimTotals[d])}</span></div>`;
+  }).join('');
   let barCard='';
-  if (_reportPeriod==='week'||_reportPeriod==='month'||_reportPeriod==='day') {
-    const now=new Date(), todayStr=now.toISOString().slice(0,10);
+  if (_reportPeriod!=='year') {
+    const now=new Date(),todayStr=now.toISOString().slice(0,10);
     let start;
-    if      (_reportPeriod==='day')   start=todayStr;
-    else if (_reportPeriod==='week')  start=getWeekStart(todayStr).toISOString().slice(0,10);
-    else                              start=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-01`;
-
+    if (_reportPeriod==='day')   start=todayStr;
+    else if(_reportPeriod==='week')  start=getWeekStart(todayStr).toISOString().slice(0,10);
+    else start=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-01`;
     const days=Object.keys(dp).filter(d=>d>=start&&d<=todayStr).sort();
     if (days.length>1) {
       const maxSec=Math.max(...days.map(d=>DIMS.reduce((s,dim)=>s+(dp[d][dim]||0),0)),1);
       const bars=days.map(day=>{
-        const dd=dp[day]||{}, tot=DIMS.reduce((s,d)=>s+(dd[d]||0),0);
+        const dd=dp[day]||{},tot=DIMS.reduce((s,d)=>s+(dd[d]||0),0);
         const segs=DIMS.map(dim=>{const v=dd[dim]||0,pct=Math.round(v/maxSec*100);return pct>0?`<div class="week-seg" style="height:${pct}%;background:${DIM_COL[dim]}" title="${dim} ${fmtTime(v)}"></div>`:''}).join('');
         return `<div class="week-col"><div class="week-segs">${segs}</div><div class="week-dlabel">${fmtDate(day)}</div><div class="week-dtotal">${tot?fmtTime(tot):'—'}</div></div>`;
       }).join('');
       barCard=`<div class="card"><div class="card-title">每日收入分佈</div><div class="week-bars">${bars}</div></div>`;
     }
   }
-
-  panel.innerHTML = periodHtml +
-    `<div class="card">${donutHtml}<div class="legend-list">${legendHtml||'<div style="color:var(--text2);font-size:13px">此期間尚無資料</div>'}</div></div>` +
-    barCard;
+  panel.innerHTML=periodHtml+`<div class="card">${donutHtml}<div class="legend-list">${legendHtml||'<div style="color:var(--text2);font-size:13px">此期間尚無資料</div>'}</div></div>`+barCard;
 }
 
-// ── Render Settings ────────────────────────────────────────────────
+// ── Settings ───────────────────────────────────────────────────────
 function renderSettings() {
   const panel=document.getElementById('panel-settings');
   const stor=loadStor();
+  const goals=stor.goals||{};
+
+  // Goals section
+  const goalRows=DIMS.map(d=>{
+    const val=goals[d]||0;
+    const bid=`goal-${d}`;
+    return `<div class="goal-set-row">
+      <div class="goal-set-dim">${DIM_ICON[d]} ${d}</div>
+      <button class="step-btn" onclick="adjGoal('${d}',-15)">−</button>
+      <div class="goal-set-val${val>0?' active':''}" id="${bid}">${val>0?`${val}m/日`:'未設定'}</div>
+      <button class="step-btn" onclick="adjGoal('${d}',15)">+</button>
+    </div>`;
+  }).join('');
+
+  // App settings
   const appMap=new Map();
-  for(const day of(window.SCREEN_TIME_HISTORY||[])){
-    for(const app of(day.apps||[])){
-      if(!appMap.has(app.bundle))appMap.set(app.bundle,{name:app.name,syncDim:app.dimension,syncPos:app.positive,totalSecs:0});
-      appMap.get(app.bundle).totalSecs+=app.seconds;
-    }
-  }
-  if(!appMap.size){panel.innerHTML=`<div class="no-data"><h2>尚無 App 資料</h2><p>執行 sync.py 後重新整理</p></div>`;return;}
+  for (const day of (window.SCREEN_TIME_HISTORY||[]))
+    for (const app of (day.apps||[]))
+      if (!appMap.has(app.bundle)) appMap.set(app.bundle,{name:app.name,syncDim:app.dimension,syncPos:app.positive,totalSecs:0}),appMap.get(app.bundle).totalSecs+=app.seconds; else appMap.get(app.bundle).totalSecs+=app.seconds;
 
-  const rows=[...appMap.entries()].sort((a,b)=>b[1].totalSecs-a[1].totalSecs).map(([bundle,info])=>{
+  const appRows=[...appMap.entries()].sort((a,b)=>b[1].totalSecs-a[1].totalSecs).map(([bundle,info])=>{
     const cfg=getAppConfig(bundle,info.syncDim,info.syncPos,stor);
-    const col=DIM_COL[cfg.dimension]||'var(--text2)';
-    const icon=DIM_ICON[cfg.dimension]||'❓';
+    const col=DIM_COL[cfg.dimension]||'var(--text2)',icon=DIM_ICON[cfg.dimension]||'❓';
     const bid=bundle.replace(/\./g,'__');
-
     const dimPills=[...DIMS,'skip'].map(d=>{
-      const isSkip=d==='skip';
-      const isActive=isSkip?cfg.type==='skip':cfg.dimension===d;
-      const label=isSkip?'略過':d;
-      const btnCol=isSkip?'var(--text2)':(DIM_COL[d]||'var(--text2)');
-      return`<button class="dim-pill ${isActive?'active':''} ${isSkip?'skip-pill':''}" style="${isActive&&!isSkip?`color:${btnCol};border-color:${btnCol}`:''}" onclick="setAppDim('${bundle}','${d}')">${label}</button>`;
+      const isSkip=d==='skip',isActive=isSkip?cfg.type==='skip':cfg.dimension===d;
+      const label=isSkip?'略過':d, btnCol=isSkip?'var(--text2)':(DIM_COL[d]||'var(--text2)');
+      return `<button class="dim-pill${isActive?' active':''}${isSkip?' skip-pill':''}" style="${isActive&&!isSkip?`color:${btnCol};border-color:${btnCol}`:''}" onclick="setAppDim('${bundle}','${d}')">${label}</button>`;
     }).join('');
-
     let typeRow='';
-    if(cfg.type!=='skip'){
+    if (cfg.type!=='skip') {
       const isWeekly=cfg.limitType==='weekly';
       const limitLabel=isWeekly?`${Math.round(cfg.limitMin/60*10)/10}h/週`:`${cfg.limitMin}m/日`;
       const stepperMin=isWeekly?30:5;
       typeRow=`<div class="type-row">
-        <button class="type-pill ${cfg.type==='positive'?'active':''}" onclick="setAppType('${bundle}','positive')">📈 永遠收入</button>
-        <button class="type-pill ${cfg.type==='limit'?'active':''}"    onclick="setAppType('${bundle}','limit')">⏱ 有預算</button>
-        <button class="type-pill ${cfg.type==='negative'?'active':''}" onclick="setAppType('${bundle}','negative')">📉 永遠超支</button>
-        ${cfg.type==='limit'?`
-          <div style="display:flex;align-items:center;gap:5px;margin-left:2px">
-            <button class="step-btn" onclick="adjLimit('${bundle}',-${stepperMin})" style="font-size:14px">−</button>
-            <span class="lim-val" id="lv-${bid}">${limitLabel}</span>
-            <button class="step-btn" onclick="adjLimit('${bundle}',${stepperMin})" style="font-size:14px">+</button>
-            <button class="type-pill ${isWeekly?'active':''}" style="padding:3px 8px;font-size:11px" onclick="toggleWeekly('${bundle}')">${isWeekly?'週':'日'}</button>
-          </div>`:''}
+        <button class="type-pill${cfg.type==='positive'?' active':''}" onclick="setAppType('${bundle}','positive')">📈 永遠收入</button>
+        <button class="type-pill${cfg.type==='limit'?' active':''}" onclick="setAppType('${bundle}','limit')">⏱ 有預算</button>
+        <button class="type-pill${cfg.type==='negative'?' active':''}" onclick="setAppType('${bundle}','negative')">📉 永遠超支</button>
+        ${cfg.type==='limit'?`<div style="display:flex;align-items:center;gap:5px;margin-left:2px">
+          <button class="step-btn" onclick="adjLimit('${bundle}',-${stepperMin})" style="font-size:14px">−</button>
+          <span class="lim-val" id="lv-${bid}">${limitLabel}</span>
+          <button class="step-btn" onclick="adjLimit('${bundle}',${stepperMin})" style="font-size:14px">+</button>
+          <button class="type-pill${isWeekly?' active':''}" style="padding:3px 8px;font-size:11px" onclick="toggleWeekly('${bundle}')">${isWeekly?'週':'日'}</button>
+        </div>`:''}
       </div>`;
     }
-
-    return`<div class="s-app">
-      <div class="s-row1">
-        <div class="app-icon" style="background:${col}22;color:${col};width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">${icon}</div>
-        <div class="s-name-block"><div class="s-name">${info.name}</div><div class="s-usage">${fmtTime(info.totalSecs)} (7天)</div></div>
-      </div>
-      <div class="dim-pills">${dimPills}</div>
-      ${typeRow}
-    </div>`;
+    return `<div class="s-app"><div class="s-row1"><div class="app-icon" style="background:${col}22;color:${col};width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">${icon}</div><div class="s-name-block"><div class="s-name">${info.name}</div><div class="s-usage">${fmtTime(info.totalSecs)} (7天)</div></div></div><div class="dim-pills">${dimPills}</div>${typeRow}</div>`;
   }).join('');
 
   panel.innerHTML=`
+    <div class="card" style="margin-bottom:12px"><div class="card-title">每日目標（達標在帳本顯示 ✓）</div>${goalRows}</div>
     <div class="card" style="font-size:12px;color:var(--text2);margin-bottom:12px">⚙️ 選維度、計分方式，以及日/週預算。</div>
-    <div class="card"><div class="card-title">App 設定（依 7 天使用量排序）</div>${rows}</div>`;
+    ${appMap.size?`<div class="card"><div class="card-title">App 設定（依 7 天使用量排序）</div>${appRows}</div>`:`<div class="no-data"><h2>尚無 App 資料</h2><p>執行 sync.py 後重新整理</p></div>`}`;
 }
 
 // ── Settings handlers ──────────────────────────────────────────────
-function setAppDim(bundle,dim){
-  const stor=loadStor();if(!stor.appConfig)stor.appConfig={};
-  const cur=stor.appConfig[bundle]||{};
-  const def=DEFAULT_LIMITS[bundle];
-  if(dim==='skip'){
-    stor.appConfig[bundle]={...cur,type:'skip',dimension:null};
-  }else{
-    const type=(cur.type==='skip'||!cur.type)?'limit':cur.type;
-    const lt=cur.limitType||(def?.limitType)||(dim==='社交'?'weekly':'daily');
-    const lm=cur.limitMin||(def?.limitMin)||30;
-    stor.appConfig[bundle]={...cur,dimension:dim,type,limitMin:lm,limitType:lt};
-  }
+function adjGoal(dim, delta) {
+  const stor=loadStor(); if (!stor.goals) stor.goals={};
+  stor.goals[dim]=Math.max(0,Math.min(480,(stor.goals[dim]||0)+delta));
+  saveStor(stor);
+  const el=document.getElementById(`goal-${dim}`);
+  if (el) { const v=stor.goals[dim]; el.textContent=v>0?`${v}m/日`:'未設定'; el.className=`goal-set-val${v>0?' active':''}`; }
+  renderToday(window.SCREEN_TIME_DATA,stor);
+}
+function setAppDim(bundle,dim) {
+  const stor=loadStor(); if(!stor.appConfig) stor.appConfig={};
+  const cur=stor.appConfig[bundle]||{}, def=DEFAULT_LIMITS[bundle];
+  if (dim==='skip') stor.appConfig[bundle]={...cur,type:'skip',dimension:null};
+  else { const type=(cur.type==='skip'||!cur.type)?'limit':cur.type; const lt=cur.limitType||(def?.limitType)||(dim==='社交'?'weekly':'daily'); const lm=cur.limitMin||(def?.limitMin)||30; stor.appConfig[bundle]={...cur,dimension:dim,type,limitMin:lm,limitType:lt}; }
   applyAndRender(stor);
 }
-
-function setAppType(bundle,type){
-  const stor=loadStor();if(!stor.appConfig)stor.appConfig={};
-  const cur=stor.appConfig[bundle]||{};
-  const def=DEFAULT_LIMITS[bundle];
+function setAppType(bundle,type) {
+  const stor=loadStor(); if(!stor.appConfig) stor.appConfig={};
+  const cur=stor.appConfig[bundle]||{}, def=DEFAULT_LIMITS[bundle];
   stor.appConfig[bundle]={...cur,type,limitMin:cur.limitMin||(def?.limitMin)||30,limitType:cur.limitType||(def?.limitType)||'daily'};
   applyAndRender(stor);
 }
-
-function toggleWeekly(bundle){
-  const stor=loadStor();if(!stor.appConfig)stor.appConfig={};
-  const cur=stor.appConfig[bundle]||{};
-  const newType=cur.limitType==='weekly'?'daily':'weekly';
+function toggleWeekly(bundle) {
+  const stor=loadStor(); if(!stor.appConfig) stor.appConfig={};
+  const cur=stor.appConfig[bundle]||{}, newType=cur.limitType==='weekly'?'daily':'weekly';
   const lm=newType==='weekly'?Math.min((cur.limitMin||30)*5,1440):(cur.limitMin||150);
   stor.appConfig[bundle]={...cur,limitType:newType,limitMin:lm};
   applyAndRender(stor);
 }
-
-function adjLimit(bundle,delta){
-  const stor=loadStor();if(!stor.appConfig)stor.appConfig={};
-  const cur=stor.appConfig[bundle]||{};
-  const isWeekly=cur.limitType==='weekly';
+function adjLimit(bundle,delta) {
+  const stor=loadStor(); if(!stor.appConfig) stor.appConfig={};
+  const cur=stor.appConfig[bundle]||{}, isWeekly=cur.limitType==='weekly';
   const min=isWeekly?30:5, max=isWeekly?2880:360;
   const next=Math.max(min,Math.min(max,(cur.limitMin||30)+delta));
   stor.appConfig[bundle]={...cur,limitMin:next};
   const el=document.getElementById('lv-'+bundle.replace(/\./g,'__'));
-  if(el){const lbl=isWeekly?`${Math.round(next/60*10)/10}h/週`:`${next}m/日`;el.textContent=lbl;}
-  mergeHistory(window.SCREEN_TIME_HISTORY,stor);saveStor(stor);
-  renderToday(window.SCREEN_TIME_DATA,stor);renderSkillTree(stor);renderWeek(stor);
+  if(el) { const lbl=isWeekly?`${Math.round(next/60*10)/10}h/週`:`${next}m/日`; el.textContent=lbl; }
+  mergeHistory(window.SCREEN_TIME_HISTORY,stor); saveStor(stor);
+  renderToday(window.SCREEN_TIME_DATA,stor); renderSkillTree(stor); renderWeek(stor);
 }
-
-function applyAndRender(stor){
-  mergeHistory(window.SCREEN_TIME_HISTORY,stor);saveStor(stor);
-  renderToday(window.SCREEN_TIME_DATA,stor);renderSkillTree(stor);renderWeek(stor);renderSettings();
+function applyAndRender(stor) {
+  mergeHistory(window.SCREEN_TIME_HISTORY,stor); saveStor(stor);
+  renderToday(window.SCREEN_TIME_DATA,stor); renderSkillTree(stor); renderWeek(stor); renderSettings();
 }
 
 // ── Init ───────────────────────────────────────────────────────────
-function init(){
+function init() {
+  // Service worker
+  if ('serviceWorker' in navigator)
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+
   const stor=loadStor();
-  if(window.SCREEN_TIME_HISTORY)mergeHistory(window.SCREEN_TIME_HISTORY,stor);
+  if (window.SCREEN_TIME_HISTORY) mergeHistory(window.SCREEN_TIME_HISTORY,stor);
   saveStor(stor);
   const info=window.SCREEN_TIME_DATA;
   document.getElementById('sync-info').textContent=info
     ?`最後同步：${new Date(info.generated).toLocaleString('zh-TW')} · ${info.date}`
     :'未找到資料 — 請執行 python3 sync.py 後重新整理';
-  renderToday(info,stor);renderSkillTree(stor);renderWeek(stor);renderSettings();
+  renderToday(info,stor); renderSkillTree(stor); renderWeek(stor); renderSettings();
 }
 init();
 </script>

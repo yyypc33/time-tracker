@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="100" fill="#13131f"/>
+  <text x="256" y="330" text-anchor="middle" font-size="300" font-family="-apple-system,sans-serif">⏱</text>
+  <rect x="80" y="370" width="352" height="6" rx="3" fill="#4cdc7a" opacity="0.8"/>
+  <rect x="80" y="390" width="220" height="6" rx="3" fill="#ff5252" opacity="0.6"/>
+</svg>

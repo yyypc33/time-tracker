@@ -1,0 +1,13 @@
+{
+  "name": "時間帳本",
+  "short_name": "時間帳本",
+  "description": "用記帳的方式管理每日時間支出",
+  "start_url": "/time-tracker/",
+  "display": "standalone",
+  "background_color": "#0d0d18",
+  "theme_color": "#0d0d18",
+  "lang": "zh-TW",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
