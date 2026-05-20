@@ -127,12 +127,15 @@
     .l-dim  { flex:1; font-size:13px; }
     .l-pct  { font-size:14px; font-weight:700; min-width:38px; text-align:right; }
     .l-time { font-size:13px; color:var(--text2); min-width:58px; text-align:right; }
-    .week-bars { display:flex; gap:6px; align-items:flex-end; height:110px; margin-bottom:6px; }
-    .week-col  { flex:1; display:flex; flex-direction:column; align-items:center; gap:2px; height:100%; justify-content:flex-end; }
-    .week-segs { width:100%; display:flex; flex-direction:column; gap:1px; max-height:90px; }
-    .week-seg  { width:100%; min-height:2px; border-radius:2px; }
-    .week-dlabel { font-size:10px; color:var(--text2); }
-    .week-dtotal { font-size:9px; color:var(--text2); }
+    .chart-legend { display:flex; flex-wrap:wrap; gap:5px 12px; margin-bottom:14px; }
+    .chart-leg-item { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--text2); }
+    .chart-leg-dot { width:9px; height:9px; border-radius:2px; flex-shrink:0; }
+    .hbar-row { display:flex; align-items:center; gap:8px; margin-bottom:9px; }
+    .hbar-row:last-child { margin-bottom:0; }
+    .hbar-label { font-size:11px; color:var(--text2); width:32px; flex-shrink:0; text-align:right; }
+    .hbar-track { flex:1; height:20px; background:var(--bg3); border-radius:5px; overflow:hidden; display:flex; }
+    .hbar-seg { height:100%; }
+    .hbar-total { font-size:11px; color:var(--text); width:46px; flex-shrink:0; text-align:right; font-weight:600; }
 
     /* Settings */
     .s-app { padding:14px 0; border-bottom:1px solid var(--border); }
@@ -647,12 +650,14 @@ function renderWeek(stor) {
     const days=Object.keys(dp).filter(d=>d>=start&&d<=todayStr).sort();
     if (days.length>1) {
       const maxSec=Math.max(...days.map(d=>DIMS.reduce((s,dim)=>s+(dp[d][dim]||0),0)),1);
+      const activeDims=DIMS.filter(d=>days.some(day=>(dp[day]||{})[d]>0));
+      const legend=activeDims.map(d=>`<div class="chart-leg-item"><div class="chart-leg-dot" style="background:${DIM_COL[d]}"></div>${DIM_ICON[d]} ${d}</div>`).join('');
       const bars=days.map(day=>{
         const dd=dp[day]||{},tot=DIMS.reduce((s,d)=>s+(dd[d]||0),0);
-        const segs=DIMS.map(dim=>{const v=dd[dim]||0,pct=Math.round(v/maxSec*100);return pct>0?`<div class="week-seg" style="height:${pct}%;background:${DIM_COL[dim]}" title="${dim} ${fmtTime(v)}"></div>`:''}).join('');
-        return `<div class="week-col"><div class="week-segs">${segs}</div><div class="week-dlabel">${fmtDate(day)}</div><div class="week-dtotal">${tot?fmtTime(tot):'—'}</div></div>`;
+        const segs=DIMS.map(dim=>{const v=dd[dim]||0,pct=(v/maxSec*100).toFixed(1);return v>0?`<div class="hbar-seg" style="width:${pct}%;background:${DIM_COL[dim]}" title="${dim} ${fmtTime(v)}"></div>`:''}).join('');
+        return `<div class="hbar-row"><div class="hbar-label">${fmtDate(day)}</div><div class="hbar-track">${segs}</div><div class="hbar-total">${tot?fmtTime(tot):'—'}</div></div>`;
       }).join('');
-      barCard=`<div class="card"><div class="card-title">每日收入分佈</div><div class="week-bars">${bars}</div></div>`;
+      barCard=`<div class="card"><div class="card-title">每日收入分佈</div><div class="chart-legend">${legend}</div>${bars}</div>`;
     }
   }
   panel.innerHTML=periodHtml+`<div class="card">${donutHtml}<div class="legend-list">${legendHtml||'<div style="color:var(--text2);font-size:13px">此期間尚無資料</div>'}</div></div>`+barCard;
