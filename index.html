@@ -335,8 +335,12 @@ function fmtDate(str) { const d = new Date(str); return `${d.getMonth()+1}/${d.g
 // ── Render Ledger（帳本）────────────────────────────────────────────
 function renderToday(data, stor) {
   const panel = document.getElementById('panel-today');
-  if (!data?.apps?.length) {
+  if (!data) {
     panel.innerHTML = `<div class="no-data"><h2>尚無今日資料</h2><p>請先在 Terminal 執行</p><code>python3 sync.py</code><p style="margin-top:12px;font-size:12px">然後重新整理此頁面</p></div>`;
+    return;
+  }
+  if (!data.apps?.length) {
+    panel.innerHTML = `<div class="no-data"><h2>等待 iPhone 同步中</h2><p style="margin-top:8px">Biome 尚未傳入今日資料</p><p style="margin-top:12px;font-size:12px;line-height:1.6">確認 iPhone 與 Mac 在同一 Wi-Fi<br>並開啟 iCloud，稍後會自動更新</p></div>`;
     return;
   }
 
