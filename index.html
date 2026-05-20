@@ -526,7 +526,7 @@ function aggregateForPeriod(stor, period) {
   return totals;
 }
 
-function renderDonut(dimTotals, total, labelTop, labelBot) {
+function renderDonut(dimTotals, total, labelTop, labelBot, chartId) {
   if (!total) return `<div style="width:200px;height:200px;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:13px">無資料</div>`;
   const cx=100, cy=100, R=82, ri=50;
   let paths='', angle=-Math.PI/2;
@@ -537,13 +537,32 @@ function renderDonut(dimTotals, total, labelTop, labelBot) {
     const x1=cx+R*Math.cos(angle), y1=cy+R*Math.sin(angle);
     const x2=cx+R*Math.cos(angle+sweep), y2=cy+R*Math.sin(angle+sweep);
     const la = sweep>Math.PI?1:0;
-    paths += `<path d="M${cx},${cy} L${x1.toFixed(2)},${y1.toFixed(2)} A${R},${R} 0 ${la},1 ${x2.toFixed(2)},${y2.toFixed(2)} Z" fill="${DIM_COL[d]}"/>`;
+    const pct = Math.round(v/total*100);
+    paths += `<path id="${chartId}-s-${d}" d="M${cx},${cy} L${x1.toFixed(2)},${y1.toFixed(2)} A${R},${R} 0 ${la},1 ${x2.toFixed(2)},${y2.toFixed(2)} Z" fill="${DIM_COL[d]}" style="cursor:pointer;transition:opacity .15s" onclick="donutTap('${chartId}','${d}',${v},${pct})"/>`;
     angle += sweep;
   }
-  paths += `<circle cx="${cx}" cy="${cy}" r="${ri}" fill="var(--bg2)"/>`;
-  paths += `<text x="${cx}" y="${cy-6}" text-anchor="middle" fill="var(--text)" font-size="17" font-weight="700">${labelTop}</text>`;
-  paths += `<text x="${cx}" y="${cy+12}" text-anchor="middle" fill="var(--text2)" font-size="10">${labelBot}</text>`;
+  paths += `<circle cx="${cx}" cy="${cy}" r="${ri}" fill="var(--bg2)" style="cursor:pointer" onclick="donutReset('${chartId}','${labelTop}','${labelBot}')"/>`;
+  paths += `<text id="${chartId}-t1" x="${cx}" y="${cy-6}" text-anchor="middle" fill="var(--text)" font-size="17" font-weight="700">${labelTop}</text>`;
+  paths += `<text id="${chartId}-t2" x="${cx}" y="${cy+12}" text-anchor="middle" fill="var(--text2)" font-size="10">${labelBot}</text>`;
   return `<svg width="200" height="200" viewBox="0 0 200 200">${paths}</svg>`;
+}
+
+function donutTap(chartId, dim, secs, pct) {
+  document.querySelectorAll(`[id^="${chartId}-s-"]`).forEach(el => el.style.opacity='0.3');
+  const el = document.getElementById(`${chartId}-s-${dim}`);
+  if (el) el.style.opacity = '1';
+  const t1 = document.getElementById(`${chartId}-t1`);
+  const t2 = document.getElementById(`${chartId}-t2`);
+  if (t1) t1.textContent = fmtTime(secs);
+  if (t2) t2.textContent = `${DIM_ICON[dim]} ${dim} ${pct}%`;
+}
+
+function donutReset(chartId, defT1, defT2) {
+  document.querySelectorAll(`[id^="${chartId}-s-"]`).forEach(el => el.style.opacity='1');
+  const t1 = document.getElementById(`${chartId}-t1`);
+  const t2 = document.getElementById(`${chartId}-t2`);
+  if (t1) t1.textContent = defT1;
+  if (t2) t2.textContent = defT2;
 }
 
 function setPeriod(p) {
@@ -570,7 +589,7 @@ function renderWeek(stor) {
 
   // Donut
   const periodLabel = {day:'今日',week:'本週',month:'本月',year:'今年'}[_reportPeriod];
-  const donutHtml = `<div class="donut-wrap">${renderDonut(dimTotals, total, fmtTime(total), periodLabel+'收入')}</div>`;
+  const donutHtml = `<div class="donut-wrap">${renderDonut(dimTotals, total, fmtTime(total), periodLabel+'收入', 'rpt')}</div>`;
 
   // Legend
   const legendHtml = DIMS
