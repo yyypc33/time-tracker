@@ -1,4 +1,4 @@
-// Generated: 2026-05-20T21:09:20.793504
+// Generated: 2026-05-20T21:25:15.853471
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-13",
@@ -8,8 +8,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 1949,
-        "minutes": 32.5
+        "seconds": 1808,
+        "minutes": 30.1
       },
       {
         "bundle": "com.brave.ios.browser",
@@ -101,7 +101,7 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 2032,
+        "total": 1891,
         "positive": 0,
         "negative": 0
       },
