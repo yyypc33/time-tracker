@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>時間帳本 × Life RPG</title>
+  <style>
+    :root {
+      --bg:     #0d0d18;
+      --bg2:    #13131f;
+      --bg3:    #1a1a2e;
+      --border: #2a2a40;
+      --text:   #e8e8f0;
+      --text2:  #7777aa;
+      --c-pos:  #4cdc7a;
+      --c-neg:  #ff5252;
+      --c-psy:  #ab7ae0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: -apple-system, 'PingFang TC', 'Noto Sans TC', sans-serif;
+      max-width: 480px; margin: 0 auto;
+      min-height: 100vh; padding-bottom: 32px;
+    }
+
+    /* ── Header ── */
+    .header { padding: 20px 16px 12px; border-bottom: 1px solid var(--border); }
+    .header h1 { font-size: 18px; font-weight: 700; letter-spacing: .5px; }
+    .header h1 span { color: var(--c-psy); }
+    .sync-info { font-size: 11px; color: var(--text2); margin-top: 4px; }
+
+    /* ── Tabs ── */
+    .tabs { display: flex; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 10; }
+    .tab-btn { flex: 1; padding: 11px 0; background: none; border: none; color: var(--text2); font-size: 13px; cursor: pointer; position: relative; transition: color .2s; }
+    .tab-btn.active { color: var(--text); font-weight: 600; }
+    .tab-btn.active::after { content: ''; position: absolute; bottom: 0; left: 15%; width: 70%; height: 2px; background: var(--c-psy); border-radius: 1px; }
+    .tab-panel { display: none; padding: 14px; }
+    .tab-panel.active { display: block; }
+
+    /* ── Card ── */
+    .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+    .card-title { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+
+    /* ── Ledger Hero Card ── */
+    .ledger-hero {
+      background: linear-gradient(150deg, #13131f 0%, #1a1a30 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 20px 18px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .l-date  { font-size: 12px; color: var(--text2); margin-bottom: 8px; }
+    .l-label { font-size: 12px; color: var(--text2); letter-spacing: .5px; }
+    .l-balance { font-size: 46px; font-weight: 800; letter-spacing: -1px; margin: 4px 0 18px; }
+    .l-split { display: flex; border-top: 1px solid var(--border); padding-top: 16px; }
+    .l-half  { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .l-half + .l-half { border-left: 1px solid var(--border); }
+    .l-half-icon { font-size: 16px; }
+    .l-half-val  { font-size: 20px; font-weight: 700; }
+    .l-half-lbl  { font-size: 11px; color: var(--text2); }
+
+    /* ── Category rows ── */
+    .cat-row { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+    .cat-row:last-child { border-bottom: none; }
+    .cat-dim-icon { font-size: 22px; width: 28px; text-align: center; flex-shrink: 0; }
+    .cat-detail { flex: 1; min-width: 0; }
+    .cat-name { font-size: 13px; font-weight: 600; }
+    .cat-bar-wrap { height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; margin-top: 6px; }
+    .cat-bar-fill { height: 100%; border-radius: 2px; transition: width .6s; }
+    .cat-net { font-size: 16px; font-weight: 700; flex-shrink: 0; min-width: 68px; text-align: right; }
+
+    /* ── Transaction rows ── */
+    .tx-section-hdr { display: flex; justify-content: space-between; align-items: center; padding: 12px 0 8px; }
+    .tx-section-hdr.border-top { border-top: 1px solid var(--border); margin-top: 4px; padding-top: 16px; }
+    .tx-section-name  { font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+    .tx-section-total { font-size: 14px; font-weight: 700; }
+    .tx-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .tx-row:last-child { border-bottom: none; }
+    .tx-icon-wrap { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 19px; flex-shrink: 0; }
+    .tx-body  { flex: 1; min-width: 0; }
+    .tx-name  { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tx-meta  { font-size: 11px; color: var(--text2); margin-top: 2px; }
+    .tx-amount { font-size: 16px; font-weight: 700; flex-shrink: 0; }
+
+    /* ── Skill tree ── */
+    .skill-section { margin-bottom: 22px; }
+    .skill-section-title { font-size: 13px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: baseline; gap: 8px; }
+    .skill-chain { display: flex; align-items: center; overflow-x: auto; padding-bottom: 4px; }
+    .skill-node { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 72px; }
+    .node-circle { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; border: 2px solid var(--border); background: var(--bg3); transition: all .4s; }
+    .node-circle.unlocked { border-color: currentColor; background: color-mix(in srgb,currentColor 15%,transparent); box-shadow: 0 0 14px color-mix(in srgb,currentColor 40%,transparent); }
+    .node-circle.active   { border-color: currentColor; animation: pulse 2s ease-in-out infinite; }
+    .node-circle.locked   { opacity: .3; }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,currentColor 40%,transparent)}50%{box-shadow:0 0 0 8px transparent} }
+    .node-name { font-size: 11px; text-align: center; line-height: 1.2; }
+    .node-req  { font-size: 10px; color: var(--text2); text-align: center; }
+    .node-prog { width: 44px; height: 3px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+    .node-prog-fill { height: 100%; border-radius: 2px; }
+    .skill-conn { width: 24px; height: 2px; background: var(--border); flex-shrink: 0; }
+    .skill-conn.done { opacity: .7; }
+
+    /* ── Report (was Week) ── */
+    .week-bars { display: flex; gap: 6px; align-items: flex-end; height: 110px; margin-bottom: 6px; }
+    .week-col  { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; height: 100%; justify-content: flex-end; }
+    .week-segs { width: 100%; display: flex; flex-direction: column; gap: 1px; max-height: 90px; }
+    .week-seg  { width: 100%; min-height: 2px; border-radius: 2px; }
+    .week-dlabel { font-size: 10px; color: var(--text2); }
+    .week-dtotal { font-size: 9px; color: var(--text2); }
+    .week-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .legend-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text2); }
+    .legend-dot  { width: 8px; height: 8px; border-radius: 2px; }
+
+    /* ── Settings ── */
+    .s-app { padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .s-app:last-child { border-bottom: none; }
+    .s-row1 { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .s-name-block { flex: 1; min-width: 0; }
+    .s-name { font-size: 14px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .s-usage { font-size: 11px; color: var(--text2); margin-top: 1px; }
+    .dim-pills { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+    .dim-pill { padding: 4px 9px; border-radius: 12px; font-size: 12px; font-weight: 500; background: var(--bg3); border: 1px solid var(--border); color: var(--text2); cursor: pointer; transition: all .15s; white-space: nowrap; }
+    .dim-pill.active { color: var(--text); border-color: currentColor; background: color-mix(in srgb,currentColor 18%,transparent); }
+    .dim-pill.skip-pill.active { color: var(--text2); border-color: var(--text2); background: var(--bg3); }
+    .type-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .type-pill { padding: 4px 11px; border-radius: 12px; font-size: 12px; background: var(--bg3); border: 1px solid var(--border); color: var(--text2); cursor: pointer; transition: all .15s; }
+    .type-pill.active { color: var(--text); border-color: var(--text); background: var(--border); font-weight: 600; }
+    .lim-stepper { display: flex; align-items: center; gap: 5px; margin-left: 4px; }
+    .step-btn { width: 26px; height: 26px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border); color: var(--text); font-size: 16px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-btn:active { background: var(--border); }
+    .lim-val { font-size: 13px; font-weight: 600; min-width: 42px; text-align: center; }
+
+    /* No data */
+    .no-data { text-align: center; padding: 40px 16px; color: var(--text2); }
+    .no-data h2 { font-size: 16px; margin-bottom: 8px; color: var(--text); }
+    .no-data code { display: inline-block; margin-top: 12px; background: var(--bg3); padding: 8px 16px; border-radius: 6px; font-size: 13px; color: var(--c-psy); }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="header">
+    <h1>時間帳本 × <span>Life RPG</span></h1>
+    <div class="sync-info" id="sync-info">讀取中...</div>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('today')">帳本</button>
+    <button class="tab-btn"        onclick="switchTab('skill')">技能樹</button>
+    <button class="tab-btn"        onclick="switchTab('week')">報表</button>
+    <button class="tab-btn"        onclick="switchTab('settings')">設定</button>
+  </div>
+  <div id="panel-today"    class="tab-panel active"></div>
+  <div id="panel-skill"    class="tab-panel"></div>
+  <div id="panel-week"     class="tab-panel"></div>
+  <div id="panel-settings" class="tab-panel"></div>
+</div>
+
+<script src="data/today.js"   onerror="window.SCREEN_TIME_DATA=null"></script>
+<script src="data/history.js" onerror="window.SCREEN_TIME_HISTORY=null"></script>
+<script>
+// ── 維度設定 ────────────────────────────────────────────────────────
+const DIMS     = ['工作','健康','財務','社交','休閒','心理'];
+const DIM_COL  = { 工作:'#4f9cf9', 健康:'#4caf50', 財務:'#ffd700', 社交:'#f06292', 休閒:'#ff7043', 心理:'#ec407a' };
+const DIM_ICON = { 工作:'💼', 健康:'💪', 財務:'💰', 社交:'👥', 休閒:'🎮', 心理:'❤️' };
+
+const DEFAULT_LIMITS = {
+  'com.burbn.instagram':    { limitMin: 300, limitType: 'weekly' },
+  'com.facebook.Facebook':  { limitMin: 180, limitType: 'weekly' },
+  'com.burbn.barcelona':    { limitMin: 180, limitType: 'weekly' },
+  'com.google.ios.youtube': { limitMin:  60, limitType: 'daily'  },
+  'com.netmarble.tskgb':    { limitMin:  45, limitType: 'daily'  },
+  'com.garena.game.kgtw':   { limitMin:  45, limitType: 'daily'  },
+  'com.netflix.Netflix':    { limitMin:  90, limitType: 'daily'  },
+  'com.apple.Safari':       { limitMin:  60, limitType: 'daily'  },
+};
+
+const SK = 'timeTracker_yu3';
+
+const SKILL_DEF = {
+  工作: [{name:'學習者',hours:5,icon:'🌱',bonus:'工作+0.2'},{name:'知識者',hours:25,icon:'📖',bonus:'工作+0.5'},{name:'深工達人',hours:75,icon:'🎯',bonus:'工作+1.0'},{name:'心流大師',hours:200,icon:'🔥',bonus:'工作+2.0'}],
+  健康: [{name:'起步者',hours:5,icon:'🚶',bonus:'健康+0.2'},{name:'運動習慣',hours:25,icon:'🏃',bonus:'健康+0.5'},{name:'健身達人',hours:75,icon:'💪',bonus:'健康+1.0'},{name:'鐵人',hours:200,icon:'🏆',bonus:'健康+2.0'}],
+  財務: [{name:'記帳新手',hours:5,icon:'💳',bonus:'財務+0.2'},{name:'理財者',hours:25,icon:'📊',bonus:'財務+0.5'},{name:'精算師',hours:75,icon:'💰',bonus:'財務+1.0'},{name:'財務主控',hours:200,icon:'🏦',bonus:'財務+2.0'}],
+  社交: [{name:'交流者',hours:5,icon:'👥',bonus:'社交+0.2'},{name:'人際達人',hours:25,icon:'🤝',bonus:'社交+0.5'},{name:'社群樞紐',hours:75,icon:'🌟',bonus:'社交+1.0'},{name:'人脈王',hours:200,icon:'👑',bonus:'社交+2.0'}],
+  休閒: [{name:'玩家',hours:5,icon:'🎮',bonus:'休閒+0.2'},{name:'娛樂者',hours:25,icon:'🎬',bonus:'休閒+0.5'},{name:'休閒達人',hours:75,icon:'🎯',bonus:'休閒+1.0'},{name:'生活玩家',hours:200,icon:'🏆',bonus:'休閒+2.0'}],
+  心理: [{name:'情緒覺察',hours:5,icon:'❤️',bonus:'心理+0.2'},{name:'心情主人',hours:25,icon:'🎵',bonus:'心理+0.5'},{name:'內心平靜',hours:75,icon:'✨',bonus:'心理+1.0'},{name:'心理大師',hours:200,icon:'🌙',bonus:'心理+2.0'}],
+};
+
+// ── Tab ────────────────────────────────────────────────────────────
+function switchTab(id) {
+  const ids = ['today','skill','week','settings'];
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', ids[i]===id));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+}
+
+// ── Storage ────────────────────────────────────────────────────────
+function loadStor() { try { return JSON.parse(localStorage.getItem(SK)||'{}'); } catch { return {}; } }
+function saveStor(d) { localStorage.setItem(SK, JSON.stringify(d)); }
+
+// ── App 設定 ───────────────────────────────────────────────────────
+function getAppConfig(bundle, syncDim, syncPos, stor) {
+  const uc = (stor.appConfig||{})[bundle];
+  if (uc) return uc;
+
+  const def = DEFAULT_LIMITS[bundle];
+  if (syncPos === true)  return { dimension: syncDim, type: 'positive', limitMin: 30, limitType: 'daily' };
+  if (syncPos === false) return { dimension: syncDim, type: 'negative', limitMin: 30, limitType: 'daily' };
+  if (syncDim) {
+    const lt = def?.limitType || (syncDim === '社交' ? 'weekly' : 'daily');
+    return { dimension: syncDim, type: 'limit', limitMin: def?.limitMin ?? 30, limitType: lt };
+  }
+  return { dimension: null, type: 'skip', limitMin: 30, limitType: 'daily' };
+}
+
+// ── 週期輔助 ───────────────────────────────────────────────────────
+function getWeekStart(dateStr) {
+  const d = new Date(dateStr);
+  const day = d.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
+  const mon = new Date(d);
+  mon.setDate(d.getDate() + diff);
+  mon.setHours(0,0,0,0);
+  return mon;
+}
+
+function getWeeklyTotal(bundle, targetDate) {
+  const weekStart = getWeekStart(targetDate);
+  const target = new Date(targetDate);
+  let total = 0;
+  for (const day of (window.SCREEN_TIME_HISTORY||[])) {
+    const d = new Date(day.date);
+    if (d >= weekStart && d <= target) {
+      for (const app of (day.apps||[])) {
+        if (app.bundle === bundle) total += app.seconds;
+      }
+    }
+  }
+  return total;
+}
+
+// ── 計算正/負面秒數 ────────────────────────────────────────────────
+function getMetrics(app, stor, weeklyBudget) {
+  const cfg = getAppConfig(app.bundle, app.dimension, app.positive, stor);
+  const dim = cfg.dimension;
+  if (cfg.type === 'skip' || !dim) return { pos: 0, neg: 0, limit: null, dim: null, limitType: null };
+  if (cfg.type === 'positive') return { pos: app.seconds, neg: 0, limit: null, dim, limitType: null };
+  if (cfg.type === 'negative') return { pos: 0, neg: app.seconds, limit: null, dim, limitType: null };
+
+  if (cfg.type === 'limit') {
+    if (cfg.limitType === 'weekly' && weeklyBudget) {
+      const remaining = weeklyBudget[app.bundle] ?? cfg.limitMin * 60;
+      const pos = Math.min(app.seconds, Math.max(0, remaining));
+      const neg = Math.max(0, app.seconds - pos);
+      weeklyBudget[app.bundle] = remaining - pos;
+      return { pos, neg, limit: cfg.limitMin * 60, dim, limitType: 'weekly' };
+    } else {
+      const limit = cfg.limitMin * 60;
+      return { pos: Math.min(app.seconds, limit), neg: Math.max(0, app.seconds - limit), limit, dim, limitType: 'daily' };
+    }
+  }
+  return { pos: 0, neg: 0, limit: null, dim: null, limitType: null };
+}
+
+// ── Skill hours & 歷史合併 ─────────────────────────────────────────
+function getSkillHours(stor) {
+  const h = {}; DIMS.forEach(d => h[d] = 0);
+  for (const secs of Object.values(stor.dailyPositive||{}))
+    DIMS.forEach(d => h[d] += (secs[d]||0)/3600);
+  return h;
+}
+
+function mergeHistory(history, stor) {
+  if (!Array.isArray(history)) return;
+  if (!stor.dailyPositive) stor.dailyPositive = {};
+  const now = new Date();
+
+  const byWeek = {};
+  for (const day of history) {
+    if (Math.abs(now - new Date(day.date)) > 90*86400e3) continue;
+    const ws = getWeekStart(day.date).toISOString().slice(0,10);
+    if (!byWeek[ws]) byWeek[ws] = [];
+    byWeek[ws].push(day);
+  }
+
+  for (const weekDays of Object.values(byWeek)) {
+    weekDays.sort((a,b) => a.date.localeCompare(b.date));
+    const weeklyBudget = {};
+
+    for (const day of weekDays) {
+      const dimSecs = {}; DIMS.forEach(d => dimSecs[d] = 0);
+      for (const app of (day.apps||[])) {
+        const m = getMetrics(app, stor, weeklyBudget);
+        if (m.pos > 0 && m.dim) dimSecs[m.dim] += m.pos;
+      }
+      stor.dailyPositive[day.date] = dimSecs;
+    }
+  }
+}
+
+// ── Today weekly context ───────────────────────────────────────────
+function getTodayWeeklyContext(todayApps, stor) {
+  const today = (window.SCREEN_TIME_DATA||{}).date || new Date().toISOString().slice(0,10);
+  const weekStart = getWeekStart(today);
+  const todayDate = new Date(today);
+
+  const weekBefore = {};
+  for (const day of (window.SCREEN_TIME_HISTORY||[])) {
+    const d = new Date(day.date);
+    if (d >= weekStart && d < todayDate) {
+      for (const app of (day.apps||[])) {
+        weekBefore[app.bundle] = (weekBefore[app.bundle]||0) + app.seconds;
+      }
+    }
+  }
+
+  const ctx = {};
+  for (const app of (todayApps||[])) {
+    const cfg = getAppConfig(app.bundle, app.dimension, app.positive, stor);
+    if (cfg.type === 'limit' && cfg.limitType === 'weekly') {
+      const weekUsed = (weekBefore[app.bundle]||0) + app.seconds;
+      ctx[app.bundle] = { weekUsed, weekLimit: cfg.limitMin * 60 };
+    }
+  }
+  return ctx;
+}
+
+// ── Helpers ────────────────────────────────────────────────────────
+function fmtTime(sec) {
+  if (!sec) return '0m';
+  const h = Math.floor(sec/3600), m = Math.floor((sec%3600)/60);
+  return h > 0 ? `${h}h ${m}m` : `${m}m`;
+}
+function fmtDate(str) { const d = new Date(str); return `${d.getMonth()+1}/${d.getDate()}`; }
+
+// ── Render Ledger（帳本）────────────────────────────────────────────
+function renderToday(data, stor) {
+  const panel = document.getElementById('panel-today');
+  if (!data?.apps?.length) {
+    panel.innerHTML = `<div class="no-data"><h2>尚無今日資料</h2><p>請先在 Terminal 執行</p><code>python3 sync.py</code><p style="margin-top:12px;font-size:12px">然後重新整理此頁面</p></div>`;
+    return;
+  }
+
+  // 建立今日週預算
+  const weeklyBudgetToday = {};
+  const todayDate = new Date(data.date);
+  const weekStart = getWeekStart(data.date);
+  for (const day of (window.SCREEN_TIME_HISTORY||[])) {
+    const d = new Date(day.date);
+    if (d >= weekStart && d < todayDate) {
+      for (const app of (day.apps||[])) {
+        const cfg = getAppConfig(app.bundle, app.dimension, app.positive, stor);
+        if (cfg.limitType === 'weekly') {
+          weeklyBudgetToday[app.bundle] = (weeklyBudgetToday[app.bundle] ?? cfg.limitMin*60) - app.seconds;
+        }
+      }
+    }
+  }
+
+  const weekCtx = getTodayWeeklyContext(data.apps, stor);
+  const apps = data.apps.map(a => ({ ...a, _m: getMetrics(a, stor, {...weeklyBudgetToday}) })).filter(a => a._m.dim);
+
+  const posSec = apps.reduce((s,a) => s + a._m.pos, 0);
+  const negSec = apps.reduce((s,a) => s + a._m.neg, 0);
+  const balance = posSec - negSec;
+  const balSign = balance >= 0 ? '+' : '−';
+  const balCol  = balance >= 0 ? 'var(--c-pos)' : 'var(--c-neg)';
+
+  // 日期
+  const dd = new Date(data.date);
+  const dateLabel = `${dd.getMonth()+1}/${dd.getDate()} 今日`;
+
+  // ── Hero Card ──
+  const heroHtml = `
+    <div class="ledger-hero">
+      <div class="l-date">${dateLabel}</div>
+      <div class="l-label">今日結餘</div>
+      <div class="l-balance" style="color:${balCol}">${balSign}${fmtTime(Math.abs(balance))}</div>
+      <div class="l-split">
+        <div class="l-half">
+          <div class="l-half-icon">📈</div>
+          <div class="l-half-val" style="color:var(--c-pos)">${fmtTime(posSec)}</div>
+          <div class="l-half-lbl">收入</div>
+        </div>
+        <div class="l-half">
+          <div class="l-half-icon">📉</div>
+          <div class="l-half-val" style="color:var(--c-neg)">${negSec ? fmtTime(negSec) : '0m'}</div>
+          <div class="l-half-lbl">超支</div>
+        </div>
+      </div>
+    </div>`;
+
+  // ── 分類收支 ──
+  const dimPos = {}, dimNeg = {};
+  DIMS.forEach(d => { dimPos[d]=0; dimNeg[d]=0; });
+  apps.forEach(a => {
+    dimPos[a._m.dim] = (dimPos[a._m.dim]||0) + a._m.pos;
+    dimNeg[a._m.dim] = (dimNeg[a._m.dim]||0) + a._m.neg;
+  });
+  const activeDims = DIMS.filter(d => dimPos[d]+dimNeg[d] > 0);
+  const maxDimTotal = Math.max(...activeDims.map(d => dimPos[d]+dimNeg[d]), 1);
+
+  const catRows = activeDims.map(d => {
+    const net    = dimPos[d] - dimNeg[d];
+    const col    = DIM_COL[d];
+    const netStr = (net >= 0 ? '+' : '−') + fmtTime(Math.abs(net));
+    const netCol = net >= 0 ? 'var(--c-pos)' : 'var(--c-neg)';
+    const barW   = Math.round((dimPos[d]+dimNeg[d]) / maxDimTotal * 100);
+    const barCol = dimNeg[d] > 0 ? (dimNeg[d] > dimPos[d] ? 'var(--c-neg)' : col) : col;
+    return `<div class="cat-row">
+      <div class="cat-dim-icon">${DIM_ICON[d]}</div>
+      <div class="cat-detail">
+        <div class="cat-name" style="color:${col}">${d}</div>
+        <div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${barW}%;background:${barCol}"></div></div>
+      </div>
+      <div class="cat-net" style="color:${netCol}">${netStr}</div>
+    </div>`;
+  }).join('');
+
+  const catCard = `<div class="card"><div class="card-title">分類收支</div>${catRows||'<div style="color:var(--text2);font-size:13px">今日尚無記錄</div>'}</div>`;
+
+  // ── 交易明細 ──
+  function txRow(a, type) {
+    const m   = a._m;
+    const col = DIM_COL[m.dim];
+    const cfg = getAppConfig(a.bundle, a.dimension, a.positive, stor);
+    const isWeekly = m.limitType === 'weekly';
+    const wc  = weekCtx[a.bundle];
+    let meta  = m.dim;
+    if (m.limit !== null) {
+      meta = isWeekly && wc
+        ? `${m.dim} · 本週 ${fmtTime(wc.weekUsed)} / ${fmtTime(wc.weekLimit)}`
+        : `${m.dim} · 限 ${cfg.limitMin}m`;
+    }
+    if (type === 'income') {
+      return `<div class="tx-row">
+        <div class="tx-icon-wrap" style="background:${col}22;color:${col}">${DIM_ICON[m.dim]}</div>
+        <div class="tx-body"><div class="tx-name">${a.name}</div><div class="tx-meta">${meta}</div></div>
+        <div class="tx-amount" style="color:var(--c-pos)">+${fmtTime(m.pos)}</div>
+      </div>`;
+    } else {
+      return `<div class="tx-row">
+        <div class="tx-icon-wrap" style="background:var(--c-neg)22;color:var(--c-neg)">${DIM_ICON[m.dim]}</div>
+        <div class="tx-body"><div class="tx-name">${a.name}</div><div class="tx-meta">${meta}</div></div>
+        <div class="tx-amount" style="color:var(--c-neg)">−${fmtTime(m.neg)}</div>
+      </div>`;
+    }
+  }
+
+  const incomeApps  = apps.filter(a => a._m.pos > 0).sort((a,b) => b._m.pos - a._m.pos);
+  const expenseApps = apps.filter(a => a._m.neg > 0).sort((a,b) => b._m.neg - a._m.neg);
+
+  const txCard = `<div class="card">
+    ${incomeApps.length ? `
+      <div class="tx-section-hdr">
+        <div class="tx-section-name" style="color:var(--c-pos)">📈 收入</div>
+        <div class="tx-section-total" style="color:var(--c-pos)">+${fmtTime(posSec)}</div>
+      </div>
+      ${incomeApps.map(a => txRow(a,'income')).join('')}
+    ` : ''}
+    ${expenseApps.length ? `
+      <div class="tx-section-hdr${incomeApps.length?' border-top':''}">
+        <div class="tx-section-name" style="color:var(--c-neg)">📉 超支</div>
+        <div class="tx-section-total" style="color:var(--c-neg)">−${fmtTime(negSec)}</div>
+      </div>
+      ${expenseApps.map(a => txRow(a,'expense')).join('')}
+    ` : ''}
+    ${!incomeApps.length && !expenseApps.length ? '<div style="color:var(--text2);font-size:13px">今日尚無記錄</div>' : ''}
+  </div>`;
+
+  panel.innerHTML = heroHtml + catCard + txCard;
+}
+
+// ── Render Skill Tree ──────────────────────────────────────────────
+function renderSkillTree(stor) {
+  const sh = getSkillHours(stor);
+  const sections = DIMS.map(dim => {
+    const col=DIM_COL[dim], nodes=SKILL_DEF[dim], totalH=sh[dim]||0;
+    const chain = nodes.map((node,i) => {
+      const unlocked=totalH>=node.hours, isNext=!unlocked&&(i===0||totalH>=nodes[i-1].hours);
+      const state=unlocked?'unlocked':isNext?'active':'locked';
+      const conn=i>0?`<div class="skill-conn ${totalH>=nodes[i-1].hours?'done':''}" style="color:${col}"></div>`:'';
+      const prog=isNext?`<div class="node-prog"><div class="node-prog-fill" style="width:${Math.round(Math.min(totalH/node.hours,1)*100)}%;background:${col}"></div></div>`:'';
+      const req=unlocked?`<span style="color:${col}">✓ 解鎖</span>`:`${totalH.toFixed(1)}/${node.hours}h`;
+      return `${conn}<div class="skill-node"><div class="node-circle ${state}" style="color:${col}" title="${node.bonus}">${node.icon}</div>${prog}<div class="node-name">${node.name}</div><div class="node-req">${req}</div></div>`;
+    }).join('');
+    return `<div class="skill-section">
+      <div class="skill-section-title" style="color:${col}">${DIM_ICON[dim]} ${dim}技能樹 <span style="font-size:11px;font-weight:400;color:var(--text2)">正面累積 ${totalH.toFixed(1)}h</span></div>
+      <div class="skill-chain">${chain}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('panel-skill').innerHTML = `
+    <div class="card" style="font-size:12px;color:var(--text2);margin-bottom:14px">💡 在限制內使用 App 累積正面時數 · 解鎖節點給對應維度永久加成</div>
+    ${sections}`;
+}
+
+// ── Render Report（報表）───────────────────────────────────────────
+function renderWeek(stor) {
+  const panel = document.getElementById('panel-week');
+  const dp=stor.dailyPositive||{}, now=new Date();
+  const days=Object.keys(dp).filter(d=>{const diff=now-new Date(d);return diff>=0&&diff<=7*86400e3}).sort().slice(-7);
+  if(!days.length){panel.innerHTML=`<div class="no-data"><h2>尚無歷史資料</h2><p>執行 sync.py 後重新整理</p></div>`;return;}
+
+  const maxSec=Math.max(...days.map(d=>Object.values(dp[d]||{}).reduce((s,v)=>s+v,0)),1);
+  const bars=days.map(day=>{
+    const dd=dp[day]||{},total=Object.values(dd).reduce((s,v)=>s+v,0);
+    const segs=DIMS.map(dim=>{const v=dd[dim]||0,pct=Math.round(v/maxSec*100);return pct>0?`<div class="week-seg" style="height:${pct}%;background:${DIM_COL[dim]}" title="${dim} ${fmtTime(v)}"></div>`:''}).join('');
+    return `<div class="week-col"><div class="week-segs">${segs}</div><div class="week-dlabel">${fmtDate(day)}</div><div class="week-dtotal">${total?fmtTime(total):'—'}</div></div>`;
+  }).join('');
+  const legend=DIMS.map(d=>`<div class="legend-item"><div class="legend-dot" style="background:${DIM_COL[d]}"></div>${DIM_ICON[d]} ${d}</div>`).join('');
+  const thCols=DIMS.map(d=>`<th style="font-size:10px;color:${DIM_COL[d]};text-align:right;padding:0 2px">${d}</th>`).join('');
+  const tableRows=days.map(day=>{
+    const dd=dp[day]||{},total=Object.values(dd).reduce((s,v)=>s+v,0);
+    const cols=DIMS.map(d=>{const t=dd[d]||0;return`<td style="font-size:12px;text-align:right;padding:6px 2px;color:${t?DIM_COL[d]:'var(--text2)'}">${t?fmtTime(t):'—'}</td>`}).join('');
+    return`<tr style="border-bottom:1px solid var(--border)"><td style="font-size:12px;padding:6px 0;color:var(--text2)">${fmtDate(day)}</td>${cols}<td style="font-size:12px;text-align:right;font-weight:600;padding-left:4px">${fmtTime(total)}</td></tr>`;
+  }).join('');
+  panel.innerHTML=`
+    <div class="card"><div class="card-title">收入時間分佈（最近 7 天）</div><div class="week-bars">${bars}</div><div class="week-legend">${legend}</div></div>
+    <div class="card"><div class="card-title">每日分類明細（收入時數）</div><table style="width:100%;border-collapse:collapse"><tr>${thCols}<th style="font-size:10px;color:var(--text2);text-align:right;padding-left:4px">小計</th></tr>${tableRows}</table></div>`;
+}
+
+// ── Render Settings ────────────────────────────────────────────────
+function renderSettings() {
+  const panel=document.getElementById('panel-settings');
+  const stor=loadStor();
+  const appMap=new Map();
+  for(const day of(window.SCREEN_TIME_HISTORY||[])){
+    for(const app of(day.apps||[])){
+      if(!appMap.has(app.bundle))appMap.set(app.bundle,{name:app.name,syncDim:app.dimension,syncPos:app.positive,totalSecs:0});
+      appMap.get(app.bundle).totalSecs+=app.seconds;
+    }
+  }
+  if(!appMap.size){panel.innerHTML=`<div class="no-data"><h2>尚無 App 資料</h2><p>執行 sync.py 後重新整理</p></div>`;return;}
+
+  const rows=[...appMap.entries()].sort((a,b)=>b[1].totalSecs-a[1].totalSecs).map(([bundle,info])=>{
+    const cfg=getAppConfig(bundle,info.syncDim,info.syncPos,stor);
+    const col=DIM_COL[cfg.dimension]||'var(--text2)';
+    const icon=DIM_ICON[cfg.dimension]||'❓';
+    const bid=bundle.replace(/\./g,'__');
+
+    const dimPills=[...DIMS,'skip'].map(d=>{
+      const isSkip=d==='skip';
+      const isActive=isSkip?cfg.type==='skip':cfg.dimension===d;
+      const label=isSkip?'略過':d;
+      const btnCol=isSkip?'var(--text2)':(DIM_COL[d]||'var(--text2)');
+      return`<button class="dim-pill ${isActive?'active':''} ${isSkip?'skip-pill':''}" style="${isActive&&!isSkip?`color:${btnCol};border-color:${btnCol}`:''}" onclick="setAppDim('${bundle}','${d}')">${label}</button>`;
+    }).join('');
+
+    let typeRow='';
+    if(cfg.type!=='skip'){
+      const isWeekly=cfg.limitType==='weekly';
+      const limitLabel=isWeekly?`${Math.round(cfg.limitMin/60*10)/10}h/週`:`${cfg.limitMin}m/日`;
+      const stepperMin=isWeekly?30:5;
+      typeRow=`<div class="type-row">
+        <button class="type-pill ${cfg.type==='positive'?'active':''}" onclick="setAppType('${bundle}','positive')">📈 永遠收入</button>
+        <button class="type-pill ${cfg.type==='limit'?'active':''}"    onclick="setAppType('${bundle}','limit')">⏱ 有預算</button>
+        <button class="type-pill ${cfg.type==='negative'?'active':''}" onclick="setAppType('${bundle}','negative')">📉 永遠超支</button>
+        ${cfg.type==='limit'?`
+          <div style="display:flex;align-items:center;gap:5px;margin-left:2px">
+            <button class="step-btn" onclick="adjLimit('${bundle}',-${stepperMin})" style="font-size:14px">−</button>
+            <span class="lim-val" id="lv-${bid}">${limitLabel}</span>
+            <button class="step-btn" onclick="adjLimit('${bundle}',${stepperMin})" style="font-size:14px">+</button>
+            <button class="type-pill ${isWeekly?'active':''}" style="padding:3px 8px;font-size:11px" onclick="toggleWeekly('${bundle}')">${isWeekly?'週':'日'}</button>
+          </div>`:''}
+      </div>`;
+    }
+
+    return`<div class="s-app">
+      <div class="s-row1">
+        <div class="app-icon" style="background:${col}22;color:${col};width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0">${icon}</div>
+        <div class="s-name-block"><div class="s-name">${info.name}</div><div class="s-usage">${fmtTime(info.totalSecs)} (7天)</div></div>
+      </div>
+      <div class="dim-pills">${dimPills}</div>
+      ${typeRow}
+    </div>`;
+  }).join('');
+
+  panel.innerHTML=`
+    <div class="card" style="font-size:12px;color:var(--text2);margin-bottom:12px">⚙️ 選維度、計分方式，以及日/週預算。</div>
+    <div class="card"><div class="card-title">App 設定（依 7 天使用量排序）</div>${rows}</div>`;
+}
+
+// ── Settings handlers ──────────────────────────────────────────────
+function setAppDim(bundle,dim){
+  const stor=loadStor();if(!stor.appConfig)stor.appConfig={};
+  const cur=stor.appConfig[bundle]||{};
+  const def=DEFAULT_LIMITS[bundle];
+  if(dim==='skip'){
+    stor.appConfig[bundle]={...cur,type:'skip',dimension:null};
+  }else{
+    const type=(cur.type==='skip'||!cur.type)?'limit':cur.type;
+    const lt=cur.limitType||(def?.limitType)||(dim==='社交'?'weekly':'daily');
+    const lm=cur.limitMin||(def?.limitMin)||30;
+    stor.appConfig[bundle]={...cur,dimension:dim,type,limitMin:lm,limitType:lt};
+  }
+  applyAndRender(stor);
+}
+
+function setAppType(bundle,type){
+  const stor=loadStor();if(!stor.appConfig)stor.appConfig={};
+  const cur=stor.appConfig[bundle]||{};
+  const def=DEFAULT_LIMITS[bundle];
+  stor.appConfig[bundle]={...cur,type,limitMin:cur.limitMin||(def?.limitMin)||30,limitType:cur.limitType||(def?.limitType)||'daily'};
+  applyAndRender(stor);
+}
+
+function toggleWeekly(bundle){
+  const stor=loadStor();if(!stor.appConfig)stor.appConfig={};
+  const cur=stor.appConfig[bundle]||{};
+  const newType=cur.limitType==='weekly'?'daily':'weekly';
+  const lm=newType==='weekly'?Math.min((cur.limitMin||30)*5,1440):(cur.limitMin||150);
+  stor.appConfig[bundle]={...cur,limitType:newType,limitMin:lm};
+  applyAndRender(stor);
+}
+
+function adjLimit(bundle,delta){
+  const stor=loadStor();if(!stor.appConfig)stor.appConfig={};
+  const cur=stor.appConfig[bundle]||{};
+  const isWeekly=cur.limitType==='weekly';
+  const min=isWeekly?30:5, max=isWeekly?2880:360;
+  const next=Math.max(min,Math.min(max,(cur.limitMin||30)+delta));
+  stor.appConfig[bundle]={...cur,limitMin:next};
+  const el=document.getElementById('lv-'+bundle.replace(/\./g,'__'));
+  if(el){const lbl=isWeekly?`${Math.round(next/60*10)/10}h/週`:`${next}m/日`;el.textContent=lbl;}
+  mergeHistory(window.SCREEN_TIME_HISTORY,stor);saveStor(stor);
+  renderToday(window.SCREEN_TIME_DATA,stor);renderSkillTree(stor);renderWeek(stor);
+}
+
+function applyAndRender(stor){
+  mergeHistory(window.SCREEN_TIME_HISTORY,stor);saveStor(stor);
+  renderToday(window.SCREEN_TIME_DATA,stor);renderSkillTree(stor);renderWeek(stor);renderSettings();
+}
+
+// ── Init ───────────────────────────────────────────────────────────
+function init(){
+  const stor=loadStor();
+  if(window.SCREEN_TIME_HISTORY)mergeHistory(window.SCREEN_TIME_HISTORY,stor);
+  saveStor(stor);
+  const info=window.SCREEN_TIME_DATA;
+  document.getElementById('sync-info').textContent=info
+    ?`最後同步：${new Date(info.generated).toLocaleString('zh-TW')} · ${info.date}`
+    :'未找到資料 — 請執行 python3 sync.py 後重新整理';
+  renderToday(info,stor);renderSkillTree(stor);renderWeek(stor);renderSettings();
+}
+init();
+</script>
+</body>
+</html>
