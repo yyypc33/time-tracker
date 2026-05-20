@@ -1,4 +1,4 @@
-// Generated: 2026-05-20T21:25:15.853471
+// Generated: 2026-05-20T22:09:24.225058
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-13",
@@ -8,8 +8,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 1808,
-        "minutes": 30.1
+        "seconds": 1481,
+        "minutes": 24.7
       },
       {
         "bundle": "com.brave.ios.browser",
@@ -28,36 +28,12 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 14.0
       },
       {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 360,
-        "minutes": 6.0
-      },
-      {
         "bundle": "com.czzhao.binance",
         "name": "Binance",
         "dimension": null,
         "positive": null,
         "seconds": 220,
         "minutes": 3.7
-      },
-      {
-        "bundle": "com.dcard.app.Dcard",
-        "name": "Dcard",
-        "dimension": null,
-        "positive": null,
-        "seconds": 162,
-        "minutes": 2.7
-      },
-      {
-        "bundle": "com.facebook.Facebook",
-        "name": "Facebook",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 83,
-        "minutes": 1.4
       },
       {
         "bundle": "com.cardify.tinder",
@@ -68,20 +44,12 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 1.3
       },
       {
-        "bundle": "com.google.Translate",
-        "name": "Translate",
-        "dimension": null,
+        "bundle": "com.netmarble.tskgb",
+        "name": "遊戲",
+        "dimension": "休閒",
         "positive": null,
-        "seconds": 72,
-        "minutes": 1.2
-      },
-      {
-        "bundle": "com.google.ios.youtubemusic",
-        "name": "YouTube Music",
-        "dimension": "心理",
-        "positive": true,
-        "seconds": 8,
-        "minutes": 0.1
+        "seconds": 66,
+        "minutes": 1.1
       }
     ],
     "summary": {
@@ -101,18 +69,18 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 1891,
+        "total": 1481,
         "positive": 0,
         "negative": 0
       },
       "休閒": {
-        "total": 1202,
+        "total": 908,
         "positive": 0,
         "negative": 0
       },
       "心理": {
-        "total": 8,
-        "positive": 8,
+        "total": 0,
+        "positive": 0,
         "negative": 0
       }
     }
@@ -1138,6 +1106,14 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 109.3
       },
       {
+        "bundle": "com.google.ios.youtube",
+        "name": "YouTube",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 4885,
+        "minutes": 81.4
+      },
+      {
         "bundle": "com.tencent.xin",
         "name": "WeChat",
         "dimension": "社交",
@@ -1152,14 +1128,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 3989,
         "minutes": 66.5
-      },
-      {
-        "bundle": "com.google.ios.youtube",
-        "name": "YouTube",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 3873,
-        "minutes": 64.5
       },
       {
         "bundle": "com.google.ios.youtubemusic",
@@ -1304,13 +1272,130 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "休閒": {
-        "total": 7325,
+        "total": 8337,
         "positive": 0,
         "negative": 0
       },
       "心理": {
         "total": 3600,
         "positive": 3600,
+        "negative": 0
+      }
+    }
+  },
+  {
+    "date": "2026-05-20",
+    "apps": [
+      {
+        "bundle": "com.tencent.xin",
+        "name": "WeChat",
+        "dimension": "社交",
+        "positive": true,
+        "seconds": 4719,
+        "minutes": 78.7
+      },
+      {
+        "bundle": "com.netmarble.tskgb",
+        "name": "遊戲",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 3595,
+        "minutes": 59.9
+      },
+      {
+        "bundle": "com.burbn.instagram",
+        "name": "Instagram",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 2766,
+        "minutes": 46.1
+      },
+      {
+        "bundle": "com.burbn.barcelona",
+        "name": "Threads",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 2646,
+        "minutes": 44.1
+      },
+      {
+        "bundle": "com.microsoft.to-do",
+        "name": "To Do",
+        "dimension": "工作",
+        "positive": true,
+        "seconds": 1002,
+        "minutes": 16.7
+      },
+      {
+        "bundle": "com.facebook.Facebook",
+        "name": "Facebook",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 580,
+        "minutes": 9.7
+      },
+      {
+        "bundle": "com.anthropic.claude",
+        "name": "Claude",
+        "dimension": "工作",
+        "positive": true,
+        "seconds": 411,
+        "minutes": 6.8
+      },
+      {
+        "bundle": "com.google.ios.youtube",
+        "name": "YouTube",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 370,
+        "minutes": 6.2
+      },
+      {
+        "bundle": "com.tixr.tixr",
+        "name": "Tixr",
+        "dimension": null,
+        "positive": null,
+        "seconds": 205,
+        "minutes": 3.4
+      },
+      {
+        "bundle": "com.timeleft.app",
+        "name": "TimeLeft",
+        "dimension": "工作",
+        "positive": true,
+        "seconds": 13,
+        "minutes": 0.2
+      }
+    ],
+    "summary": {
+      "工作": {
+        "total": 1426,
+        "positive": 1426,
+        "negative": 0
+      },
+      "健康": {
+        "total": 0,
+        "positive": 0,
+        "negative": 0
+      },
+      "財務": {
+        "total": 0,
+        "positive": 0,
+        "negative": 0
+      },
+      "社交": {
+        "total": 10711,
+        "positive": 4719,
+        "negative": 0
+      },
+      "休閒": {
+        "total": 3965,
+        "positive": 0,
+        "negative": 0
+      },
+      "心理": {
+        "total": 0,
+        "positive": 0,
         "negative": 0
       }
     }
