@@ -59,6 +59,12 @@
     .stat-v { font-size:19px; font-weight:700; margin-bottom:2px; }
     .stat-k { font-size:10px; color:var(--text2); letter-spacing:.3px; }
 
+    /* Detail toggle */
+    .detail-toggle { display:flex; justify-content:center; align-items:center; gap:6px; padding:11px 20px; border-bottom:1px solid var(--border); cursor:pointer; font-size:12px; color:var(--text2); user-select:none; transition:background .15s; }
+    .detail-toggle:active { background:var(--bg2); }
+    .toggle-arrow { font-size:10px; transition:transform .2s; }
+    .toggle-arrow.open { transform:rotate(180deg); }
+
     /* Dim breakdown */
     .dim-section { padding:18px 20px; border-bottom:1px solid var(--border); }
     .section-lbl { font-size:10px; color:var(--text2); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:16px; }
@@ -228,6 +234,7 @@ let _reportPeriod = 'week';
 let _manualDim    = null;
 let _manualMin    = 30;
 let _showManual   = false;
+let _showDetails  = false;
 
 function switchTab(id) {
   ['today','skill','week','settings'].forEach((t,i) => {
@@ -626,7 +633,9 @@ function renderDayContent(data, stor, isYesterday) {
       </div>`:''}
     </div>`;
 
-  return (isYesterday?'<div class="yesterday-banner">⚠️ 今日資料同步中，目前顯示昨日</div>':'')+heroHtml+statsHtml+dimSection+txWrap+mfHtml;
+  const toggleHtml=`<div class="detail-toggle" onclick="toggleDetails()"><span>明細</span><span class="toggle-arrow${_showDetails?' open':''}">▼</span></div>`;
+  const detailHtml=_showDetails?dimSection+txWrap+mfHtml:'';
+  return (isYesterday?'<div class="yesterday-banner">⚠️ 今日資料同步中，目前顯示昨日</div>':'')+heroHtml+statsHtml+toggleHtml+detailHtml;
 }
 
 // ── Render Ledger ──────────────────────────────────────────────────
@@ -645,6 +654,9 @@ function renderToday(data, stor) {
   }
   panel.innerHTML=renderDayContent(data,stor,false);
 }
+
+// ── Detail toggle ─────────────────────────────────────────────────
+function toggleDetails() { _showDetails=!_showDetails; renderToday(window.SCREEN_TIME_DATA,loadStor()); }
 
 // ── Manual handlers ────────────────────────────────────────────────
 function toggleManualForm() { _showManual=!_showManual; renderToday(window.SCREEN_TIME_DATA,loadStor()); }
