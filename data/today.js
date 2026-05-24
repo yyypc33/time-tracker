@@ -1,4 +1,4 @@
-// Generated: 2026-05-24T17:08:09.074715
+// Generated: 2026-05-24T18:08:12.527660
 window.SCREEN_TIME_DATA = {
   "date": "2026-05-24",
   "apps": [
@@ -35,12 +35,28 @@ window.SCREEN_TIME_DATA = {
       "minutes": 43.0
     },
     {
+      "bundle": "com.google.ios.youtubemusic",
+      "name": "YouTube Music",
+      "dimension": "心理",
+      "positive": true,
+      "seconds": 1769,
+      "minutes": 29.5
+    },
+    {
       "bundle": "com.garena.game.kgtw",
       "name": "手遊",
       "dimension": "休閒",
       "positive": null,
       "seconds": 1293,
       "minutes": 21.6
+    },
+    {
+      "bundle": "com.forestapp.Forest",
+      "name": "Forest",
+      "dimension": "工作",
+      "positive": true,
+      "seconds": 1234,
+      "minutes": 20.6
     },
     {
       "bundle": "com.hammerandchisel.discord",
@@ -51,19 +67,19 @@ window.SCREEN_TIME_DATA = {
       "minutes": 15.4
     },
     {
-      "bundle": "com.google.ios.youtubemusic",
-      "name": "YouTube Music",
-      "dimension": "心理",
-      "positive": true,
-      "seconds": 689,
-      "minutes": 11.5
-    },
-    {
       "bundle": "com.tencent.xin",
       "name": "WeChat",
       "dimension": "社交",
       "positive": true,
       "seconds": 289,
+      "minutes": 4.8
+    },
+    {
+      "bundle": "com.burbn.barcelona",
+      "name": "Threads",
+      "dimension": "社交",
+      "positive": null,
+      "seconds": 288,
       "minutes": 4.8
     },
     {
@@ -101,8 +117,8 @@ window.SCREEN_TIME_DATA = {
   ],
   "summary": {
     "工作": {
-      "total": 318,
-      "positive": 197,
+      "total": 1552,
+      "positive": 1431,
       "negative": 0
     },
     "健康": {
@@ -116,7 +132,7 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     },
     "社交": {
-      "total": 14482,
+      "total": 14770,
       "positive": 1216,
       "negative": 0
     },
@@ -126,10 +142,10 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     },
     "心理": {
-      "total": 689,
-      "positive": 689,
+      "total": 1769,
+      "positive": 1769,
       "negative": 0
     }
   },
-  "generated": "2026-05-24T17:08:09.074715"
+  "generated": "2026-05-24T18:08:12.527660"
 };

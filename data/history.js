@@ -1,4 +1,4 @@
-// Generated: 2026-05-24T17:08:09.077151
+// Generated: 2026-05-24T18:08:12.530245
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-17",
@@ -52,28 +52,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 14.8
       },
       {
-        "bundle": "com.google.ios.youtubemusic",
-        "name": "YouTube Music",
-        "dimension": "心理",
-        "positive": true,
-        "seconds": 687,
-        "minutes": 11.4
-      },
-      {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 651,
-        "minutes": 10.8
-      },
-      {
         "bundle": "com.burbn.barcelona",
         "name": "Threads",
         "dimension": "社交",
         "positive": null,
         "seconds": 638,
         "minutes": 10.6
+      },
+      {
+        "bundle": "com.netmarble.tskgb",
+        "name": "遊戲",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 511,
+        "minutes": 8.5
       },
       {
         "bundle": "com.google.Translate",
@@ -100,34 +92,18 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 0.8
       },
       {
-        "bundle": "com.forestapp.Forest",
-        "name": "Forest",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 44,
-        "minutes": 0.7
-      },
-      {
         "bundle": "com.dcard.app.Dcard",
         "name": "Dcard",
         "dimension": null,
         "positive": null,
         "seconds": 16,
         "minutes": 0.3
-      },
-      {
-        "bundle": "com.timeleft.app",
-        "name": "TimeLeft",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 9,
-        "minutes": 0.1
       }
     ],
     "summary": {
       "工作": {
-        "total": 104,
-        "positive": 104,
+        "total": 51,
+        "positive": 51,
         "negative": 0
       },
       "健康": {
@@ -146,13 +122,13 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "休閒": {
-        "total": 4071,
+        "total": 3931,
         "positive": 0,
         "negative": 0
       },
       "心理": {
-        "total": 687,
-        "positive": 687,
+        "total": 0,
+        "positive": 0,
         "negative": 0
       }
     }
@@ -1431,12 +1407,28 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 43.0
       },
       {
+        "bundle": "com.google.ios.youtubemusic",
+        "name": "YouTube Music",
+        "dimension": "心理",
+        "positive": true,
+        "seconds": 1769,
+        "minutes": 29.5
+      },
+      {
         "bundle": "com.garena.game.kgtw",
         "name": "手遊",
         "dimension": "休閒",
         "positive": null,
         "seconds": 1293,
         "minutes": 21.6
+      },
+      {
+        "bundle": "com.forestapp.Forest",
+        "name": "Forest",
+        "dimension": "工作",
+        "positive": true,
+        "seconds": 1234,
+        "minutes": 20.6
       },
       {
         "bundle": "com.hammerandchisel.discord",
@@ -1447,19 +1439,19 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 15.4
       },
       {
-        "bundle": "com.google.ios.youtubemusic",
-        "name": "YouTube Music",
-        "dimension": "心理",
-        "positive": true,
-        "seconds": 689,
-        "minutes": 11.5
-      },
-      {
         "bundle": "com.tencent.xin",
         "name": "WeChat",
         "dimension": "社交",
         "positive": true,
         "seconds": 289,
+        "minutes": 4.8
+      },
+      {
+        "bundle": "com.burbn.barcelona",
+        "name": "Threads",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 288,
         "minutes": 4.8
       },
       {
@@ -1497,8 +1489,8 @@ window.SCREEN_TIME_HISTORY = [
     ],
     "summary": {
       "工作": {
-        "total": 318,
-        "positive": 197,
+        "total": 1552,
+        "positive": 1431,
         "negative": 0
       },
       "健康": {
@@ -1512,7 +1504,7 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 14482,
+        "total": 14770,
         "positive": 1216,
         "negative": 0
       },
@@ -1522,8 +1514,8 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "心理": {
-        "total": 689,
-        "positive": 689,
+        "total": 1769,
+        "positive": 1769,
         "negative": 0
       }
     }
