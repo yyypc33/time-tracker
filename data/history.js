@@ -1,82 +1,5 @@
-// Generated: 2026-05-24T22:42:23.411519
+// Generated: 2026-05-25T05:37:01.109071
 window.SCREEN_TIME_HISTORY = [
-  {
-    "date": "2026-05-17",
-    "apps": [
-      {
-        "bundle": "com.google.ios.youtube",
-        "name": "YouTube",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 1441,
-        "minutes": 24.0
-      },
-      {
-        "bundle": "com.hammerandchisel.discord",
-        "name": "Discord",
-        "dimension": "社交",
-        "positive": true,
-        "seconds": 1188,
-        "minutes": 19.8
-      },
-      {
-        "bundle": "com.burbn.instagram",
-        "name": "Instagram",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 27,
-        "minutes": 0.5
-      },
-      {
-        "bundle": "com.dcard.app.Dcard",
-        "name": "Dcard",
-        "dimension": null,
-        "positive": null,
-        "seconds": 16,
-        "minutes": 0.3
-      },
-      {
-        "bundle": "com.facebook.Facebook",
-        "name": "Facebook",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 13,
-        "minutes": 0.2
-      }
-    ],
-    "summary": {
-      "工作": {
-        "total": 0,
-        "positive": 0,
-        "negative": 0
-      },
-      "健康": {
-        "total": 0,
-        "positive": 0,
-        "negative": 0
-      },
-      "財務": {
-        "total": 0,
-        "positive": 0,
-        "negative": 0
-      },
-      "社交": {
-        "total": 1228,
-        "positive": 1188,
-        "negative": 0
-      },
-      "休閒": {
-        "total": 1441,
-        "positive": 0,
-        "negative": 0
-      },
-      "心理": {
-        "total": 0,
-        "positive": 0,
-        "negative": 0
-      }
-    }
-  },
   {
     "date": "2026-05-18",
     "apps": [
@@ -85,16 +8,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "YouTube",
         "dimension": "休閒",
         "positive": null,
-        "seconds": 5218,
-        "minutes": 87.0
-      },
-      {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 4047,
-        "minutes": 67.5
+        "seconds": 4600,
+        "minutes": 76.7
       },
       {
         "bundle": "com.burbn.barcelona",
@@ -121,12 +36,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 59.0
       },
       {
+        "bundle": "com.netmarble.tskgb",
+        "name": "遊戲",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 3252,
+        "minutes": 54.2
+      },
+      {
         "bundle": "com.facebook.Facebook",
         "name": "Facebook",
         "dimension": "社交",
         "positive": null,
-        "seconds": 2877,
-        "minutes": 48.0
+        "seconds": 2251,
+        "minutes": 37.5
       },
       {
         "bundle": "com.vng.zingalo",
@@ -135,14 +58,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 2012,
         "minutes": 33.5
-      },
-      {
-        "bundle": "com.burbn.instagram",
-        "name": "Instagram",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 1870,
-        "minutes": 31.2
       },
       {
         "bundle": "com.garena.game.kgtw",
@@ -167,6 +82,14 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 1507,
         "minutes": 25.1
+      },
+      {
+        "bundle": "com.burbn.instagram",
+        "name": "Instagram",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 1413,
+        "minutes": 23.6
       },
       {
         "bundle": "com.hammerandchisel.discord",
@@ -229,8 +152,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Tinder",
         "dimension": null,
         "positive": null,
-        "seconds": 169,
-        "minutes": 2.8
+        "seconds": 61,
+        "minutes": 1.0
       },
       {
         "bundle": "com.timeleft.app",
@@ -290,12 +213,12 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 13437,
+        "total": 12354,
         "positive": 4734,
         "negative": 0
       },
       "休閒": {
-        "total": 10913,
+        "total": 9500,
         "positive": 0,
         "negative": 0
       },
@@ -1323,8 +1246,16 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 9780,
-        "minutes": 163.0
+        "seconds": 10008,
+        "minutes": 166.8
+      },
+      {
+        "bundle": "com.facebook.Facebook",
+        "name": "Facebook",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 6327,
+        "minutes": 105.5
       },
       {
         "bundle": "com.google.ios.youtube",
@@ -1333,14 +1264,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 5868,
         "minutes": 97.8
-      },
-      {
-        "bundle": "com.facebook.Facebook",
-        "name": "Facebook",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 5554,
-        "minutes": 92.6
       },
       {
         "bundle": "com.sinopac.dacard",
@@ -1512,7 +1435,7 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 16845,
+        "total": 17846,
         "positive": 1223,
         "negative": 0
       },
