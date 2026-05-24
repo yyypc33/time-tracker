@@ -1,4 +1,4 @@
-// Generated: 2026-05-24T19:08:15.961052
+// Generated: 2026-05-24T20:08:18.872313
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-17",
@@ -8,8 +8,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 2204,
-        "minutes": 36.7
+        "seconds": 2092,
+        "minutes": 34.9
       },
       {
         "bundle": "com.facebook.Facebook",
@@ -44,14 +44,6 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 14.8
       },
       {
-        "bundle": "com.garena.game.kgtw",
-        "name": "手遊",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 629,
-        "minutes": 10.5
-      },
-      {
         "bundle": "com.burbn.barcelona",
         "name": "Threads",
         "dimension": "社交",
@@ -72,8 +64,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Intl",
         "dimension": null,
         "positive": null,
-        "seconds": 182,
-        "minutes": 3.0
+        "seconds": 161,
+        "minutes": 2.7
       },
       {
         "bundle": "com.duolingo.DuolingoMobile",
@@ -109,12 +101,12 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 5365,
+        "total": 5253,
         "positive": 1188,
         "negative": 0
       },
       "休閒": {
-        "total": 2070,
+        "total": 1441,
         "positive": 0,
         "negative": 0
       },
