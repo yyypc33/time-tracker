@@ -1,4 +1,4 @@
-// Generated: 2026-05-24T16:08:06.531374
+// Generated: 2026-05-24T17:08:09.074715
 window.SCREEN_TIME_DATA = {
   "date": "2026-05-24",
   "apps": [
@@ -7,16 +7,16 @@ window.SCREEN_TIME_DATA = {
       "name": "Instagram",
       "dimension": "社交",
       "positive": null,
-      "seconds": 8030,
-      "minutes": 133.8
+      "seconds": 8348,
+      "minutes": 139.1
     },
     {
       "bundle": "com.google.ios.youtube",
       "name": "YouTube",
       "dimension": "休閒",
       "positive": null,
-      "seconds": 5490,
-      "minutes": 91.5
+      "seconds": 5077,
+      "minutes": 84.6
     },
     {
       "bundle": "com.facebook.Facebook",
@@ -31,8 +31,16 @@ window.SCREEN_TIME_DATA = {
       "name": "遊戲",
       "dimension": "休閒",
       "positive": null,
-      "seconds": 1214,
-      "minutes": 20.2
+      "seconds": 2578,
+      "minutes": 43.0
+    },
+    {
+      "bundle": "com.garena.game.kgtw",
+      "name": "手遊",
+      "dimension": "休閒",
+      "positive": null,
+      "seconds": 1293,
+      "minutes": 21.6
     },
     {
       "bundle": "com.hammerandchisel.discord",
@@ -41,6 +49,14 @@ window.SCREEN_TIME_DATA = {
       "positive": true,
       "seconds": 927,
       "minutes": 15.4
+    },
+    {
+      "bundle": "com.google.ios.youtubemusic",
+      "name": "YouTube Music",
+      "dimension": "心理",
+      "positive": true,
+      "seconds": 689,
+      "minutes": 11.5
     },
     {
       "bundle": "com.tencent.xin",
@@ -71,8 +87,8 @@ window.SCREEN_TIME_DATA = {
       "name": "Brave",
       "dimension": "工作",
       "positive": null,
-      "seconds": 99,
-      "minutes": 1.6
+      "seconds": 121,
+      "minutes": 2.0
     },
     {
       "bundle": "com.apple.ScreenshotServi",
@@ -85,7 +101,7 @@ window.SCREEN_TIME_DATA = {
   ],
   "summary": {
     "工作": {
-      "total": 296,
+      "total": 318,
       "positive": 197,
       "negative": 0
     },
@@ -100,20 +116,20 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     },
     "社交": {
-      "total": 14164,
+      "total": 14482,
       "positive": 1216,
       "negative": 0
     },
     "休閒": {
-      "total": 6704,
+      "total": 8948,
       "positive": 0,
       "negative": 0
     },
     "心理": {
-      "total": 0,
-      "positive": 0,
+      "total": 689,
+      "positive": 689,
       "negative": 0
     }
   },
-  "generated": "2026-05-24T16:08:06.531374"
+  "generated": "2026-05-24T17:08:09.074715"
 };
