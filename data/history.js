@@ -1,4 +1,4 @@
-// Generated: 2026-05-24T15:08:03.292996
+// Generated: 2026-05-24T16:08:06.532647
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-17",
@@ -8,16 +8,16 @@ window.SCREEN_TIME_HISTORY = [
         "name": "手遊",
         "dimension": "休閒",
         "positive": null,
-        "seconds": 4410,
-        "minutes": 73.5
+        "seconds": 2373,
+        "minutes": 39.5
       },
       {
         "bundle": "com.burbn.instagram",
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 2460,
-        "minutes": 41.0
+        "seconds": 2204,
+        "minutes": 36.7
       },
       {
         "bundle": "com.facebook.Facebook",
@@ -157,12 +157,12 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 5941,
+        "total": 5685,
         "positive": 1188,
         "negative": 0
       },
       "休閒": {
-        "total": 6502,
+        "total": 4465,
         "positive": 0,
         "negative": 0
       },
