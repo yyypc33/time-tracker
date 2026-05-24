@@ -1,4 +1,4 @@
-// Generated: 2026-05-24T18:08:12.530245
+// Generated: 2026-05-24T19:08:15.961052
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-17",
@@ -10,14 +10,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 2204,
         "minutes": 36.7
-      },
-      {
-        "bundle": "com.garena.game.kgtw",
-        "name": "手遊",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 1979,
-        "minutes": 33.0
       },
       {
         "bundle": "com.facebook.Facebook",
@@ -52,20 +44,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 14.8
       },
       {
+        "bundle": "com.garena.game.kgtw",
+        "name": "手遊",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 629,
+        "minutes": 10.5
+      },
+      {
         "bundle": "com.burbn.barcelona",
         "name": "Threads",
         "dimension": "社交",
         "positive": null,
-        "seconds": 638,
-        "minutes": 10.6
-      },
-      {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 511,
-        "minutes": 8.5
+        "seconds": 318,
+        "minutes": 5.3
       },
       {
         "bundle": "com.google.Translate",
@@ -117,12 +109,12 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 5685,
+        "total": 5365,
         "positive": 1188,
         "negative": 0
       },
       "休閒": {
-        "total": 3931,
+        "total": 2070,
         "positive": 0,
         "negative": 0
       },
@@ -1399,12 +1391,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 82.0
       },
       {
+        "bundle": "com.forestapp.Forest",
+        "name": "Forest",
+        "dimension": "工作",
+        "positive": true,
+        "seconds": 2937,
+        "minutes": 49.0
+      },
+      {
         "bundle": "com.netmarble.tskgb",
         "name": "遊戲",
         "dimension": "休閒",
         "positive": null,
-        "seconds": 2578,
-        "minutes": 43.0
+        "seconds": 2813,
+        "minutes": 46.9
       },
       {
         "bundle": "com.google.ios.youtubemusic",
@@ -1421,14 +1421,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 1293,
         "minutes": 21.6
-      },
-      {
-        "bundle": "com.forestapp.Forest",
-        "name": "Forest",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 1234,
-        "minutes": 20.6
       },
       {
         "bundle": "com.hammerandchisel.discord",
@@ -1459,8 +1451,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "ChatGPT",
         "dimension": "工作",
         "positive": true,
-        "seconds": 197,
-        "minutes": 3.3
+        "seconds": 285,
+        "minutes": 4.8
       },
       {
         "bundle": "com.apple.ScreenshotServicesS",
@@ -1489,8 +1481,8 @@ window.SCREEN_TIME_HISTORY = [
     ],
     "summary": {
       "工作": {
-        "total": 1552,
-        "positive": 1431,
+        "total": 3343,
+        "positive": 3222,
         "negative": 0
       },
       "健康": {
@@ -1509,7 +1501,7 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "休閒": {
-        "total": 8948,
+        "total": 9183,
         "positive": 0,
         "negative": 0
       },

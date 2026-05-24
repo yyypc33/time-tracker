@@ -1,4 +1,4 @@
-// Generated: 2026-05-24T18:08:12.527660
+// Generated: 2026-05-24T19:08:15.959732
 window.SCREEN_TIME_DATA = {
   "date": "2026-05-24",
   "apps": [
@@ -27,12 +27,20 @@ window.SCREEN_TIME_DATA = {
       "minutes": 82.0
     },
     {
+      "bundle": "com.forestapp.Forest",
+      "name": "Forest",
+      "dimension": "工作",
+      "positive": true,
+      "seconds": 2937,
+      "minutes": 49.0
+    },
+    {
       "bundle": "com.netmarble.tskgb",
       "name": "遊戲",
       "dimension": "休閒",
       "positive": null,
-      "seconds": 2578,
-      "minutes": 43.0
+      "seconds": 2813,
+      "minutes": 46.9
     },
     {
       "bundle": "com.google.ios.youtubemusic",
@@ -49,14 +57,6 @@ window.SCREEN_TIME_DATA = {
       "positive": null,
       "seconds": 1293,
       "minutes": 21.6
-    },
-    {
-      "bundle": "com.forestapp.Forest",
-      "name": "Forest",
-      "dimension": "工作",
-      "positive": true,
-      "seconds": 1234,
-      "minutes": 20.6
     },
     {
       "bundle": "com.hammerandchisel.discord",
@@ -87,8 +87,8 @@ window.SCREEN_TIME_DATA = {
       "name": "ChatGPT",
       "dimension": "工作",
       "positive": true,
-      "seconds": 197,
-      "minutes": 3.3
+      "seconds": 285,
+      "minutes": 4.8
     },
     {
       "bundle": "com.apple.ScreenshotServicesS",
@@ -117,8 +117,8 @@ window.SCREEN_TIME_DATA = {
   ],
   "summary": {
     "工作": {
-      "total": 1552,
-      "positive": 1431,
+      "total": 3343,
+      "positive": 3222,
       "negative": 0
     },
     "健康": {
@@ -137,7 +137,7 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     },
     "休閒": {
-      "total": 8948,
+      "total": 9183,
       "positive": 0,
       "negative": 0
     },
@@ -147,5 +147,5 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     }
   },
-  "generated": "2026-05-24T18:08:12.527660"
+  "generated": "2026-05-24T19:08:15.959732"
 };
