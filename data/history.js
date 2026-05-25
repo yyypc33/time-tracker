@@ -1,16 +1,8 @@
-// Generated: 2026-05-25T19:54:01.654390
+// Generated: 2026-05-25T20:54:05.667058
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-18",
     "apps": [
-      {
-        "bundle": "com.garena.game.kgtw",
-        "name": "手遊",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 1648,
-        "minutes": 27.5
-      },
       {
         "bundle": "com.dbs.cardplus.tw",
         "name": "DBS Card",
@@ -32,8 +24,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "YouTube",
         "dimension": "休閒",
         "positive": null,
-        "seconds": 736,
-        "minutes": 12.3
+        "seconds": 731,
+        "minutes": 12.2
       },
       {
         "bundle": "com.duolingo.DuolingoMobile",
@@ -114,7 +106,7 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "休閒": {
-        "total": 3289,
+        "total": 1636,
         "positive": 0,
         "negative": 0
       },
