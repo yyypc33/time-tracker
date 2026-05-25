@@ -1,4 +1,4 @@
-// Generated: 2026-05-25T20:54:05.667058
+// Generated: 2026-05-25T21:54:08.580868
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-18",
@@ -40,7 +40,7 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 435,
+        "seconds": 430,
         "minutes": 7.2
       },
       {
@@ -50,14 +50,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 350,
         "minutes": 5.8
-      },
-      {
-        "bundle": "com.facebook.Facebook",
-        "name": "Facebook",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 296,
-        "minutes": 4.9
       },
       {
         "bundle": "com.dcard.app.Dcard",
@@ -74,6 +66,14 @@ window.SCREEN_TIME_HISTORY = [
         "positive": true,
         "seconds": 231,
         "minutes": 3.9
+      },
+      {
+        "bundle": "com.facebook.Facebook",
+        "name": "Facebook",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 229,
+        "minutes": 3.8
       },
       {
         "bundle": "com.cardify.tinder",
@@ -101,7 +101,7 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 731,
+        "total": 659,
         "positive": 0,
         "negative": 0
       },
