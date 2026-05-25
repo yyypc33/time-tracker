@@ -1,64 +1,8 @@
-// Generated: 2026-05-25T05:37:01.109071
+// Generated: 2026-05-25T19:54:01.654390
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-18",
     "apps": [
-      {
-        "bundle": "com.google.ios.youtube",
-        "name": "YouTube",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 4600,
-        "minutes": 76.7
-      },
-      {
-        "bundle": "com.burbn.barcelona",
-        "name": "Threads",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 3956,
-        "minutes": 65.9
-      },
-      {
-        "bundle": "com.google.Translate",
-        "name": "Translate",
-        "dimension": null,
-        "positive": null,
-        "seconds": 3646,
-        "minutes": 60.8
-      },
-      {
-        "bundle": "com.tencent.xin",
-        "name": "WeChat",
-        "dimension": "社交",
-        "positive": true,
-        "seconds": 3542,
-        "minutes": 59.0
-      },
-      {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 3252,
-        "minutes": 54.2
-      },
-      {
-        "bundle": "com.facebook.Facebook",
-        "name": "Facebook",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 2251,
-        "minutes": 37.5
-      },
-      {
-        "bundle": "com.vng.zingalo",
-        "name": "Zingalo",
-        "dimension": null,
-        "positive": null,
-        "seconds": 2012,
-        "minutes": 33.5
-      },
       {
         "bundle": "com.garena.game.kgtw",
         "name": "手遊",
@@ -76,28 +20,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 26.6
       },
       {
-        "bundle": "com.brave.ios.browser",
-        "name": "Brave",
-        "dimension": "工作",
+        "bundle": "com.netmarble.tskgb",
+        "name": "遊戲",
+        "dimension": "休閒",
         "positive": null,
-        "seconds": 1507,
-        "minutes": 25.1
+        "seconds": 905,
+        "minutes": 15.1
       },
       {
-        "bundle": "com.burbn.instagram",
-        "name": "Instagram",
-        "dimension": "社交",
+        "bundle": "com.google.ios.youtube",
+        "name": "YouTube",
+        "dimension": "休閒",
         "positive": null,
-        "seconds": 1413,
-        "minutes": 23.6
-      },
-      {
-        "bundle": "com.hammerandchisel.discord",
-        "name": "Discord",
-        "dimension": "社交",
-        "positive": true,
-        "seconds": 1192,
-        "minutes": 19.9
+        "seconds": 736,
+        "minutes": 12.3
       },
       {
         "bundle": "com.duolingo.DuolingoMobile",
@@ -108,20 +44,12 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 8.6
       },
       {
-        "bundle": "com.gsm.customer",
-        "name": "Customer",
-        "dimension": null,
+        "bundle": "com.burbn.instagram",
+        "name": "Instagram",
+        "dimension": "社交",
         "positive": null,
-        "seconds": 372,
-        "minutes": 6.2
-      },
-      {
-        "bundle": "com.google.ios.youtubemusic",
-        "name": "YouTube Music",
-        "dimension": "心理",
-        "positive": true,
-        "seconds": 371,
-        "minutes": 6.2
+        "seconds": 435,
+        "minutes": 7.2
       },
       {
         "bundle": "com.mma.xphone",
@@ -132,6 +60,14 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 5.8
       },
       {
+        "bundle": "com.facebook.Facebook",
+        "name": "Facebook",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 296,
+        "minutes": 4.9
+      },
+      {
         "bundle": "com.dcard.app.Dcard",
         "name": "Dcard",
         "dimension": null,
@@ -140,12 +76,12 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 3.9
       },
       {
-        "bundle": "com.apple.control-ce",
-        "name": "Control Ce",
-        "dimension": null,
-        "positive": null,
-        "seconds": 210,
-        "minutes": 3.5
+        "bundle": "com.google.ios.youtubemusic",
+        "name": "YouTube Music",
+        "dimension": "心理",
+        "positive": true,
+        "seconds": 231,
+        "minutes": 3.9
       },
       {
         "bundle": "com.cardify.tinder",
@@ -154,52 +90,12 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 61,
         "minutes": 1.0
-      },
-      {
-        "bundle": "com.timeleft.app",
-        "name": "TimeLeft",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 31,
-        "minutes": 0.5
-      },
-      {
-        "bundle": "com.gamer.bahabook",
-        "name": "Bahabook",
-        "dimension": null,
-        "positive": null,
-        "seconds": 29,
-        "minutes": 0.5
-      },
-      {
-        "bundle": "com.ctrip.EBooking",
-        "name": "Ebooking",
-        "dimension": null,
-        "positive": null,
-        "seconds": 21,
-        "minutes": 0.3
-      },
-      {
-        "bundle": "com.google.Gmail",
-        "name": "Gmail",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 20,
-        "minutes": 0.3
-      },
-      {
-        "bundle": "com.kkday.member",
-        "name": "Member",
-        "dimension": null,
-        "positive": null,
-        "seconds": 3,
-        "minutes": 0.1
       }
     ],
     "summary": {
       "工作": {
-        "total": 2071,
-        "positive": 564,
+        "total": 513,
+        "positive": 513,
         "negative": 0
       },
       "健康": {
@@ -213,18 +109,18 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 12354,
-        "positive": 4734,
+        "total": 731,
+        "positive": 0,
         "negative": 0
       },
       "休閒": {
-        "total": 9500,
+        "total": 3289,
         "positive": 0,
         "negative": 0
       },
       "心理": {
-        "total": 371,
-        "positive": 371,
+        "total": 231,
+        "positive": 231,
         "negative": 0
       }
     }
