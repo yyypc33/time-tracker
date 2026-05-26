@@ -1,6 +1,6 @@
-// Generated: 2026-05-25T21:54:08.579567
+// Generated: 2026-05-26T11:44:39.090577
 window.SCREEN_TIME_DATA = {
-  "date": "2026-05-25",
+  "date": "2026-05-26",
   "apps": [],
   "summary": {
     "工作": {
@@ -34,5 +34,5 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     }
   },
-  "generated": "2026-05-25T21:54:08.579567"
+  "generated": "2026-05-26T11:44:39.090577"
 };
