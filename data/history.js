@@ -1,4 +1,4 @@
-// Generated: 2026-05-26T20:44:33.365947
+// Generated: 2026-05-26T21:44:36.400463
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-19",
@@ -12,20 +12,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 55.8
       },
       {
-        "bundle": "com.google.ios.youtubemusic",
-        "name": "YouTube Music",
-        "dimension": "心理",
-        "positive": true,
-        "seconds": 2363,
-        "minutes": 39.4
-      },
-      {
         "bundle": "com.burbn.instagram",
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
         "seconds": 1562,
         "minutes": 26.0
+      },
+      {
+        "bundle": "com.google.ios.youtubemusic",
+        "name": "YouTube Music",
+        "dimension": "心理",
+        "positive": true,
+        "seconds": 1145,
+        "minutes": 19.1
       },
       {
         "bundle": "com.tencent.xin",
@@ -87,8 +87,8 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "心理": {
-        "total": 2363,
-        "positive": 2363,
+        "total": 1145,
+        "positive": 1145,
         "negative": 0
       }
     }
