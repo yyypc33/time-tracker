@@ -1,4 +1,4 @@
-// Generated: 2026-05-27T21:20:18.207641
+// Generated: 2026-05-27T22:20:21.093034
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-20",
@@ -8,8 +8,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "YouTube Music",
         "dimension": "心理",
         "positive": true,
-        "seconds": 1922,
-        "minutes": 32.0
+        "seconds": 653,
+        "minutes": 10.9
       },
       {
         "bundle": "com.anthropic.claude",
@@ -74,14 +74,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 24,
         "minutes": 0.4
-      },
-      {
-        "bundle": "com.apple.WebSheet",
-        "name": "Websheet",
-        "dimension": null,
-        "positive": null,
-        "seconds": 21,
-        "minutes": 0.3
       }
     ],
     "summary": {
@@ -111,8 +103,8 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "心理": {
-        "total": 1922,
-        "positive": 1922,
+        "total": 653,
+        "positive": 653,
         "negative": 0
       }
     }
