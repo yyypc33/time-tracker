@@ -1,4 +1,4 @@
-// Generated: 2026-05-27T20:20:15.346615
+// Generated: 2026-05-27T21:20:18.207641
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-20",
@@ -8,16 +8,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "YouTube Music",
         "dimension": "心理",
         "positive": true,
-        "seconds": 2746,
-        "minutes": 45.8
-      },
-      {
-        "bundle": "com.burbn.barcelona",
-        "name": "Threads",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 1021,
-        "minutes": 17.0
+        "seconds": 1922,
+        "minutes": 32.0
       },
       {
         "bundle": "com.anthropic.claude",
@@ -26,14 +18,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": true,
         "seconds": 534,
         "minutes": 8.9
-      },
-      {
-        "bundle": "com.forestapp.Forest",
-        "name": "Forest",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 530,
-        "minutes": 8.8
       },
       {
         "bundle": "com.duolingo.DuolingoMobile",
@@ -48,16 +32,16 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 500,
-        "minutes": 8.3
+        "seconds": 481,
+        "minutes": 8.0
       },
       {
         "bundle": "com.facebook.Facebook",
         "name": "Facebook",
         "dimension": "社交",
         "positive": null,
-        "seconds": 334,
-        "minutes": 5.6
+        "seconds": 324,
+        "minutes": 5.4
       },
       {
         "bundle": "com.burbn.instagr",
@@ -68,28 +52,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 4.3
       },
       {
-        "bundle": "com.cardify.tinder",
-        "name": "Tinder",
-        "dimension": null,
-        "positive": null,
-        "seconds": 111,
-        "minutes": 1.9
-      },
-      {
         "bundle": "com.google.Translate",
         "name": "Translate",
         "dimension": null,
         "positive": null,
-        "seconds": 93,
-        "minutes": 1.6
+        "seconds": 67,
+        "minutes": 1.1
       },
       {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 59,
-        "minutes": 1.0
+        "bundle": "com.forestapp.Forest",
+        "name": "Forest",
+        "dimension": "工作",
+        "positive": true,
+        "seconds": 57,
+        "minutes": 0.9
       },
       {
         "bundle": "com.facebook.Faceboo",
@@ -97,14 +73,6 @@ window.SCREEN_TIME_HISTORY = [
         "dimension": null,
         "positive": null,
         "seconds": 24,
-        "minutes": 0.4
-      },
-      {
-        "bundle": "com.dcard.app.Dcard",
-        "name": "Dcard",
-        "dimension": null,
-        "positive": null,
-        "seconds": 23,
         "minutes": 0.4
       },
       {
@@ -118,8 +86,8 @@ window.SCREEN_TIME_HISTORY = [
     ],
     "summary": {
       "工作": {
-        "total": 1571,
-        "positive": 1571,
+        "total": 1098,
+        "positive": 1098,
         "negative": 0
       },
       "健康": {
@@ -133,18 +101,18 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 1855,
+        "total": 805,
         "positive": 0,
         "negative": 0
       },
       "休閒": {
-        "total": 59,
+        "total": 0,
         "positive": 0,
         "negative": 0
       },
       "心理": {
-        "total": 2746,
-        "positive": 2746,
+        "total": 1922,
+        "positive": 1922,
         "negative": 0
       }
     }
