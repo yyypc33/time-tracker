@@ -1,4 +1,4 @@
-// Generated: 2026-05-27T19:20:00.624211
+// Generated: 2026-05-27T20:20:15.346615
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-20",
@@ -12,28 +12,12 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 45.8
       },
       {
-        "bundle": "com.google.ios.youtube",
-        "name": "YouTube",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 1503,
-        "minutes": 25.1
-      },
-      {
         "bundle": "com.burbn.barcelona",
         "name": "Threads",
         "dimension": "社交",
         "positive": null,
         "seconds": 1021,
         "minutes": 17.0
-      },
-      {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 676,
-        "minutes": 11.3
       },
       {
         "bundle": "com.anthropic.claude",
@@ -52,20 +36,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 8.8
       },
       {
-        "bundle": "com.burbn.instagram",
-        "name": "Instagram",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 528,
-        "minutes": 8.8
-      },
-      {
         "bundle": "com.duolingo.DuolingoMobile",
         "name": "Duolingo",
         "dimension": "工作",
         "positive": true,
         "seconds": 507,
         "minutes": 8.4
+      },
+      {
+        "bundle": "com.burbn.instagram",
+        "name": "Instagram",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 500,
+        "minutes": 8.3
       },
       {
         "bundle": "com.facebook.Facebook",
@@ -98,6 +82,14 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 93,
         "minutes": 1.6
+      },
+      {
+        "bundle": "com.netmarble.tskgb",
+        "name": "遊戲",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 59,
+        "minutes": 1.0
       },
       {
         "bundle": "com.facebook.Faceboo",
@@ -141,12 +133,12 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 1883,
+        "total": 1855,
         "positive": 0,
         "negative": 0
       },
       "休閒": {
-        "total": 2179,
+        "total": 59,
         "positive": 0,
         "negative": 0
       },
