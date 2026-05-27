@@ -1,16 +1,8 @@
-// Generated: 2026-05-27T22:20:21.093034
+// Generated: 2026-05-27T23:36:55.263379
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-20",
     "apps": [
-      {
-        "bundle": "com.google.ios.youtubemusic",
-        "name": "YouTube Music",
-        "dimension": "心理",
-        "positive": true,
-        "seconds": 653,
-        "minutes": 10.9
-      },
       {
         "bundle": "com.anthropic.claude",
         "name": "Claude",
@@ -20,20 +12,12 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 8.9
       },
       {
-        "bundle": "com.duolingo.DuolingoMobile",
-        "name": "Duolingo",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 507,
-        "minutes": 8.4
-      },
-      {
         "bundle": "com.burbn.instagram",
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 481,
-        "minutes": 8.0
+        "seconds": 377,
+        "minutes": 6.3
       },
       {
         "bundle": "com.facebook.Facebook",
@@ -42,30 +26,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 324,
         "minutes": 5.4
-      },
-      {
-        "bundle": "com.burbn.instagr",
-        "name": "Instagr",
-        "dimension": null,
-        "positive": null,
-        "seconds": 256,
-        "minutes": 4.3
-      },
-      {
-        "bundle": "com.google.Translate",
-        "name": "Translate",
-        "dimension": null,
-        "positive": null,
-        "seconds": 67,
-        "minutes": 1.1
-      },
-      {
-        "bundle": "com.forestapp.Forest",
-        "name": "Forest",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 57,
-        "minutes": 0.9
       },
       {
         "bundle": "com.facebook.Faceboo",
@@ -78,8 +38,8 @@ window.SCREEN_TIME_HISTORY = [
     ],
     "summary": {
       "工作": {
-        "total": 1098,
-        "positive": 1098,
+        "total": 534,
+        "positive": 534,
         "negative": 0
       },
       "健康": {
@@ -93,7 +53,7 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 805,
+        "total": 701,
         "positive": 0,
         "negative": 0
       },
@@ -103,8 +63,8 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "心理": {
-        "total": 653,
-        "positive": 653,
+        "total": 0,
+        "positive": 0,
         "negative": 0
       }
     }
