@@ -1,92 +1,23 @@
-// Generated: 2026-05-26T23:03:02.678595
+// Generated: 2026-05-27T11:52:16.868035
 window.SCREEN_TIME_HISTORY = [
-  {
-    "date": "2026-05-19",
-    "apps": [
-      {
-        "bundle": "com.google.ios.youtube",
-        "name": "YouTube",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 3177,
-        "minutes": 53.0
-      },
-      {
-        "bundle": "com.burbn.instagram",
-        "name": "Instagram",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 285,
-        "minutes": 4.8
-      }
-    ],
-    "summary": {
-      "工作": {
-        "total": 0,
-        "positive": 0,
-        "negative": 0
-      },
-      "健康": {
-        "total": 0,
-        "positive": 0,
-        "negative": 0
-      },
-      "財務": {
-        "total": 0,
-        "positive": 0,
-        "negative": 0
-      },
-      "社交": {
-        "total": 285,
-        "positive": 0,
-        "negative": 0
-      },
-      "休閒": {
-        "total": 3177,
-        "positive": 0,
-        "negative": 0
-      },
-      "心理": {
-        "total": 0,
-        "positive": 0,
-        "negative": 0
-      }
-    }
-  },
   {
     "date": "2026-05-20",
     "apps": [
-      {
-        "bundle": "com.tencent.xin",
-        "name": "WeChat",
-        "dimension": "社交",
-        "positive": true,
-        "seconds": 8137,
-        "minutes": 135.6
-      },
-      {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 5108,
-        "minutes": 85.1
-      },
       {
         "bundle": "com.burbn.barcelona",
         "name": "Threads",
         "dimension": "社交",
         "positive": null,
-        "seconds": 5048,
-        "minutes": 84.1
+        "seconds": 4470,
+        "minutes": 74.5
       },
       {
-        "bundle": "com.burbn.instagram",
-        "name": "Instagram",
+        "bundle": "com.tencent.xin",
+        "name": "WeChat",
         "dimension": "社交",
-        "positive": null,
-        "seconds": 3823,
-        "minutes": 63.7
+        "positive": true,
+        "seconds": 3573,
+        "minutes": 59.5
       },
       {
         "bundle": "com.google.ios.youtubemusic",
@@ -101,32 +32,40 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Facebook",
         "dimension": "社交",
         "positive": null,
-        "seconds": 2543,
-        "minutes": 42.4
+        "seconds": 2279,
+        "minutes": 38.0
+      },
+      {
+        "bundle": "com.burbn.instagram",
+        "name": "Instagram",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 1794,
+        "minutes": 29.9
       },
       {
         "bundle": "com.google.ios.youtube",
         "name": "YouTube",
         "dimension": "休閒",
         "positive": null,
-        "seconds": 2043,
-        "minutes": 34.0
+        "seconds": 1673,
+        "minutes": 27.9
+      },
+      {
+        "bundle": "com.netmarble.tskgb",
+        "name": "遊戲",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 1619,
+        "minutes": 27.0
       },
       {
         "bundle": "com.anthropic.claude",
         "name": "Claude",
         "dimension": "工作",
         "positive": true,
-        "seconds": 1129,
-        "minutes": 18.8
-      },
-      {
-        "bundle": "com.microsoft.to-do",
-        "name": "To Do",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 1002,
-        "minutes": 16.7
+        "seconds": 718,
+        "minutes": 12.0
       },
       {
         "bundle": "com.openai.chat",
@@ -169,20 +108,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 4.3
       },
       {
-        "bundle": "com.tixr.tixr",
-        "name": "Tixr",
-        "dimension": null,
-        "positive": null,
-        "seconds": 205,
-        "minutes": 3.4
-      },
-      {
         "bundle": "com.apple.springboa",
         "name": "Springboa",
         "dimension": null,
         "positive": null,
         "seconds": 162,
         "minutes": 2.7
+      },
+      {
+        "bundle": "com.tixr.tixr",
+        "name": "Tixr",
+        "dimension": null,
+        "positive": null,
+        "seconds": 118,
+        "minutes": 2.0
       },
       {
         "bundle": "com.cardify.tinder",
@@ -215,20 +154,12 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 21,
         "minutes": 0.3
-      },
-      {
-        "bundle": "com.timeleft.app",
-        "name": "TimeLeft",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 13,
-        "minutes": 0.2
       }
     ],
     "summary": {
       "工作": {
-        "total": 3745,
-        "positive": 3745,
+        "total": 2319,
+        "positive": 2319,
         "negative": 0
       },
       "健康": {
@@ -242,12 +173,12 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 19551,
-        "positive": 8137,
+        "total": 12116,
+        "positive": 3573,
         "negative": 0
       },
       "休閒": {
-        "total": 7151,
+        "total": 3292,
         "positive": 0,
         "negative": 0
       },
