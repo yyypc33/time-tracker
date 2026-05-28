@@ -1,4 +1,4 @@
-// Generated: 2026-05-28T11:45:30.285736
+// Generated: 2026-05-28T17:22:34.553457
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-21",
@@ -8,40 +8,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 4392,
-        "minutes": 73.2
-      },
-      {
-        "bundle": "com.burbn.barcelona",
-        "name": "Threads",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 3224,
-        "minutes": 53.7
-      },
-      {
-        "bundle": "com.tencent.xin",
-        "name": "WeChat",
-        "dimension": "社交",
-        "positive": true,
-        "seconds": 3138,
-        "minutes": 52.3
-      },
-      {
-        "bundle": "com.vng.zingalo",
-        "name": "Zingalo",
-        "dimension": null,
-        "positive": null,
-        "seconds": 2860,
-        "minutes": 47.7
-      },
-      {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 1909,
-        "minutes": 31.8
+        "seconds": 2126,
+        "minutes": 35.4
       },
       {
         "bundle": "com.brave.ios.browser",
@@ -68,6 +36,22 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 18.1
       },
       {
+        "bundle": "com.netmarble.tskgb",
+        "name": "遊戲",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 957,
+        "minutes": 15.9
+      },
+      {
+        "bundle": "com.burbn.barcelona",
+        "name": "Threads",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 744,
+        "minutes": 12.4
+      },
+      {
         "bundle": "com.apple.",
         "name": "",
         "dimension": null,
@@ -88,16 +72,24 @@ window.SCREEN_TIME_HISTORY = [
         "name": "YouTube",
         "dimension": "休閒",
         "positive": null,
-        "seconds": 482,
-        "minutes": 8.0
+        "seconds": 462,
+        "minutes": 7.7
+      },
+      {
+        "bundle": "com.tencent.xin",
+        "name": "WeChat",
+        "dimension": "社交",
+        "positive": true,
+        "seconds": 430,
+        "minutes": 7.2
       },
       {
         "bundle": "com.facebook.Facebook",
         "name": "Facebook",
         "dimension": "社交",
         "positive": null,
-        "seconds": 474,
-        "minutes": 7.9
+        "seconds": 38,
+        "minutes": 0.6
       },
       {
         "bundle": "com.google.Translate",
@@ -141,12 +133,12 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 11228,
-        "positive": 3138,
+        "total": 3338,
+        "positive": 430,
         "negative": 0
       },
       "休閒": {
-        "total": 2391,
+        "total": 1419,
         "positive": 0,
         "negative": 0
       },
