@@ -1,4 +1,4 @@
-// Generated: 2026-05-30T18:05:59.837803
+// Generated: 2026-05-30T20:09:58.710535
 window.SCREEN_TIME_DATA = {
   "date": "2026-05-30",
   "apps": [
@@ -147,5 +147,5 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     }
   },
-  "generated": "2026-05-30T18:05:59.837803"
+  "generated": "2026-05-30T20:09:58.710535"
 };

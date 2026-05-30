@@ -1,4 +1,4 @@
-// Generated: 2026-05-30T18:05:59.839339
+// Generated: 2026-05-30T20:09:58.717810
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-23",
@@ -8,56 +8,16 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 4461,
-        "minutes": 74.3
+        "seconds": 2612,
+        "minutes": 43.5
       },
       {
         "bundle": "com.google.ios.youtubemusic",
         "name": "YouTube Music",
         "dimension": "心理",
         "positive": true,
-        "seconds": 2249,
-        "minutes": 37.5
-      },
-      {
-        "bundle": "com.facebook.Facebook",
-        "name": "Facebook",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 649,
-        "minutes": 10.8
-      },
-      {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 582,
-        "minutes": 9.7
-      },
-      {
-        "bundle": "com.openai.chat",
-        "name": "ChatGPT",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 401,
-        "minutes": 6.7
-      },
-      {
-        "bundle": "com.duolingo.DuolingoMobile",
-        "name": "Duolingo",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 346,
-        "minutes": 5.8
-      },
-      {
-        "bundle": "com.cardify.tinder",
-        "name": "Tinder",
-        "dimension": null,
-        "positive": null,
-        "seconds": 195,
-        "minutes": 3.2
+        "seconds": 2010,
+        "minutes": 33.5
       },
       {
         "bundle": "com.timeleft.app",
@@ -68,50 +28,18 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 3.2
       },
       {
-        "bundle": "com.hammerandchisel.discord",
-        "name": "Discord",
-        "dimension": "社交",
-        "positive": true,
-        "seconds": 184,
-        "minutes": 3.1
-      },
-      {
-        "bundle": "com.gamer.bahabook",
-        "name": "Bahabook",
+        "bundle": "com.cardify.tinder",
+        "name": "Tinder",
         "dimension": null,
         "positive": null,
-        "seconds": 110,
-        "minutes": 1.8
-      },
-      {
-        "bundle": "com.apple.GameOverlayUI",
-        "name": "Gameoverlayui",
-        "dimension": null,
-        "positive": null,
-        "seconds": 66,
-        "minutes": 1.1
-      },
-      {
-        "bundle": "com.brave.ios.browser",
-        "name": "Brave",
-        "dimension": "工作",
-        "positive": null,
-        "seconds": 35,
-        "minutes": 0.6
-      },
-      {
-        "bundle": "com.google.ios.youtube",
-        "name": "YouTube",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 27,
-        "minutes": 0.5
+        "seconds": 90,
+        "minutes": 1.5
       }
     ],
     "summary": {
       "工作": {
-        "total": 974,
-        "positive": 939,
+        "total": 192,
+        "positive": 192,
         "negative": 0
       },
       "健康": {
@@ -125,18 +53,18 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 5294,
-        "positive": 184,
+        "total": 2612,
+        "positive": 0,
         "negative": 0
       },
       "休閒": {
-        "total": 609,
+        "total": 0,
         "positive": 0,
         "negative": 0
       },
       "心理": {
-        "total": 2249,
-        "positive": 2249,
+        "total": 2010,
+        "positive": 2010,
         "negative": 0
       }
     }
