@@ -1,4 +1,4 @@
-// Generated: 2026-05-30T17:05:56.335049
+// Generated: 2026-05-30T18:05:59.837803
 window.SCREEN_TIME_DATA = {
   "date": "2026-05-30",
   "apps": [
@@ -23,8 +23,16 @@ window.SCREEN_TIME_DATA = {
       "name": "Instagram",
       "dimension": "社交",
       "positive": null,
-      "seconds": 4007,
-      "minutes": 66.8
+      "seconds": 4103,
+      "minutes": 68.4
+    },
+    {
+      "bundle": "com.burbn.barcelona",
+      "name": "Threads",
+      "dimension": "社交",
+      "positive": null,
+      "seconds": 3900,
+      "minutes": 65.0
     },
     {
       "bundle": "com.netmarble.tskgb",
@@ -35,12 +43,12 @@ window.SCREEN_TIME_DATA = {
       "minutes": 64.4
     },
     {
-      "bundle": "com.burbn.barcelona",
-      "name": "Threads",
+      "bundle": "com.facebook.Facebook",
+      "name": "Facebook",
       "dimension": "社交",
       "positive": null,
-      "seconds": 3631,
-      "minutes": 60.5
+      "seconds": 2405,
+      "minutes": 40.1
     },
     {
       "bundle": "com.google.ios.youtube",
@@ -49,14 +57,6 @@ window.SCREEN_TIME_DATA = {
       "positive": null,
       "seconds": 2306,
       "minutes": 38.4
-    },
-    {
-      "bundle": "com.facebook.Facebook",
-      "name": "Facebook",
-      "dimension": "社交",
-      "positive": null,
-      "seconds": 1527,
-      "minutes": 25.4
     },
     {
       "bundle": "com.brave.ios.browser",
@@ -87,8 +87,8 @@ window.SCREEN_TIME_DATA = {
       "name": "Bumble",
       "dimension": null,
       "positive": null,
-      "seconds": 89,
-      "minutes": 1.5
+      "seconds": 113,
+      "minutes": 1.9
     },
     {
       "bundle": "com.dcard.app.Dcard",
@@ -105,6 +105,14 @@ window.SCREEN_TIME_DATA = {
       "positive": null,
       "seconds": 55,
       "minutes": 0.9
+    },
+    {
+      "bundle": "com.google.ios.youtubemusic",
+      "name": "YouTube Music",
+      "dimension": "心理",
+      "positive": true,
+      "seconds": 7,
+      "minutes": 0.1
     }
   ],
   "summary": {
@@ -124,7 +132,7 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     },
     "社交": {
-      "total": 15110,
+      "total": 16353,
       "positive": 5945,
       "negative": 0
     },
@@ -134,10 +142,10 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     },
     "心理": {
-      "total": 0,
-      "positive": 0,
+      "total": 7,
+      "positive": 7,
       "negative": 0
     }
   },
-  "generated": "2026-05-30T17:05:56.335049"
+  "generated": "2026-05-30T18:05:59.837803"
 };

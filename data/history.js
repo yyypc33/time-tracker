@@ -1,4 +1,4 @@
-// Generated: 2026-05-30T17:05:56.336467
+// Generated: 2026-05-30T18:05:59.839339
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-23",
@@ -8,8 +8,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 4466,
-        "minutes": 74.4
+        "seconds": 4461,
+        "minutes": 74.3
       },
       {
         "bundle": "com.google.ios.youtubemusic",
@@ -20,28 +20,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 37.5
       },
       {
-        "bundle": "com.netmarble.tskgb",
-        "name": "遊戲",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 1369,
-        "minutes": 22.8
-      },
-      {
-        "bundle": "com.google.ios.youtube",
-        "name": "YouTube",
-        "dimension": "休閒",
-        "positive": null,
-        "seconds": 657,
-        "minutes": 10.9
-      },
-      {
         "bundle": "com.facebook.Facebook",
         "name": "Facebook",
         "dimension": "社交",
         "positive": null,
         "seconds": 649,
         "minutes": 10.8
+      },
+      {
+        "bundle": "com.netmarble.tskgb",
+        "name": "遊戲",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 582,
+        "minutes": 9.7
       },
       {
         "bundle": "com.openai.chat",
@@ -106,6 +98,14 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 35,
         "minutes": 0.6
+      },
+      {
+        "bundle": "com.google.ios.youtube",
+        "name": "YouTube",
+        "dimension": "休閒",
+        "positive": null,
+        "seconds": 27,
+        "minutes": 0.5
       }
     ],
     "summary": {
@@ -125,12 +125,12 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 5299,
+        "total": 5294,
         "positive": 184,
         "negative": 0
       },
       "休閒": {
-        "total": 2026,
+        "total": 609,
         "positive": 0,
         "negative": 0
       },
@@ -1403,8 +1403,16 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 4007,
-        "minutes": 66.8
+        "seconds": 4103,
+        "minutes": 68.4
+      },
+      {
+        "bundle": "com.burbn.barcelona",
+        "name": "Threads",
+        "dimension": "社交",
+        "positive": null,
+        "seconds": 3900,
+        "minutes": 65.0
       },
       {
         "bundle": "com.netmarble.tskgb",
@@ -1415,12 +1423,12 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 64.4
       },
       {
-        "bundle": "com.burbn.barcelona",
-        "name": "Threads",
+        "bundle": "com.facebook.Facebook",
+        "name": "Facebook",
         "dimension": "社交",
         "positive": null,
-        "seconds": 3631,
-        "minutes": 60.5
+        "seconds": 2405,
+        "minutes": 40.1
       },
       {
         "bundle": "com.google.ios.youtube",
@@ -1429,14 +1437,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 2306,
         "minutes": 38.4
-      },
-      {
-        "bundle": "com.facebook.Facebook",
-        "name": "Facebook",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 1527,
-        "minutes": 25.4
       },
       {
         "bundle": "com.brave.ios.browser",
@@ -1467,8 +1467,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Bumble",
         "dimension": null,
         "positive": null,
-        "seconds": 89,
-        "minutes": 1.5
+        "seconds": 113,
+        "minutes": 1.9
       },
       {
         "bundle": "com.dcard.app.Dcard",
@@ -1485,6 +1485,14 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 55,
         "minutes": 0.9
+      },
+      {
+        "bundle": "com.google.ios.youtubemusic",
+        "name": "YouTube Music",
+        "dimension": "心理",
+        "positive": true,
+        "seconds": 7,
+        "minutes": 0.1
       }
     ],
     "summary": {
@@ -1504,7 +1512,7 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 15110,
+        "total": 16353,
         "positive": 5945,
         "negative": 0
       },
@@ -1514,8 +1522,8 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "心理": {
-        "total": 0,
-        "positive": 0,
+        "total": 7,
+        "positive": 7,
         "negative": 0
       }
     }
