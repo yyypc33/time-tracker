@@ -1,4 +1,4 @@
-// Generated: 2026-06-02T21:33:02.796413
+// Generated: 2026-06-02T22:33:06.976311
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-26",
@@ -20,14 +20,6 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 17.2
       },
       {
-        "bundle": "com.mma.xphone",
-        "name": "Xphone",
-        "dimension": null,
-        "positive": null,
-        "seconds": 819,
-        "minutes": 13.7
-      },
-      {
         "bundle": "com.google.ios.youtube",
         "name": "YouTube",
         "dimension": "休閒",
@@ -42,14 +34,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 510,
         "minutes": 8.5
-      },
-      {
-        "bundle": "com.google.ios.youtubemusic",
-        "name": "YouTube Music",
-        "dimension": "心理",
-        "positive": true,
-        "seconds": 357,
-        "minutes": 6.0
       },
       {
         "bundle": "com.burbn.barcelona",
@@ -84,20 +68,20 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 2.5
       },
       {
-        "bundle": "com.dbs.cardplus.tw",
-        "name": "DBS Card",
-        "dimension": "財務",
-        "positive": true,
-        "seconds": 136,
-        "minutes": 2.3
-      },
-      {
         "bundle": "com.openai.chat",
         "name": "ChatGPT",
         "dimension": "工作",
         "positive": true,
         "seconds": 133,
         "minutes": 2.2
+      },
+      {
+        "bundle": "com.google.ios.youtubemusic",
+        "name": "YouTube Music",
+        "dimension": "心理",
+        "positive": true,
+        "seconds": 69,
+        "minutes": 1.1
       },
       {
         "bundle": "com.facebook.Faceboo",
@@ -120,8 +104,8 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "財務": {
-        "total": 136,
-        "positive": 136,
+        "total": 0,
+        "positive": 0,
         "negative": 0
       },
       "社交": {
@@ -135,8 +119,8 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "心理": {
-        "total": 357,
-        "positive": 357,
+        "total": 69,
+        "positive": 69,
         "negative": 0
       }
     }
@@ -1379,8 +1363,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 5103,
-        "minutes": 85.0
+        "seconds": 5158,
+        "minutes": 86.0
       },
       {
         "bundle": "com.netmarble.tskgb",
@@ -1427,8 +1411,16 @@ window.SCREEN_TIME_HISTORY = [
         "name": "YouTube",
         "dimension": "休閒",
         "positive": null,
-        "seconds": 678,
-        "minutes": 11.3
+        "seconds": 1278,
+        "minutes": 21.3
+      },
+      {
+        "bundle": "com.apple.podcasts",
+        "name": "Podcasts",
+        "dimension": null,
+        "positive": null,
+        "seconds": 923,
+        "minutes": 15.4
       },
       {
         "bundle": "com.openai.chat",
@@ -1471,14 +1463,6 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 1.7
       },
       {
-        "bundle": "com.apple.podcasts",
-        "name": "Podcasts",
-        "dimension": null,
-        "positive": null,
-        "seconds": 62,
-        "minutes": 1.0
-      },
-      {
         "bundle": "com.brave.ios.browser",
         "name": "Brave",
         "dimension": "工作",
@@ -1509,12 +1493,20 @@ window.SCREEN_TIME_HISTORY = [
         "positive": true,
         "seconds": 11,
         "minutes": 0.2
+      },
+      {
+        "bundle": "com.google.Gmail",
+        "name": "Gmail",
+        "dimension": "工作",
+        "positive": true,
+        "seconds": 10,
+        "minutes": 0.2
       }
     ],
     "summary": {
       "工作": {
-        "total": 2855,
-        "positive": 2812,
+        "total": 2865,
+        "positive": 2822,
         "negative": 0
       },
       "健康": {
@@ -1528,12 +1520,12 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 16628,
+        "total": 16683,
         "positive": 7012,
         "negative": 0
       },
       "休閒": {
-        "total": 5255,
+        "total": 5855,
         "positive": 0,
         "negative": 0
       },

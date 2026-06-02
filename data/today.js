@@ -1,4 +1,4 @@
-// Generated: 2026-06-02T21:33:02.794973
+// Generated: 2026-06-02T22:33:06.975469
 window.SCREEN_TIME_DATA = {
   "date": "2026-06-02",
   "apps": [
@@ -15,8 +15,8 @@ window.SCREEN_TIME_DATA = {
       "name": "Instagram",
       "dimension": "社交",
       "positive": null,
-      "seconds": 5103,
-      "minutes": 85.0
+      "seconds": 5158,
+      "minutes": 86.0
     },
     {
       "bundle": "com.netmarble.tskgb",
@@ -63,8 +63,16 @@ window.SCREEN_TIME_DATA = {
       "name": "YouTube",
       "dimension": "休閒",
       "positive": null,
-      "seconds": 678,
-      "minutes": 11.3
+      "seconds": 1278,
+      "minutes": 21.3
+    },
+    {
+      "bundle": "com.apple.podcasts",
+      "name": "Podcasts",
+      "dimension": null,
+      "positive": null,
+      "seconds": 923,
+      "minutes": 15.4
     },
     {
       "bundle": "com.openai.chat",
@@ -107,14 +115,6 @@ window.SCREEN_TIME_DATA = {
       "minutes": 1.7
     },
     {
-      "bundle": "com.apple.podcasts",
-      "name": "Podcasts",
-      "dimension": null,
-      "positive": null,
-      "seconds": 62,
-      "minutes": 1.0
-    },
-    {
       "bundle": "com.brave.ios.browser",
       "name": "Brave",
       "dimension": "工作",
@@ -145,12 +145,20 @@ window.SCREEN_TIME_DATA = {
       "positive": true,
       "seconds": 11,
       "minutes": 0.2
+    },
+    {
+      "bundle": "com.google.Gmail",
+      "name": "Gmail",
+      "dimension": "工作",
+      "positive": true,
+      "seconds": 10,
+      "minutes": 0.2
     }
   ],
   "summary": {
     "工作": {
-      "total": 2855,
-      "positive": 2812,
+      "total": 2865,
+      "positive": 2822,
       "negative": 0
     },
     "健康": {
@@ -164,12 +172,12 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     },
     "社交": {
-      "total": 16628,
+      "total": 16683,
       "positive": 7012,
       "negative": 0
     },
     "休閒": {
-      "total": 5255,
+      "total": 5855,
       "positive": 0,
       "negative": 0
     },
@@ -179,5 +187,5 @@ window.SCREEN_TIME_DATA = {
       "negative": 0
     }
   },
-  "generated": "2026-06-02T21:33:02.794973"
+  "generated": "2026-06-02T22:33:06.975469"
 };
