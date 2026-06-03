@@ -1,4 +1,4 @@
-// Generated: 2026-06-03T20:22:28.090850
+// Generated: 2026-06-03T21:22:31.380601
 window.SCREEN_TIME_HISTORY = [
   {
     "date": "2026-05-27",
@@ -16,16 +16,8 @@ window.SCREEN_TIME_HISTORY = [
         "name": "Instagram",
         "dimension": "社交",
         "positive": null,
-        "seconds": 1596,
-        "minutes": 26.6
-      },
-      {
-        "bundle": "com.vng.zingalo",
-        "name": "Zingalo",
-        "dimension": null,
-        "positive": null,
-        "seconds": 1346,
-        "minutes": 22.4
+        "seconds": 1590,
+        "minutes": 26.5
       },
       {
         "bundle": "com.google.ios.youtube",
@@ -34,14 +26,6 @@ window.SCREEN_TIME_HISTORY = [
         "positive": null,
         "seconds": 1061,
         "minutes": 17.7
-      },
-      {
-        "bundle": "com.brave.ios.browser",
-        "name": "Brave",
-        "dimension": "工作",
-        "positive": null,
-        "seconds": 678,
-        "minutes": 11.3
       },
       {
         "bundle": "com.gamer.bahabook",
@@ -76,28 +60,12 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 2.0
       },
       {
-        "bundle": "com.facebook.Facebook",
-        "name": "Facebook",
-        "dimension": "社交",
-        "positive": null,
-        "seconds": 79,
-        "minutes": 1.3
-      },
-      {
         "bundle": "com.tixr.tixr",
         "name": "Tixr",
         "dimension": null,
         "positive": null,
         "seconds": 76,
         "minutes": 1.3
-      },
-      {
-        "bundle": "com.timeleft.app",
-        "name": "TimeLeft",
-        "dimension": "工作",
-        "positive": true,
-        "seconds": 46,
-        "minutes": 0.8
       },
       {
         "bundle": "com.anthropic.claude",
@@ -108,18 +76,18 @@ window.SCREEN_TIME_HISTORY = [
         "minutes": 0.5
       },
       {
-        "bundle": "com.google.Translate",
-        "name": "Translate",
-        "dimension": null,
+        "bundle": "com.facebook.Facebook",
+        "name": "Facebook",
+        "dimension": "社交",
         "positive": null,
-        "seconds": 19,
-        "minutes": 0.3
+        "seconds": 24,
+        "minutes": 0.4
       }
     ],
     "summary": {
       "工作": {
-        "total": 1185,
-        "positive": 507,
+        "total": 461,
+        "positive": 461,
         "negative": 0
       },
       "健康": {
@@ -133,7 +101,7 @@ window.SCREEN_TIME_HISTORY = [
         "negative": 0
       },
       "社交": {
-        "total": 1675,
+        "total": 1614,
         "positive": 0,
         "negative": 0
       },
